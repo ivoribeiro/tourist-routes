@@ -50,12 +50,11 @@ public abstract class Graph<T> implements GraphADT<T> {
 
     protected int getIndex(T vertex) throws ElementNotFoundException {
         if (this.numVertices > 0) {
-            int i = 0;
-            for (T vertice : vertices) {
+            for (int i=0;i<this.getNumVertices();i++) {
+                T vertice = this.vertices[i];
                 if (vertice.equals(vertex)) {
                     return i;
                 }
-                i++;
             }
         }
         throw new ElementNotFoundException("Vertice não existe");

@@ -51,15 +51,14 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
     public void addVertex(T vertex) {
         try {
             int vertexContains = super.getIndex(vertex);
-        } catch (ElementNotFoundException e) {
+        }//se não existir adiciona o vertice
+        catch (ElementNotFoundException e) {
             super.addVertex(vertex);
 
-            this.getVertices()[this.getNumVertices()] = vertex;
-            for (int i = 0; i <= this.getNumVertices(); i++) {
-                this.weightAdjMatrix[this.getNumVertices()][i] = null;
-                this.weightAdjMatrix[i][this.getNumVertices()] = null;
+            for (int i = 0; i < this.getNumVertices(); i++) {
+                this.weightAdjMatrix[this.getNumVertices()-1][i] = null;
+                this.weightAdjMatrix[i][this.getNumVertices()-1] = null;
             }
-            this.incrementNumVertices();
         }
     }
 
