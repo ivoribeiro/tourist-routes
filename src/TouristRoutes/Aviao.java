@@ -19,4 +19,15 @@ public class Aviao extends Transporte{
     public String getCompanhiaAerea() {
         return companhiaAerea;
     }
+
+    @Override
+    public String toString() {
+        return "Aviao{" +super.toString()+
+                "companhiaAerea='" + companhiaAerea + '\'' +
+                ", lugares=" + lugares +
+                ", conforto='" + conforto + '\'' +
+                ", casaDeBanho=" + casaDeBanho +
+                ", alimentacao=" + alimentacao +
+                '}';
+    }
 }

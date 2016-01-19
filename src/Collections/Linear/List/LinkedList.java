@@ -100,11 +100,7 @@ public class LinkedList<T> implements ListADT<T> {
         } else if (!this.contains(target)) {
             throw new ElementNotFoundException("The element doesn't exist");
         } else {
-            if (this.size() == 1) {
-                this.front = null;
-                this.rear = null;
-                return first();
-            } else if (this.last().equals(target)) {
+             if (this.last().equals(target)) {
                 return this.removeLast();
             } else if (this.first().equals(target)) {
                 return this.removeFirst();

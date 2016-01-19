@@ -9,16 +9,16 @@ import Collections.NonLinear.Interfaces.NetworkADT;
  */
 public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements NetworkADT<T> {
 
-    private Transporte<T> [][] weights;
+    private double [][] weights;
 
     public DiNetworkAdjMatrix() {
         super();
-        weights = new Transporte[this.getNumVertices()][this.getNumVertices()];
+        weights = new double[this.getNumVertices()][this.getNumVertices()];
     }
 
     public DiNetworkAdjMatrix(int capacity) {
         super(capacity);
-        weights = new Transporte[this.getNumVertices()][this.getNumVertices()];
+        weights = new double[this.getNumVertices()][this.getNumVertices()];
     }
 
     /**
@@ -97,7 +97,7 @@ public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements Networ
      */
     @Override
     public void addEdge(T vertex1, T vertex2, double weight) {
-        this.addEdge(vertex1, vertex2);
+        super.addEdge(vertex1, vertex2);
         try {
             this.weights[getIndex(vertex1)][getIndex(vertex2)] = weight;
         } catch (ElementNotFoundException e) {
@@ -109,7 +109,7 @@ public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements Networ
     public void removeEdge(T vertex1, T vertex2) {
         super.removeEdge(vertex1, vertex2);
         try {
-            this.weights[this.getIndex(vertex1)][this.getIndex(vertex1)] = -1;
+            this.weights[this.getIndex(vertex1)][this.getIndex(vertex2)] = -1;
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
         }

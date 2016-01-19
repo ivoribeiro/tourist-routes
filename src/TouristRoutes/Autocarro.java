@@ -63,4 +63,16 @@ public class Autocarro extends Transporte {
     public void setAlimentacao(boolean alimentacao) {
         this.alimentacao = alimentacao;
     }
+
+    @Override
+    public String toString() {
+
+        return "Autocarro{" +super.toString()+
+                "transportadora='" + transportadora + '\'' +
+                ", lugares=" + lugares +
+                ", conforto='" + conforto + '\'' +
+                ", casaDeBanho=" + casaDeBanho +
+                ", alimentacao=" + alimentacao +
+                '}';
+    }
 }

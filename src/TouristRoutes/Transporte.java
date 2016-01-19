@@ -14,4 +14,11 @@ public abstract class Transporte {
     public String getTipo() {
         return tipo;
     }
+
+    @Override
+    public String toString() {
+        return "Transporte{" +
+                "tipo='" + tipo + '\'' +
+                '}';
+    }
 }
