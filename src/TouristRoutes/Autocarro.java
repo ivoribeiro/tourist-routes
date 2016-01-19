@@ -1,18 +1,22 @@
+package TouristRoutes;
+
 /**
  * Created by ivo on 18-01-2016.
  */
-public class Autocarro {
-    String transportadora;
-    int lugares;
-    String conforto;
-    boolean casaDeBanho;
-    boolean alimentacao;
+public class Autocarro extends Transporte {
+    private String transportadora;
+    private int lugares;
+    private String conforto;
+    private boolean casaDeBanho;
+    private boolean alimentacao;
 
     public Autocarro(String transportadora) {
+        super("Terrestre");
         this.transportadora = transportadora;
     }
 
     public Autocarro(String transportadora, int lugares, String conforto, boolean casaDeBanho, boolean alimentacao) {
+        super("Terrestre");
         this.transportadora = transportadora;
         this.lugares = lugares;
         this.conforto = conforto;

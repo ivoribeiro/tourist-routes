@@ -88,6 +88,10 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
 
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
 
 
