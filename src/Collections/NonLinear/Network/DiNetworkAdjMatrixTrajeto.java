@@ -5,6 +5,7 @@ import Collections.Exception.EmptyCollectionException;
 import Collections.Linear.Interfaces.UnorderedListADT;
 import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
 import Collections.NonLinear.Graph.matrix.adjMatrixDiGraph;
+import Collections.NonLinear.Graph.matrix.adjMatrixUndGraph;
 import Collections.NonLinear.Interfaces.NetworkADT;
 import TouristRoutes.Trajeto;
 
@@ -13,30 +14,33 @@ import java.util.Arrays;
 /**
  * Created by aluno on 1/19/16.
  */
-public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
+public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixUndGraph<T> {
     private UnorderedListADT<Trajeto>[][] weightAdjMatrix;
 
     public DiNetworkAdjMatrixTrajeto() {
         super();
-        weightAdjMatrix = new LinkedUnorderedList[this.getCapacity()][this.getCapacity()];
+        this.weightAdjMatrix = new LinkedUnorderedList[this.getCapacity()][this.getCapacity()];
+
     }
 
     public DiNetworkAdjMatrixTrajeto(int capacity) {
         super(capacity);
-        weightAdjMatrix = new LinkedUnorderedList[capacity][capacity];
+        this.weightAdjMatrix = new LinkedUnorderedList[this.getCapacity()][this.getCapacity()];
+
     }
 
     /**
-     * Creates new arrays to store the contents of the Network with
+     * Creates new arrays to store the contents of the graph with
      * twice the capacity.
      */
     @Override
     protected void expandCapacity() {
         super.expandCapacity();
         UnorderedListADT<Trajeto>[][] largerWeightsMatrix = (new LinkedUnorderedList[this.getNumVertices() * 2][this.getNumVertices() * 2]);
-
         for (int i = 0; i < this.getNumVertices(); i++) {
-            System.arraycopy(this.weightAdjMatrix[i], 0, largerWeightsMatrix[i], 0, getNumVertices());
+            for (int j = 0; j < getNumVertices(); j++) {
+                largerWeightsMatrix[i][j] = this.weightAdjMatrix[i][j];
+            }
         }
         this.weightAdjMatrix = largerWeightsMatrix;
     }
@@ -54,10 +58,12 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         }//se não existir adiciona o vertice
         catch (ElementNotFoundException e) {
             super.addVertex(vertex);
-
+            //Se estiver cheio , expande matriz de pesos
+            if (this.getNumVertices() == this.getVertices().length)
+                this.expandCapacity();
             for (int i = 0; i < this.getNumVertices(); i++) {
-                this.weightAdjMatrix[this.getNumVertices()-1][i] = null;
-                this.weightAdjMatrix[i][this.getNumVertices()-1] = null;
+                this.weightAdjMatrix[this.getNumVertices() - 1][i] = new LinkedUnorderedList<>();
+                this.weightAdjMatrix[i][this.getNumVertices() - 1] = new LinkedUnorderedList<>();
             }
         }
     }
@@ -105,7 +111,8 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
      *                Extamente igual a implentação de uma network nao direcionada
      */
     public void addEdge(T vertex1, T vertex2, Trajeto weight) {
-        super.addEdge(vertex1, vertex2);
+        //so adiciona a edge caso ela nao exista
+       if(!super.edgeExists(vertex1,vertex2))super.addEdge(vertex1, vertex2);
         try {
             this.weightAdjMatrix[this.getIndex(vertex1)][this.getIndex(vertex2)].addToFront(weight);
         } catch (ElementNotFoundException e) {
@@ -114,7 +121,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
     }
 
     /**
-     * Removes a unidirectional edge between two vertices
+     * Removes a directional edge between two vertices
      *
      * @param vertex1, the first vertex of the edge
      * @param vertex2, the second vertex of the edge

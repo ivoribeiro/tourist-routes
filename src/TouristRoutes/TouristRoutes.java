@@ -61,6 +61,7 @@ public class TouristRoutes {
             String cidadeOrigem = (String) rota.get("CidadeOrigem");
             String cidadeDestino = (String) rota.get("CidadeDestino");
             Double precoKmIda = (Double) rota.get("preco/KmIda");
+            Double precoKmVinda = (Double) rota.get("preco/KmVinda");
             String horariosIda1 = (String) rota.get("HoráriosIda1");
             String horariosIda2 = (String) rota.get("HoráriosIda2");
             String horariosIda3 = (String) rota.get("HoráriosIda3");
@@ -76,60 +77,54 @@ public class TouristRoutes {
 
             if (km instanceof Double) {
                 trajetoIDA = new Trajeto(transporte, tempo.intValue(), (Double) km, precoKmIda);
+                trajetoVinda =new Trajeto(transporte, tempo.intValue(), (Double) km, precoKmVinda);
             }
             if (km instanceof Long) {
                 trajetoIDA = new Trajeto(transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmIda);
+                trajetoVinda = new Trajeto(transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmVinda);
+
             }
 
             touristRoutes.addVertex(cidadeOrigem);
-            //touristRoutes.addVertex(cidadeDestino);
-
-/**
- *
-
- if (!horariosIda1.isEmpty()) {
- LocalTime horarioida1 = LocalTime.parse(horariosIda1);
- trajetoIDA.addHorario(horarioida1);
-
- }
- if (!horariosIda2.isEmpty()) {
- LocalTime horarioida2 = LocalTime.parse(horariosIda2);
- trajetoIDA.addHorario(horarioida2);
-
- }
-
- if (!horariosIda3.isEmpty()) {
- LocalTime horarioida3 = LocalTime.parse(horariosIda3);
- trajetoIDA.addHorario(horarioida3);
-
- }
-
- touristRoutes.addEdge(cidadeOrigem,cidadeDestino,trajetoIDA);
-
- double precoKmVinda = (double) rota.get("preco/KmVinda");
+            touristRoutes.addVertex(cidadeDestino);
 
 
- trajetoVinda = new Trajeto(transporte,tempo.intValue(),((Long) km).doubleValue(),precoKmVinda);
+            if (!horariosIda1.isEmpty()) {
+                LocalTime horarioida1 = LocalTime.parse(horariosIda1);
+                trajetoIDA.addHorario(horarioida1);
+
+            }
+            if (!horariosIda2.isEmpty()) {
+                LocalTime horarioida2 = LocalTime.parse(horariosIda2);
+                trajetoIDA.addHorario(horarioida2);
+
+            }
+
+            if (!horariosIda3.isEmpty()) {
+                LocalTime horarioida3 = LocalTime.parse(horariosIda3);
+                trajetoIDA.addHorario(horarioida3);
+
+            }
+
+            touristRoutes.addEdge(cidadeOrigem, cidadeDestino, trajetoIDA);
 
 
- if (!horariosVinda1.isEmpty()) {
- LocalTime horarioVinda1 = LocalTime.parse(horariosVinda1);
- trajetoVinda.addHorario(horarioVinda1);
+            if (!horariosVinda1.isEmpty()) {
+                LocalTime horarioVinda1 = LocalTime.parse(horariosVinda1);
+                trajetoVinda.addHorario(horarioVinda1);
 
- }
- if (!horariosVinda2.isEmpty()) {
- LocalTime horarioVinda2 = LocalTime.parse(horariosVinda2);
- trajetoVinda.addHorario(horarioVinda2);
+            }
+            if (!horariosVinda2.isEmpty()) {
+                LocalTime horarioVinda2 = LocalTime.parse(horariosVinda2);
+                trajetoVinda.addHorario(horarioVinda2);
 
- }
- if (!horariosVinda3.isEmpty()) {
- LocalTime horarioVinda3 = LocalTime.parse(horariosVinda3);
- trajetoVinda.addHorario(horarioVinda3);
- }
+            }
+            if (!horariosVinda3.isEmpty()) {
+                LocalTime horarioVinda3 = LocalTime.parse(horariosVinda3);
+                trajetoVinda.addHorario(horarioVinda3);
+            }
 
- touristRoutes.addEdge(cidadeDestino,cidadeOrigem,trajetoVinda);
-
- */
+            touristRoutes.addEdge(cidadeDestino, cidadeOrigem, trajetoVinda);
 
 
         }

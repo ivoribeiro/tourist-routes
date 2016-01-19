@@ -30,6 +30,15 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
         this.adjMatrix = (new boolean[this.getCapacity()][this.getCapacity()]);
     }
 
+    protected boolean edgeExists(T vertex1, T vertex2) {
+        try {
+            return adjMatrix[this.getIndex(vertex1)][this.getIndex(vertex2)];
+        } catch (ElementNotFoundException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     /**
      * Creates new arrays to store the contents of the graph with
      * twice the capacity.
