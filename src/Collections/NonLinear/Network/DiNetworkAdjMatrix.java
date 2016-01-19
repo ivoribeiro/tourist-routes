@@ -2,23 +2,23 @@ package Collections.NonLinear.Network;
 
 import Collections.Exception.ElementNotFoundException;
 import Collections.NonLinear.Graph.matrix.adjMatrixDiGraph;
-import Collections.NonLinear.Interfaces.NetworkADT;
+import Collections.NonLinear.Interfaces.NetworkADT; 
 
 /**
  * Created by ivo on 13-01-2016.
  */
 public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements NetworkADT<T> {
 
-    private double[][] weights;
+    private Transporte<T> [][] weights;
 
     public DiNetworkAdjMatrix() {
         super();
-        weights = new double[this.getNumVertices()][this.getNumVertices()];
+        weights = new Transporte[this.getNumVertices()][this.getNumVertices()];
     }
 
     public DiNetworkAdjMatrix(int capacity) {
         super(capacity);
-        weights = new double[this.getNumVertices()][this.getNumVertices()];
+        weights = new Transporte[this.getNumVertices()][this.getNumVertices()];
     }
 
     /**
@@ -45,6 +45,7 @@ public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements Networ
      */
     @Override
     public void addVertex(T vertex) {
+        
         super.addVertex(vertex);
 
         this.getVertices()[this.getNumVertices()] = vertex;

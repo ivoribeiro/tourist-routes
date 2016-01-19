@@ -9,8 +9,8 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
- * Created by ivo on 22-11-2015.
- * This is a backbone implementation for LinkedLists
+ * Created by ivo on 22-11-2015. This is a backbone implementation for
+ * LinkedLists
  */
 public class LinkedList<T> implements ListADT<T> {
 
@@ -49,8 +49,9 @@ public class LinkedList<T> implements ListADT<T> {
      */
     @Override
     public T removeFirst() throws EmptyCollectionException {
-        if (this.isEmpty()) throw new EmptyCollectionException("Empty List");
-        else {
+        if (this.isEmpty()) {
+            throw new EmptyCollectionException("Empty List");
+        } else {
             T tempElement = this.front.getElement();
             //The new first node will be the next of the old one
             this.front = this.front.getNext();
@@ -68,8 +69,9 @@ public class LinkedList<T> implements ListADT<T> {
      */
     @Override
     public T removeLast() throws EmptyCollectionException {
-        if (this.isEmpty()) throw new EmptyCollectionException("Empty List");
-        else {
+        if (this.isEmpty()) {
+            throw new EmptyCollectionException("Empty List");
+        } else {
             BasicIterator<T> basicIterator = (BasicIterator<T>) this.iterator();
             LinearNode<T> prev = this.front;
             while (basicIterator.hasNext()) {
@@ -93,31 +95,33 @@ public class LinkedList<T> implements ListADT<T> {
      */
     @Override
     public T remove(T target) throws EmptyCollectionException, ElementNotFoundException {
-        if (this.isEmpty()) throw new EmptyCollectionException("Empty Linked List");
-        else {
-            if (!this.contains(target)) throw new ElementNotFoundException("The element doesn't exist");
-            else {
-                if (this.size() == 1) {
-                    this.front = null;
-                    this.rear = null;
-                    return first();
-                } else if (this.last().equals(target)) return this.removeLast();
-                else if (this.first().equals(target)) return this.removeFirst();
-                else {
-                    BasicIterator<T> basicIterator = (BasicIterator<T>) this.iterator();
-                    LinearNode<T> prev = this.front;
-                    boolean found = false;
-                    while (basicIterator.hasNext() && found == false) {
-                        prev = basicIterator.getCurrent();
-                        if (basicIterator.next().equals(target)) {
-                            found = true;
-                        }
+        if (this.isEmpty()) {
+            throw new EmptyCollectionException("Empty Linked List");
+        } else if (!this.contains(target)) {
+            throw new ElementNotFoundException("The element doesn't exist");
+        } else {
+            if (this.size() == 1) {
+                this.front = null;
+                this.rear = null;
+                return first();
+            } else if (this.last().equals(target)) {
+                return this.removeLast();
+            } else if (this.first().equals(target)) {
+                return this.removeFirst();
+            } else {
+                BasicIterator<T> basicIterator = (BasicIterator<T>) this.iterator();
+                LinearNode<T> prev = this.front;
+                boolean found = false;
+                while (basicIterator.hasNext() && found == false) {
+                    prev = basicIterator.getCurrent();
+                    if (basicIterator.next().equals(target)) {
+                        found = true;
                     }
-                    prev.setNext(basicIterator.getCurrent().getNext());
                 }
-                --this.size;
-                return target;
+                prev.setNext(basicIterator.getCurrent().getNext());
             }
+            --this.size;
+            return target;
         }
     }
 
@@ -129,8 +133,9 @@ public class LinkedList<T> implements ListADT<T> {
      */
     @Override
     public T first() throws EmptyCollectionException {
-        if (this.isEmpty()) throw new EmptyCollectionException("Empty Linked List");
-        else {
+        if (this.isEmpty()) {
+            throw new EmptyCollectionException("Empty Linked List");
+        } else {
             return this.front.getElement();
         }
     }
@@ -143,8 +148,9 @@ public class LinkedList<T> implements ListADT<T> {
      */
     @Override
     public T last() throws EmptyCollectionException {
-        if (isEmpty()) throw new EmptyCollectionException("Empty Linked List");
-        else {
+        if (isEmpty()) {
+            throw new EmptyCollectionException("Empty Linked List");
+        } else {
             return this.rear.getElement();
         }
     }
@@ -158,8 +164,9 @@ public class LinkedList<T> implements ListADT<T> {
      */
     @Override
     public boolean contains(T target) throws EmptyCollectionException {
-        if (this.isEmpty()) throw new EmptyCollectionException("Empty Linked List");
-        else {
+        if (this.isEmpty()) {
+            throw new EmptyCollectionException("Empty Linked List");
+        } else {
             BasicIterator<T> basicIterator = (BasicIterator<T>) this.iterator();
             while (basicIterator.hasNext()) {
                 //if the current iterator element is equals to target
@@ -180,7 +187,6 @@ public class LinkedList<T> implements ListADT<T> {
     public boolean isEmpty() {
         return this.size == 0;
     }
-
 
     /**
      * Returns the number of elements in this List.
@@ -210,9 +216,6 @@ public class LinkedList<T> implements ListADT<T> {
         //TODO this method
         return null;
     }
-    
-    
-
 
     /**
      * Inner Class to suply the iteration methods for the linked list
@@ -238,8 +241,9 @@ public class LinkedList<T> implements ListADT<T> {
 
         @Override
         public T next() {
-            if (!this.hasNext()) throw new NoSuchElementException();
-            else {
+            if (!this.hasNext()) {
+                throw new NoSuchElementException();
+            } else {
                 //the previous will be the current and the current will be the old one next's
                 T element = this.current.getElement();
                 this.current = this.current.getNext();
@@ -260,8 +264,18 @@ public class LinkedList<T> implements ListADT<T> {
             // }
 
         }
+
     }
 
+    @Override
+    public String toString() {
+        String result = "\n";
+        LinearNode<T> traverse = front;
 
+        while (traverse != null) {
+            result += (traverse.getElement()).toString() + "\n";
+            traverse = traverse.getNext();
+        }
+        return result;
+    }
 }
-

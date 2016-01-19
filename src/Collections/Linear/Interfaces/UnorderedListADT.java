@@ -34,4 +34,6 @@ public interface UnorderedListADT<T> extends ListADT<T> {
      */
     public void addAfter(T element, T target) throws ElementNotFoundException;
 
+    @Override
+    public String toString();
 }
