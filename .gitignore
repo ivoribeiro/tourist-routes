@@ -61,3 +61,13 @@ fabric.properties
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 >>>>>>> c3ef1200c77abd26b0efd4d56d61ec173f0732f4
+/tourist-routes/nbproject/private/
+
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+.nb-gradle/
+
