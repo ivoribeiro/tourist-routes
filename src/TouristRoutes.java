@@ -16,8 +16,8 @@ public class TouristRoutes {
 
         try {
             Object obj = parser.parse(new FileReader(
-                    "/home/ivo/IdeaProjects/TouristRoutes/src/routes.json"));
-
+                    "src/routes.json"));
+            
             JSONObject jsonObject = (JSONObject) obj;
             JSONArray rotas = (JSONArray) jsonObject.get("rotas");
             Iterator<JSONObject> iterator = rotas.iterator();
@@ -58,17 +58,17 @@ public class TouristRoutes {
 
                 Object km = rota.get("Km");
                 if (km instanceof Double) {
-                    System.out.println((Double) km);
+                    //System.out.println((Double) km);
 
                 }
                 if (km instanceof Long) {
-                    System.out.println((Long) km);
+                    //System.out.println((Long) km);
                 }
 
                 Long tempo = (Long) rota.get("Tempo(m)");
 
 
-                // System.out.println(rota);
+                System.out.println(rota);
 
             }
 
