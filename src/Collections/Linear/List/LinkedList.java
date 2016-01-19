@@ -258,8 +258,16 @@ public class LinkedList<T> implements ListADT<T> {
             // }
 
         }
+
     }
 
-
+    @Override
+    public String toString() {
+        return "LinkedList{" +
+                "front=" + front +
+                ", rear=" + rear +
+                ", size=" + size +
+                '}';
+    }
 }
 
