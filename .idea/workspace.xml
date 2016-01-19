@@ -25,29 +25,11 @@
     <option name="FILTER_BY_CURRENT_PROJECT" value="true" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59b91496-2c0c-4e91-aab8-979483fabb03" name="Default" comment="App Architecture">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TouristRoutes/Autocarro.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TouristRoutes/Aviao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TouristRoutes/Route.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TouristRoutes/TouristRoutes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TouristRoutes/Trajeto.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/TouristRoutes/Transporte.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TouristRoutes/Autocarro.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TouristRoutes/Route.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TouristRoutes/Time.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TouristRoutes/TouristRoutes.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/TouristRoutes/Transporte.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Autocarro.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Route.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Time.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/TouristRoutes.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Transporte.java" afterPath="" />
+    <list default="true" id="59b91496-2c0c-4e91-aab8-979483fabb03" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TouristRoutes/Collections/Linear/Interfaces/UnorderedListADT.class" afterPath="$PROJECT_DIR$/out/production/TouristRoutes/Collections/Linear/Interfaces/UnorderedListADT.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TouristRoutes/Collections/Linear/List/LinkedList$BasicIterator.class" afterPath="$PROJECT_DIR$/out/production/TouristRoutes/Collections/Linear/List/LinkedList$BasicIterator.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/TouristRoutes/Collections/Linear/List/UnorderedList/LinkedUnorderedList.class" afterPath="$PROJECT_DIR$/out/production/TouristRoutes/Collections/Linear/List/UnorderedList/LinkedUnorderedList.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Collections/Linear/Interfaces/UnorderedListADT.java" afterPath="$PROJECT_DIR$/src/Collections/Linear/Interfaces/UnorderedListADT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Collections/Linear/List/UnorderedList/LinkedUnorderedList.java" afterPath="$PROJECT_DIR$/src/Collections/Linear/List/UnorderedList/LinkedUnorderedList.java" />
     </list>
     <ignored path="TouristRoutes.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,7 +71,7 @@
       <file leaf-file-name="LinkedList.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Collections/Linear/List/LinkedList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="8.664047">
+            <state vertical-scroll-proportion="5.7124352">
               <caret line="269" column="20" selection-start-line="269" selection-start-column="20" selection-end-line="269" selection-end-column="20" />
               <folding />
             </state>
@@ -745,7 +727,13 @@
       <option name="project" value="LOCAL" />
       <updated>1453215991490</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="App Architecture">
+      <created>1453216139557</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1453216139557</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -757,7 +745,7 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32793018" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32793018" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1168,7 +1156,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Collections/Linear/List/LinkedList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="8.664047">
+        <state vertical-scroll-proportion="5.7124352">
           <caret line="269" column="20" selection-start-line="269" selection-start-column="20" selection-end-line="269" selection-end-column="20" />
           <folding />
         </state>
