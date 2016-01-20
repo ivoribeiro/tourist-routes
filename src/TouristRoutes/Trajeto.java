@@ -4,6 +4,7 @@ import Collections.Linear.Interfaces.UnorderedListADT;
 import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
 
 import java.time.LocalTime;
+import java.util.Objects;
 
 /**
  * Created by aluno on 1/19/16.
@@ -46,9 +47,48 @@ public class Trajeto<T extends Transporte> {
 
     @Override
     public String toString() {
-        return "\n\n"+ transporteUsado.toString() + "\n"+ "Tempo Viagem: " + tempoViagem + "\n"
+        return "\n\n" + transporteUsado.toString() + "\n"
+                + "Tempo Viagem: " + tempoViagem + "\n"
                 + "Distancia: " + distancia + "\n"
                 + "Preco/Km: " + precoKm + "\n"
-                + "Horarios: " + horarios.toString() ;
+                + "Horarios: " + horarios.toString();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Trajeto<?> other = (Trajeto<?>) obj;
+        if (this.tempoViagem != other.tempoViagem) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.distancia) != Double.doubleToLongBits(other.distancia)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.precoKm) != Double.doubleToLongBits(other.precoKm)) {
+            return false;
+        }
+        if (!Objects.equals(this.transporteUsado, other.transporteUsado)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.transporteUsado);
+        hash = 97 * hash + this.tempoViagem;
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.distancia) ^ (Double.doubleToLongBits(this.distancia) >>> 32));
+        hash = 97 * hash + (int) (Double.doubleToLongBits(this.precoKm) ^ (Double.doubleToLongBits(this.precoKm) >>> 32));
+        return hash;
+    }
+
 }
