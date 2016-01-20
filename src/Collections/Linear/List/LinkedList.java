@@ -163,14 +163,21 @@ public class LinkedList<T> implements ListADT<T> {
         if (this.isEmpty()) {
             throw new EmptyCollectionException("Empty Linked List");
         } else {
-            BasicIterator<T> basicIterator = (BasicIterator<T>) this.iterator();
-            while (basicIterator.hasNext()) {
-                //if the current iterator element is equals to target
-                if (basicIterator.next().equals(target)) {
-                    return true;
-                }
+//            BasicIterator<T> basicIterator = (BasicIterator<T>) this.iterator();
+//            while (basicIterator.hasNext()) {
+//                //if the current iterator element is equals to target
+//                if (basicIterator.next().equals(target)) {
+//                    return true;
+//                }
+//            }
+//            return false;
+            LinearNode<T> temp = this.front;
+            int i =0;
+            while(i < this.size() && !target.equals(temp.getElement())){
+                i++;
+                temp = temp.getNext();
             }
-            return false;
+            return i != this.size();
         }
     }
 

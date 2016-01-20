@@ -64,8 +64,7 @@ public class adjMatrixUndGraph<T> extends adjMatrixDiGraph<T> implements GraphAD
     public void removeEdge(T vertex1, T vertex2) {
 
         try {
-            boolean[][] adjMatrix = new boolean[0][];
-            boolean exists = adjMatrix[getIndex(vertex1)][getIndex(vertex2)] && adjMatrix[getIndex(vertex2)][getIndex(vertex1)];
+            boolean exists = this.getAdjMatrix()[getIndex(vertex1)][getIndex(vertex2)] && this.getAdjMatrix()[getIndex(vertex2)][getIndex(vertex1)];
             if (!exists) throw new EdgeNotFoundException("A aresta não existe");
             else {
                 removeEdge(getIndex(vertex1), getIndex(vertex2));
