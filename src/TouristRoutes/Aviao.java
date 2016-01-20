@@ -3,7 +3,7 @@ package TouristRoutes;
 /**
  * Created by aluno on 1/19/16.
  */
-public class Aviao extends Transporte{
+public class Aviao extends Transporte {
 
     private String companhiaAerea;
     private int lugares;
@@ -22,12 +22,11 @@ public class Aviao extends Transporte{
 
     @Override
     public String toString() {
-        return "Aviao{" +super.toString()+
-                "companhiaAerea='" + companhiaAerea + '\'' +
-                ", lugares=" + lugares +
-                ", conforto='" + conforto + '\'' +
-                ", casaDeBanho=" + casaDeBanho +
-                ", alimentacao=" + alimentacao +
-                '}';
+        return super.toString()
+                + "Companhia Aerea: " + companhiaAerea + "\n"
+                + "Lugares: " + lugares + "\n"
+                + "Conforto: " + conforto + "\n"
+                + "Casa De Banho: " + casaDeBanho + "\n"
+                + "Alimentacão: " + alimentacao + "\n";
     }
 }

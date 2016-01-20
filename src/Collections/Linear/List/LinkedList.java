@@ -265,11 +265,11 @@ public class LinkedList<T> implements ListADT<T> {
 
     @Override
     public String toString() {
-        String result = "\n";
+        String result = "";
         LinearNode<T> traverse = front;
 
         while (traverse != null) {
-            result += (traverse.getElement()).toString() + "\n";
+            result += (traverse.getElement()).toString()+ "\t";
             traverse = traverse.getNext();
         }
         return result;

@@ -9,21 +9,22 @@ import java.time.LocalTime;
  * Created by aluno on 1/19/16.
  */
 public class Trajeto<T extends Transporte> {
+
     private T transporteUsado;
     private int tempoViagem;
     private double distancia;
     private double precoKm;
     private UnorderedListADT<LocalTime> horarios;
 
-    public Trajeto(T transporteUsado,int tempoViagem, double distancia, double precoKm){
+    public Trajeto(T transporteUsado, int tempoViagem, double distancia, double precoKm) {
         this.transporteUsado = transporteUsado;
-        this.distancia= distancia;
+        this.distancia = distancia;
         this.precoKm = precoKm;
         this.tempoViagem = tempoViagem;
         this.horarios = new LinkedUnorderedList<>();
     }
 
-    public void addHorario(LocalTime horario){
+    public void addHorario(LocalTime horario) {
         horarios.addToFront(horario);
     }
 
@@ -45,12 +46,9 @@ public class Trajeto<T extends Transporte> {
 
     @Override
     public String toString() {
-        return "Trajeto{" +
-                "transporteUsado=" + transporteUsado +
-                ", tempoViagem=" + tempoViagem +
-                ", distancia=" + distancia +
-                ", precoKm=" + precoKm +
-                ", horarios=" + horarios +
-                '}';
+        return "\n\n"+ transporteUsado.toString() + "\n"+ "Tempo Viagem: " + tempoViagem + "\n"
+                + "Distancia: " + distancia + "\n"
+                + "Preco/Km: " + precoKm + "\n"
+                + "Horarios: " + horarios.toString() ;
     }
 }

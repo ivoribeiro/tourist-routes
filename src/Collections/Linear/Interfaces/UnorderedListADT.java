@@ -31,6 +31,7 @@ public interface UnorderedListADT<T> extends ListADT<T> {
      *
      * @param element anything
      * @param target  the target element
+     * @throws ElementNotFoundException
      */
     public void addAfter(T element, T target) throws ElementNotFoundException;
 

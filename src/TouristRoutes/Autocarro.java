@@ -4,6 +4,7 @@ package TouristRoutes;
  * Created by ivo on 18-01-2016.
  */
 public class Autocarro extends Transporte {
+
     private String transportadora;
     private int lugares;
     private String conforto;
@@ -67,12 +68,11 @@ public class Autocarro extends Transporte {
     @Override
     public String toString() {
 
-        return "Autocarro{" +super.toString()+
-                "transportadora='" + transportadora + '\'' +
-                ", lugares=" + lugares +
-                ", conforto='" + conforto + '\'' +
-                ", casaDeBanho=" + casaDeBanho +
-                ", alimentacao=" + alimentacao +
-                '}';
+        return /*super.toString()+*/
+                 "Transportadora: " + transportadora + "\t";
+//                + "Lugares: " + lugares + "\t"
+//                + "Conforto: " + conforto + "\t"
+//                + "Casa de Banho: " + casaDeBanho + "\t"
+//                + "Alimentação: " + alimentacao + "\t";
     }
 }
