@@ -27,7 +27,6 @@ public abstract class Graph<T> implements GraphADT<T> {
         this.vertices = (T[]) (new Object[this.capacity]);
     }
 
-
     protected int getCapacity() {
         return capacity;
     }
@@ -50,7 +49,7 @@ public abstract class Graph<T> implements GraphADT<T> {
 
     protected int getIndex(T vertex) throws ElementNotFoundException {
         if (this.numVertices > 0) {
-            for (int i=0;i<this.getNumVertices();i++) {
+            for (int i = 0; i < this.getNumVertices(); i++) {
                 T vertice = this.vertices[i];
                 if (vertice.equals(vertex)) {
                     return i;
@@ -65,8 +64,8 @@ public abstract class Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Creates new arrays to store the contents of the graph with
-     * twice the capacity.
+     * Creates new arrays to store the contents of the graph with twice the
+     * capacity.
      */
     protected void expandCapacity() {
         T[] largerVertices = (T[]) (new Object[vertices.length * 2]);
@@ -106,9 +105,7 @@ public abstract class Graph<T> implements GraphADT<T> {
      * Returns a breadth first iterator starting with the given vertex.
      *
      * @param startVertex the starting vertex
-     * @return a breadth first iterator beginning at the given
-     * <p>
-     * vertex
+     * @return a breadth first iterator beginning at the given vertex
      */
     @Override
     public Iterator iteratorBFS(T startVertex) {
@@ -140,12 +137,11 @@ public abstract class Graph<T> implements GraphADT<T> {
 
     public abstract Iterator<T> iteratorDFS(int startIndex);
 
-
     /**
-     * Returns an iterator that contains the shortest path between
-     * the two vertices.
+     * Returns an iterator that contains the shortest path between the two
+     * vertices.
      *
-     * @param startVertex  the starting vertex
+     * @param startVertex the starting vertex
      * @param targetVertex the ending vertex
      * @return an iterator that contains the shortest path
      * <p>
@@ -156,7 +152,6 @@ public abstract class Graph<T> implements GraphADT<T> {
         return iteratorShortestPath(startVertex, targetVertex);
     }
 
-    public abstract Iterator<T> iteratorShortestPath(int index1, int index2 );
-
+    public abstract Iterator<T> iteratorShortestPath(int index1, int index2);
 
 }

@@ -11,7 +11,6 @@ import Collections.NonLinear.Interfaces.GraphADT;
 
 import java.util.Iterator;
 
-
 public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
 
     private boolean[][] adjMatrix; // adjacency matrix
@@ -40,8 +39,8 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Creates new arrays to store the contents of the graph with
-     * twice the capacity.
+     * Creates new arrays to store the contents of the graph with twice the
+     * capacity.
      */
     protected void expandCapacity() {
         super.expandCapacity();
@@ -69,7 +68,6 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
         }
     }
 
-
     /**
      * Inserts an edge between two vertices of the graph.
      *
@@ -88,8 +86,11 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
         try {
             boolean[][] adjMatrix = new boolean[0][];
             boolean exists = adjMatrix[getIndex(vertex1)][getIndex(vertex2)];
-            if (!exists) throw new EdgeNotFoundException("A aresta não existe");
-            else removeEdge(getIndex(vertex1), getIndex(vertex2));
+            if (!exists) {
+                throw new EdgeNotFoundException("A aresta não existe");
+            } else {
+                removeEdge(getIndex(vertex1), getIndex(vertex2));
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -110,25 +111,23 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Adds a vertex to the graph, expanding the capacity of the graph
-     * if necessary. It also associates an object with the vertex.
+     * Adds a vertex to the graph, expanding the capacity of the graph if
+     * necessary. It also associates an object with the vertex.
      *
      * @param vertex the vertex to add to the graph
      */
     @Override
     public void addVertex(T vertex) {
-        if (this.getNumVertices() == this.getVertices().length)
+        if (this.getNumVertices() == this.getVertices().length) {
             expandCapacity();
+        }
         this.getVertices()[this.getNumVertices()] = vertex;
-        for (int i = 0; i <= this.getNumVertices(); i++)
-
-        {
+        for (int i = 0; i <= this.getNumVertices(); i++) {
             adjMatrix[this.getNumVertices()][i] = false;
             adjMatrix[i][this.getNumVertices()] = false;
         }
         this.incrementNumVertices();
     }
-
 
     /**
      * Removes a single vertex with the given value from this graph.
@@ -142,7 +141,7 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
             this.decrementNumVertices();
             for (int i = indexToRemove; i < this.getNumVertices(); i++) {
                 this.getVertices()[i] = this.getVertices()[i + 1];
-                System.arraycopy(this.adjMatrix[i], 0, this.adjMatrix[i + 1], 0, this.getNumVertices());
+                System.arraycopy(this.adjMatrix[i + 1], 0, this.adjMatrix[i], 0, this.getNumVertices());
             }
 
             for (int i = 0; i < this.getNumVertices(); i++) {
@@ -160,11 +159,13 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
         Integer x;
         LinkedQueue<Integer> traversalQueue = new LinkedQueue<Integer>();
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<T>();
-        if (!indexIsValid(startIndex))
+        if (!indexIsValid(startIndex)) {
             return resultList.iterator();
+        }
         boolean[] visited = new boolean[this.getNumVertices()];
-        for (int i = 0; i < this.getNumVertices(); i++)
+        for (int i = 0; i < this.getNumVertices(); i++) {
             visited[i] = false;
+        }
         traversalQueue.enqueue(new Integer(startIndex));
         visited[startIndex] = true;
         while (!traversalQueue.isEmpty()) {
@@ -185,8 +186,8 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
     }
 
     /**
-     * Returns an iterator that performs a depth-first search
-     * traversal starting at the given index.
+     * Returns an iterator that performs a depth-first search traversal starting
+     * at the given index.
      *
      * @param startIndex the index to begin the search traversal from
      * @return an iterator that performs a depth-first traversal
@@ -197,18 +198,22 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
         LinkedStack<Integer> traversalStack = new LinkedStack<Integer>();
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<T>();
         boolean[] visited = new boolean[this.getNumVertices()];
-        if (!indexIsValid(startIndex))
+        if (!indexIsValid(startIndex)) {
             return resultList.iterator();
-        for (int i = 0; i < this.getNumVertices(); i++)
+        }
+        for (int i = 0; i < this.getNumVertices(); i++) {
             visited[i] = false;
+        }
         traversalStack.push(new Integer(startIndex));
         resultList.addToRear(this.getVertices()[startIndex]);
         visited[startIndex] = true;
         while (!traversalStack.isEmpty()) {
             x = traversalStack.peek();
             found = false;
-/** Find a vertex adjacent to x that has not been visited
- and push it on the stack */
+            /**
+             * Find a vertex adjacent to x that has not been visited and push it
+             * on the stack
+             */
             for (int i = 0; (i < this.getNumVertices()) && !found; i++) {
                 if (adjMatrix[x.intValue()][i] && !visited[i]) {
                     traversalStack.push(new Integer(i));
@@ -217,8 +222,9 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
                     found = true;
                 }
             }
-            if (!found && !traversalStack.isEmpty())
+            if (!found && !traversalStack.isEmpty()) {
                 traversalStack.pop();
+            }
         }
         return resultList.iterator();
     }
@@ -228,8 +234,4 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
         return null;
     }
 
-
 }
-
-
-

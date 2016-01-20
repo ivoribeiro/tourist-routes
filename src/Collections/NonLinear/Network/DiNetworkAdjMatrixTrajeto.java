@@ -77,12 +77,13 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixUndGraph<T> {
      */
     @Override
     public void removeVertex(T vertex) {
-        super.removeVertex(vertex);
         try {
             this.removeVertex(this.getIndex(vertex));
+            super.removeVertex(vertex);
         } catch (ElementNotFoundException e) {
             e.printStackTrace();
         }
+        
     }
 
     /**
@@ -90,7 +91,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixUndGraph<T> {
      *
      * @param index, index of the vertex to be removed
      */
-    public void removeVertex(int index) {
+    private void removeVertex(int index) {
 
         for (int i = 0; i < this.getNumVertices(); i++) {
             for (int j = index; j < this.getNumVertices(); j++) {
@@ -99,7 +100,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixUndGraph<T> {
         }
 
         for (int i = index; i < this.getNumVertices(); i++) {
-            System.arraycopy(this.weightAdjMatrix[i], 0, this.weightAdjMatrix[i + 1], 0, this.getNumVertices());
+            System.arraycopy(this.weightAdjMatrix[i+1], 0, this.weightAdjMatrix[i], 0, this.getNumVertices());
         }
 
     }
@@ -184,7 +185,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixUndGraph<T> {
          * Print the vertex values
          */
         result += "\n\nVertex Values"
-                + "\n----------------------------------n"
+                + "\n----------------------------------\n"
                 + "index\tvalue\n\n";
 
         for (int i = 0; i < this.getNumVertices(); i++) {

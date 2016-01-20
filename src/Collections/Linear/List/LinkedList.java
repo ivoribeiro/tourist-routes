@@ -97,12 +97,12 @@ public class LinkedList<T> implements ListADT<T> {
     public T remove(T target) throws EmptyCollectionException, ElementNotFoundException {
         if (this.isEmpty()) {
             throw new EmptyCollectionException("Empty Linked List");
-        } else if (!this.contains(target)) {
+        } else if (this.contains(target)) {
             throw new ElementNotFoundException("The element doesn't exist");
         } else {
-             if (this.last().equals(target)) {
+            if (this.last().equals(target)) {
                 return this.removeLast();
-            } else if (this.first().equals(target)) {
+            } else if (target.equals(this.first())) {
                 return this.removeFirst();
             } else {
                 BasicIterator<T> basicIterator = (BasicIterator<T>) this.iterator();
@@ -269,7 +269,7 @@ public class LinkedList<T> implements ListADT<T> {
         LinearNode<T> traverse = front;
 
         while (traverse != null) {
-            result += (traverse.getElement()).toString()+ "\t";
+            result += (traverse.getElement()).toString() + "\t";
             traverse = traverse.getNext();
         }
         return result;
