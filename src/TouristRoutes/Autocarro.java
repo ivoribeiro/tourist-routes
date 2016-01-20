@@ -1,5 +1,7 @@
 package TouristRoutes;
 
+import java.util.Objects;
+
 /**
  * Created by ivo on 18-01-2016.
  */
@@ -75,4 +77,47 @@ public class Autocarro extends Transporte {
 //                + "Casa de Banho: " + casaDeBanho + "\t"
 //                + "Alimentação: " + alimentacao + "\t";
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.transportadora);
+        hash = 89 * hash + this.lugares;
+        hash = 89 * hash + Objects.hashCode(this.conforto);
+        hash = 89 * hash + (this.casaDeBanho ? 1 : 0);
+        hash = 89 * hash + (this.alimentacao ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Autocarro other = (Autocarro) obj;
+        if (this.lugares != other.lugares) {
+            return false;
+        }
+        if (this.casaDeBanho != other.casaDeBanho) {
+            return false;
+        }
+        if (this.alimentacao != other.alimentacao) {
+            return false;
+        }
+        if (!Objects.equals(this.transportadora, other.transportadora)) {
+            return false;
+        }
+        if (!Objects.equals(this.conforto, other.conforto)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }

@@ -54,6 +54,8 @@ public class Trajeto<T extends Transporte> {
                 + "Horarios: " + horarios.toString();
     }
 
+    
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -83,12 +85,15 @@ public class Trajeto<T extends Transporte> {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.transporteUsado);
-        hash = 97 * hash + this.tempoViagem;
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.distancia) ^ (Double.doubleToLongBits(this.distancia) >>> 32));
-        hash = 97 * hash + (int) (Double.doubleToLongBits(this.precoKm) ^ (Double.doubleToLongBits(this.precoKm) >>> 32));
+        int hash = 3;
+        hash = 67 * hash + Objects.hashCode(this.transporteUsado);
+        hash = 67 * hash + this.tempoViagem;
+        hash = 67 * hash + (int) (Double.doubleToLongBits(this.distancia) ^ (Double.doubleToLongBits(this.distancia) >>> 32));
+        hash = 67 * hash + (int) (Double.doubleToLongBits(this.precoKm) ^ (Double.doubleToLongBits(this.precoKm) >>> 32));
         return hash;
     }
 
+    
+
+    
 }

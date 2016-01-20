@@ -129,8 +129,8 @@ public class TouristRoutes {
 
         }
 
-        Trajeto  trajeto1 =new Trajeto(new Autocarro("RodoNorte"),52,67.8,0.1);
-        touristRoutes.removeEdge("Porto", "Guimarães",trajeto1);
+        Trajeto  trajeto2 =new Trajeto(new Autocarro("RodoNorte"),52,67.8,0.1);
+        touristRoutes.removeEdge("Porto", "Guimarães",trajeto2);
         System.out.println(touristRoutes.toString());
 
 

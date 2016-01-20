@@ -97,7 +97,7 @@ public class LinkedList<T> implements ListADT<T> {
     public T remove(T target) throws EmptyCollectionException, ElementNotFoundException {
         if (this.isEmpty()) {
             throw new EmptyCollectionException("Empty Linked List");
-        } else if (this.contains(target)) {
+        } else if (!this.contains(target)) {
             throw new ElementNotFoundException("The element doesn't exist");
         } else {
             if (this.last().equals(target)) {
