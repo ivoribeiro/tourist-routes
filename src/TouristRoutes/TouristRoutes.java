@@ -9,13 +9,6 @@ import googlemapsapis.Gmaps;
 import googlemapsapis.MyMarker;
 import java.io.*;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-
-import java.time.LocalTime;
-import java.util.Iterator;
 
 /**
  * Created by ivo on 18-01-2016.
@@ -35,11 +28,11 @@ public class TouristRoutes {
         Gmaps map = new Gmaps();
 
         do {
-
             try {
+                
                 cordenadas = CalculateCoordinates.getCoordinate(a[i].toString(), Language.PT);
 
-                MyMarker mTemp = new MyMarker(a[i].toString(), cordenadas.getLatitude(), cordenadas.getLongitude(),null );
+                MyMarker mTemp = new MyMarker(a[i].toString(), cordenadas.getLatitude(), cordenadas.getLongitude(),a[i].toString());
                 map.addMarker(mTemp);
                 i++;
             } catch (CoordinatesNotFound e) {

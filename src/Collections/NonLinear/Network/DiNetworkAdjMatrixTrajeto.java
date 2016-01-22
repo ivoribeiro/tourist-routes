@@ -1,15 +1,11 @@
 package Collections.NonLinear.Network;
 
 import Collections.Exception.ElementNotFoundException;
-import Collections.Exception.EmptyCollectionException;
 import Collections.Linear.Interfaces.UnorderedListADT;
 import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
 import Collections.NonLinear.Graph.matrix.adjMatrixDiGraph;
-import Collections.NonLinear.Graph.matrix.adjMatrixUndGraph;
-import Collections.NonLinear.Interfaces.NetworkADT;
 import TouristRoutes.Trajeto;
 
-import java.util.Arrays;
 
 /**
  * Created by aluno on 1/19/16.
@@ -146,7 +142,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
     }
 
     public UnorderedListADT<Trajeto> shortestPathWeight(T vertex1, T vertex2) {
-        
+        return null;
     }
 
     @Override
