@@ -5,6 +5,7 @@
  */
 package TouristRoutes;
 
+import Collections.Linear.Interfaces.UnorderedListADT;
 import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
 
 /**
@@ -28,25 +29,27 @@ public class Option {
     /**
      * Returns the disered method
      *
-     * @param option, to choose the method
      * @param index1, index of the start vertex
+     * @param criterios
      * @param index2, index of the target vertex
      * @return
      */
-    public Trajeto weightValue(int option, int index1, int index2) {
+    public Trajeto weightValue(int index1, int index2, Criterios criterios) {
 
-        if (option == 0) {
+        if (criterios.isViagemMenorDistancia()) {
             return menorDistancia(index1, index2);
         }
-        if (option == 1) {
+        if (criterios.isViagemMaisBarata()) {
             return maisbarato(index1, index2);
         }
-        if (option == 2) {
+        if (criterios.isVigemMenorTempoViagem()) {
             return menorTempoViagem(index1, index2);
         } else {
             return null;
         }
     }
+    
+   
 
     /**
      * Retorna trajeto mais curto

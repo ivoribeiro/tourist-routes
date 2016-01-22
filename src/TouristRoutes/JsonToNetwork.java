@@ -15,40 +15,23 @@ import java.util.Iterator;
  * Created by aluno on 1/21/16.
  */
 public class JsonToNetwork {
-    public static void JsonToNetwork(DiNetworkAdjMatrixTrajeto<String>touristRoutes) {
+
+    public static void JsonToNetwork(DiNetworkAdjMatrixTrajeto<String> touristRoutes) {
 
         JSONParser parser = new JSONParser();
 
-
-
-
         //parse do ficheiro para objeto json
         Object obj = null;
-        try
-
-        {
+        try {
             obj = parser.parse(new FileReader("src/routes.json"));
-        } catch (
-                IOException e
-                )
-
-        {
-            e.printStackTrace();
-        } catch (
-                ParseException e
-                )
-
-        {
-            e.printStackTrace();
+        } catch (IOException | ParseException e) {
         }
 
         JSONObject jsonObject = (JSONObject) obj;
         JSONArray rotas = (JSONArray) jsonObject.get("rotas");
         Iterator<JSONObject> iterator = rotas.iterator();
 
-        while (iterator.hasNext())
-
-        {
+        while (iterator.hasNext()) {
 
             JSONObject rota = iterator.next();
             //Não existem outro tipo de veiculos no problema
@@ -72,18 +55,17 @@ public class JsonToNetwork {
             Trajeto trajetoVinda = null;
 
             if (km instanceof Double) {
-                trajetoIDA = new Trajeto(transporte, tempo.intValue(), (Double) km, precoKmIda);
-                trajetoVinda = new Trajeto(transporte, tempo.intValue(), (Double) km, precoKmVinda);
+                trajetoIDA = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), (Double) km, precoKmIda);
+                trajetoVinda = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), (Double) km, precoKmVinda);
             }
             if (km instanceof Long) {
-                trajetoIDA = new Trajeto(transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmIda);
-                trajetoVinda = new Trajeto(transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmVinda);
+                trajetoIDA = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmIda);
+                trajetoVinda = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmVinda);
 
             }
 
             touristRoutes.addVertex(cidadeOrigem);
             touristRoutes.addVertex(cidadeDestino);
-
 
             if (!horariosIda1.isEmpty()) {
                 LocalTime horarioida1 = LocalTime.parse(horariosIda1);
@@ -104,7 +86,6 @@ public class JsonToNetwork {
 
             touristRoutes.addEdge(cidadeOrigem, cidadeDestino, trajetoIDA);
 
-
             if (!horariosVinda1.isEmpty()) {
                 LocalTime horarioVinda1 = LocalTime.parse(horariosVinda1);
                 trajetoVinda.addHorario(horarioVinda1);
@@ -121,7 +102,6 @@ public class JsonToNetwork {
             }
 
             touristRoutes.addEdge(cidadeDestino, cidadeOrigem, trajetoVinda);
-
 
         }
     }

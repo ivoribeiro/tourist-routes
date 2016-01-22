@@ -40,13 +40,13 @@ public class TouristRoutes {
             }
         } while (i < touristRoutes.getNumVertices());
 
-        System.out.println("\nViagem com menos km percorridos\n");
-        System.out.println(touristRoutes.shortestPathWeight("Porto", "Bragança", 0));
-        System.out.println("\nViagem mais barata\n");
-        System.out.println(touristRoutes.shortestPathWeight("Porto", "Bragança", 1));
-        System.out.println("\nViagem mais curta(tempo de viagem)\n");
-        System.out.println(touristRoutes.shortestPathWeight("Porto", "Bragança", 2));
+        Criterios criterios = new Criterios();
+        criterios.setViagemMaisBarata(true);
+        criterios.setViagemMenorDistancia(true);
+        criterios.setVigemMenorTempoViagem(true);
 
+        System.out.println(touristRoutes.shortestPathWeight("Porto", "Bragança", criterios));
+        
 
         //map.startMap(41.366700, -8.194861, 1);
     }

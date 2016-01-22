@@ -9,9 +9,13 @@ import java.util.Objects;
 
 /**
  * Created by aluno on 1/19/16.
+ *
  * @param <T>
  */
 public class Trajeto<T extends Transporte> {
+
+    private final String cidadeOrigem;
+    private final String cidadeDestino;
 
     private final T transporteUsado;
     private final int tempoViagem;
@@ -19,7 +23,9 @@ public class Trajeto<T extends Transporte> {
     private final double precoKm;
     private final UnorderedListADT<LocalTime> horarios;
 
-    public Trajeto(T transporteUsado, int tempoViagem, double distancia, double precoKm) {
+    public Trajeto(String cidadeOrigem, String cidadeDestino, T transporteUsado, int tempoViagem, double distancia, double precoKm) {
+        this.cidadeDestino = cidadeDestino;
+        this.cidadeOrigem = cidadeOrigem;
         this.transporteUsado = transporteUsado;
         this.distancia = distancia;
         this.precoKm = precoKm;
@@ -49,14 +55,14 @@ public class Trajeto<T extends Transporte> {
 
     @Override
     public String toString() {
-        return "\n\n" + transporteUsado.toString() + "\n"
+        return "\n\n" + cidadeOrigem + "->"
+                + cidadeDestino + "\n"
+                + transporteUsado.toString() + "\n"
                 + "Tempo Viagem: " + tempoViagem + "\n"
                 + "Distancia: " + distancia + "\n"
                 + "Preco/Km: " + precoKm + "\n"
                 + "Horarios: " + horarios.toString();
     }
-
-    
 
     @Override
     public boolean equals(Object obj) {
@@ -94,9 +100,7 @@ public class Trajeto<T extends Transporte> {
         hash = 67 * hash + (int) (Double.doubleToLongBits(this.precoKm) ^ (Double.doubleToLongBits(this.precoKm) >>> 32));
         return hash;
     }
-    
-    
-    
+
     /**
      * Retorna o trajeto mais curto dentro de uma determinada lista de trajetos
      *
@@ -254,9 +258,5 @@ public class Trajeto<T extends Transporte> {
             return null;
         }
     }
-    
 
-    
-
-    
 }

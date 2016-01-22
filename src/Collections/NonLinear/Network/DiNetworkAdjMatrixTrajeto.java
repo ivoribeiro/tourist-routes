@@ -5,6 +5,7 @@ import Collections.Exception.EmptyCollectionException;
 import Collections.Linear.Interfaces.UnorderedListADT;
 import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
 import Collections.NonLinear.Graph.matrix.adjMatrixDiGraph;
+import TouristRoutes.Criterios;
 import TouristRoutes.Option;
 
 import TouristRoutes.Trajeto;
@@ -156,16 +157,17 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
              * @param vertex1, the start vertex
              * @param vertex2, the target vertex
              * @param opt
+     * @param criterios
              * @return the weight of the least weight path in the network or
              * positive infinity if no path is found.
              */
 
-    public UnorderedListADT<Trajeto> shortestPathWeight(T vertex1, T vertex2, int opt) {
+    public UnorderedListADT<Trajeto> shortestPathWeight(T vertex1, T vertex2,Criterios criterios) {
 
         try {
             try {
                 return shortestPathWeight(getIndex(vertex1),
-                        getIndex(vertex2), opt);
+                        getIndex(vertex2),criterios);
             } catch (ElementNotFoundException ex) {
                 Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -186,7 +188,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
      * infinity if no path is found.
      * @throws EmptyCollectionException, if collection is empty
      */
-    private UnorderedListADT<Trajeto> shortestPathWeight(int startIndex, int targetIndex, int opt) throws EmptyCollectionException {
+    private UnorderedListADT<Trajeto> shortestPathWeight(int startIndex, int targetIndex,Criterios criterios) throws EmptyCollectionException {
         Option option = new Option(weightAdjMatrix);
         UnorderedListADT<Trajeto> result = new LinkedUnorderedList<>();
         //verifica se os indexes existem
@@ -206,7 +208,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
 
         while (it.hasNext()) {
             index2 = (it.next());
-            result.addToRear(option.weightValue(opt, index1, index2));
+            result.addToRear(option.weightValue(index1, index2,criterios));
             index1 = index2;
 
         }
