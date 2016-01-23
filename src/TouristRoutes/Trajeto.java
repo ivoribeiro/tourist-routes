@@ -123,32 +123,28 @@ public class Trajeto<T extends Transporte> {
         }
     }
 
-    
     /**
-     * Filtra a distancia Maxima do trajeto dentro de uma determinada lista de
-     * trajetos
+     * Verifica se o trajeto cumpre com a distancia maxima
      *
-     * @param trajetos
+     * @param trajeto
      * @param distanciaMaximaTrajeto
      * @return
      */
-    public static UnorderedListADT<Trajeto> filtrarDistanciaMaximaTrajeto(UnorderedListADT<Trajeto> trajetos, int distanciaMaximaTrajeto) {
-        if (!trajetos.isEmpty()) {
-            UnorderedListADT<Trajeto> tempList = new LinkedUnorderedList<>();
-            Iterator<Trajeto> it = trajetos.iterator();
-            while (it.hasNext()) {
-                Trajeto temp = it.next();
-                if (temp.getDistancia() <= distanciaMaximaTrajeto) {
-                    tempList.addToRear(temp);
-                }
-
-            }
-            return tempList;
-
-        } else {
-            return null;
-        }
+    public static boolean checkDistanciaMaximaTrajeto(Trajeto trajeto, double distanciaMaximaTrajeto) {
+        return trajeto.getDistancia() < distanciaMaximaTrajeto;
     }
+    
+    /**
+     * Verifica se o trajeto cumpre com a distancia maxima
+     *
+     * @param trajeto
+     * @param precoMaximoTrajeto
+     * @return
+     */
+    public static boolean checkPrecoMaximoTrajeto(Trajeto trajeto, double precoMaximoTrajeto) {
+        return Trajeto.getPrecoTrajeto(trajeto) < precoMaximoTrajeto;
+    }
+
 
     /**
      * Retorna o custo da viagem
@@ -187,32 +183,6 @@ public class Trajeto<T extends Transporte> {
     }
 
     /**
-     * Filtra a preco maximo do trajeto dentro de uma determinada lista de
-     * trajetos
-     *
-     * @param trajetos
-     * @param precoMaximoTrajeto
-     * @return
-     */
-    public static UnorderedListADT<Trajeto> filtrarPrecoMaximoTrajeto(UnorderedListADT<Trajeto> trajetos, int precoMaximoTrajeto) {
-        if (!trajetos.isEmpty()) {
-            UnorderedListADT<Trajeto> tempList = new LinkedUnorderedList<>();
-            Iterator<Trajeto> it = trajetos.iterator();
-            while (it.hasNext()) {
-                Trajeto temp = it.next();
-                if (getPrecoTrajeto(temp) <= precoMaximoTrajeto) {
-                    tempList.addToRear(temp);
-                }
-
-            }
-            return tempList;
-
-        } else {
-            return null;
-        }
-    }
-
-    /**
      * Retorna o trajeto com menor tempo de viagem
      *
      * @param trajetos
@@ -229,32 +199,6 @@ public class Trajeto<T extends Transporte> {
                 }
             }
             return menosTempoViagem;
-        } else {
-            return null;
-        }
-    }
-
-    /**
-     * Filtra a tempo maximo de viagem do trajeto dentro de uma determinada
-     * lista de trajetos
-     *
-     * @param trajetos
-     * @param tempoMaximoViagemTrajeto
-     * @return uma lista dos trajetos que cumprem com esse criterio
-     */
-    public static UnorderedListADT<Trajeto> filtrarTempoViagemMaximoTrajeto(UnorderedListADT<Trajeto> trajetos, int tempoMaximoViagemTrajeto) {
-        if (!trajetos.isEmpty()) {
-            UnorderedListADT<Trajeto> tempList = new LinkedUnorderedList<>();
-            Iterator<Trajeto> it = trajetos.iterator();
-            while (it.hasNext()) {
-                Trajeto temp = it.next();
-                if (getPrecoTrajeto(temp) <= tempoMaximoViagemTrajeto) {
-                    tempList.addToRear(temp);
-                }
-
-            }
-            return tempList;
-
         } else {
             return null;
         }

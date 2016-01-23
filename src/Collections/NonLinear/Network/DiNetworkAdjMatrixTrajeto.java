@@ -216,6 +216,13 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         return result;
     }
 
+    /**
+     * Retorna uma lista de todos as viagens possiveis
+     *
+     * @param startVertex
+     * @param endVertex
+     * @return
+     */
     protected UnorderedListADT<LinkedUnorderedList<Trajeto>> wightedBreadthFirstTravesal(T startVertex, T endVertex) {
         UnorderedListADT<LinkedUnorderedList<T>> paths = null;
         paths = (LinkedUnorderedList<LinkedUnorderedList<T>>) this.breadthFirstTravesal(startVertex, endVertex);
