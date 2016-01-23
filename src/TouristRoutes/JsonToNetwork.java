@@ -25,10 +25,11 @@ public class JsonToNetwork {
         try {
             obj = parser.parse(new FileReader("src/routes.json"));
         } catch (IOException | ParseException e) {
+            e.printStackTrace();
         }
 
         JSONObject jsonObject = (JSONObject) obj;
-        JSONArray rotas = (JSONArray) jsonObject.get("rotas");
+        JSONArray rotas = (JSONArray) jsonObject.get("Rotas");
         Iterator<JSONObject> iterator = rotas.iterator();
 
         while (iterator.hasNext()) {
@@ -56,7 +57,7 @@ public class JsonToNetwork {
 
             if (km instanceof Double) {
                 trajetoIDA = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), (Double) km, precoKmIda);
-                trajetoVinda = new Trajeto(cidadeDestino,cidadeOrigem , transporte, tempo.intValue(), (Double) km, precoKmVinda);
+                trajetoVinda = new Trajeto(cidadeDestino, cidadeOrigem, transporte, tempo.intValue(), (Double) km, precoKmVinda);
             }
             if (km instanceof Long) {
                 trajetoIDA = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmIda);
