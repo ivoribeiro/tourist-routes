@@ -318,7 +318,7 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
      * @param visited
      * @return 
      */
-    protected void breadthFirstTravesal(LinkedUnorderedList<T> visited, T startVertex, T endVertex) {
+    protected void breadthFirstTravesal(UnorderedListADT<T> visited, T startVertex, T endVertex) {
 
         //lista de nos
         LinkedUnorderedList<T> nodes = null;

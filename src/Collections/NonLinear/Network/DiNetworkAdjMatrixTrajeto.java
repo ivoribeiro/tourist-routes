@@ -3,6 +3,7 @@ package Collections.NonLinear.Network;
 import Collections.Exception.ElementNotFoundException;
 import Collections.Exception.EmptyCollectionException;
 import Collections.Linear.Interfaces.UnorderedListADT;
+import Collections.Linear.List.LinkedList;
 import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
 import Collections.NonLinear.Graph.matrix.adjMatrixDiGraph;
 import TouristRoutes.Criterios;
@@ -215,8 +216,8 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         return result;
     }
 
-    protected void wightedBreadthFirstTravesal(LinkedUnorderedList<T> visited, T startVertex, T endVertex) {
-        super.breadthFirstTravesal(visited, startVertex, endVertex);
+    protected void wightedBreadthFirstTravesal(UnorderedListADT<T> visited, T startVertex, T endVertex) {
+        //super.breadthFirstTravesal(visited, startVertex, endVertex);
 
         //lista de nos
         LinkedUnorderedList<T> nodes = null;
@@ -244,14 +245,28 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                 Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            try {
-                this.getIndex(node);
-                this.getIndex(visited.getRear().getElement());
-            } catch (ElementNotFoundException ex) {
-                Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
-            }
             if (node.equals(endVertex)) {
                 visited.addToRear(node);
+                Iterator<T> it = visited.iterator();
+                while (it.hasNext()) {
+                    T current = null;
+                    T next = null;
+                    T prev = it.next();
+
+                    //prev = current;
+                    if (it.hasNext()) {
+                        current = it.next();
+                        System.out.println("" + prev + "->" + current + "\n");
+
+                    }
+                    if (it.hasNext()) {
+                        next = it.next();
+                        System.out.println("" + current + "->" + next + "\n");
+
+                    }
+
+                }
+                System.out.println("\n");
 
                 paths.addToRear(visited);
 
@@ -270,20 +285,20 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                     continue;
                 }
                 visited.addToRear(node);
-                breadthFirstTravesal(visited, startVertex, endVertex);
+                wightedBreadthFirstTravesal(visited, startVertex, endVertex);
                 visited.removeLast();
             } catch (EmptyCollectionException ex) {
                 Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println(paths.toString());
 
     }
 
     public UnorderedListADT<UnorderedListADT<Trajeto>> criterialPath(T vertex1, T vertex2, Criterios criterios) {
         UnorderedListADT<UnorderedListADT<Trajeto>> viagens = new LinkedUnorderedList<>();
-
-        this.breadthFirstTravesalTrajetos(vertex1, vertex2);
+        UnorderedListADT<T> visited = new LinkedUnorderedList<>();
+        visited.addToRear(vertex1);
+        this.wightedBreadthFirstTravesal(visited, vertex1, vertex2);
         return viagens;
     }
 
