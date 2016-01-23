@@ -29,7 +29,7 @@ public class JsonToNetwork {
         }
 
         JSONObject jsonObject = (JSONObject) obj;
-        JSONArray rotas = (JSONArray) jsonObject.get("rotas");
+        JSONArray rotas = (JSONArray) jsonObject.get("Rotas");
         Iterator<JSONObject> iterator = rotas.iterator();
 
         while (iterator.hasNext()) {
