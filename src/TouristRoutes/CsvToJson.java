@@ -12,10 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import jdk.nashorn.internal.ir.BreakNode;
 
 /**
  *
@@ -30,7 +26,7 @@ public class CsvToJson {
             BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/data.csv"), "UTF-8"));
 
             int numeroLinhas = 0;
-            String str = "{\"Rotas\": ["; //name the JsonArray
+            String str = "{\"rotas\": ["; //name the JsonArray
             String[] colunas = null;
             String line = "";
             String splitBy = ";";
@@ -82,7 +78,7 @@ public class CsvToJson {
 
             //escrever a string obtida em ficheiro json 
             //o formato UTF-8 é para ser possivel ler todos os tipos de caracteres
-            OutputStreamWriter fr = new OutputStreamWriter(new FileOutputStream("src/rota.json"), "UTF-8");
+            OutputStreamWriter fr = new OutputStreamWriter(new FileOutputStream("src/rotas.json"), "UTF-8");
             fr.write(str, 0, str.length());
             fr.close();
 
