@@ -5,6 +5,7 @@ import Collections.Exception.ElementNotFoundException;
 import Collections.Exception.EmptyCollectionException;
 import Collections.Exception.EmptyQueueException;
 import Collections.Linear.Interfaces.UnorderedListADT;
+import Collections.Linear.List.LinkedList;
 import Collections.Linear.List.UnorderedList.ArrayUnorderedList;
 import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
 import Collections.Linear.Queue.LinkedQueue;
@@ -159,7 +160,7 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
     public Iterator<T> iteratorBFS(int startIndex) {
         Integer x;
         LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
-        ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
+        LinkedUnorderedList<T> resultList = new LinkedUnorderedList<>();
         if (!indexIsValid(startIndex)) {
             return resultList.iterator();
         }
@@ -291,6 +292,24 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
         }
 
         return (Iterator<T>) resultList.iterator();
+    }
+
+    public UnorderedListADT<T> adjacentNodes(T vertex) throws ElementNotFoundException {
+        UnorderedListADT<T> adjacentNodesIndex = new LinkedUnorderedList<>();
+        int vertexIndex = this.getIndex(vertex);
+        int index = 0;
+        for (boolean connect : this.adjMatrix[vertexIndex]) {
+
+            if (connect) {
+                adjacentNodesIndex.addToRear(this.getVertice(index));
+            }
+
+            index++;
+        }
+        if (adjacentNodesIndex.isEmpty()) {
+            return null;
+        }
+        return adjacentNodesIndex;
     }
 
 }

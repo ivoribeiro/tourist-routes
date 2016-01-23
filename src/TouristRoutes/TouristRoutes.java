@@ -8,6 +8,7 @@ import geocoderapi.Coordinate;
 import googlemapsapis.Gmaps;
 import googlemapsapis.MyMarker;
 import java.io.*;
+import java.util.Iterator;
 
 /**
  * Created by ivo on 18-01-2016.
@@ -45,8 +46,13 @@ public class TouristRoutes {
         criterios.setViagemMenorDistancia(true);
         criterios.setVigemMenorTempoViagem(true);
 
-        System.out.println(touristRoutes.shortestPathWeight("Porto", "Bragança", criterios));
-        
+        Iterator it = touristRoutes.iteratorBFS("Porto");
+
+        while (it.hasNext()) {
+            String temp = (String) it.next();
+            System.out.println(temp);
+        }
+        //System.out.println(touristRoutes.shortestPathWeight("Porto", "Bragança", criterios));
 
         //map.startMap(41.366700, -8.194861, 1);
     }

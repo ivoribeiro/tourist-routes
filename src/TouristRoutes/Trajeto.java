@@ -123,6 +123,7 @@ public class Trajeto<T extends Transporte> {
         }
     }
 
+    
     /**
      * Filtra a distancia Maxima do trajeto dentro de uma determinada lista de
      * trajetos
