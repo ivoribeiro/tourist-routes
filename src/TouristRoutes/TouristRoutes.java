@@ -1,5 +1,8 @@
 package TouristRoutes;
 
+import Collections.Linear.Interfaces.UnorderedListADT;
+import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
+import Collections.NonLinear.Graph.matrix.adjMatrixDiGraph;
 import Collections.NonLinear.Network.DiNetworkAdjMatrixTrajeto;
 import Enumerations.Language;
 import Exceptions.CoordinatesNotFound;
@@ -39,14 +42,19 @@ public class TouristRoutes {
             } catch (CoordinatesNotFound e) {
             }
         } while (i < touristRoutes.getNumVertices());
+        
+        
 
         Criterios criterios = new Criterios();
         criterios.setViagemMaisBarata(true);
         //criterios.setViagemMenorDistancia(true);
-       // criterios.setVigemMenorTempoViagem(true);
+        //criterios.setVigemMenorTempoViagem(true);
 
         
-        touristRoutes.criterialPath("Amarante", "Bragança", criterios);
+        
+          
+        
+        System.out.println(touristRoutes.criterialPath("Amarante", "Porto", criterios));
         //System.out.println(touristRoutes.shortestPathWeight("Amarante", "Vila nova de Foz Côa", criterios));
 
         //map.startMap(41.366700, -8.194861, 1);

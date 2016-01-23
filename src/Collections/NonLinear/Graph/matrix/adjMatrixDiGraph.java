@@ -315,14 +315,25 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
      *
      * @param startVertex
      * @param endVertex
-     * @param visited
-     * @return 
+     * @return all vertice paths between to vertex
      */
-    protected void breadthFirstTravesal(UnorderedListADT<T> visited, T startVertex, T endVertex) {
+    public UnorderedListADT<LinkedUnorderedList<T>> breadthFirstTravesal(T startVertex, T endVertex) {
+        LinkedUnorderedList<T> visited = new LinkedUnorderedList<>();
+        visited.addToRear(startVertex);
+        return this.breadthFirstTravesal(visited, endVertex);
+    }
+
+    /**
+     *
+     * @param endVertex
+     * @param visited
+     * @return
+     */
+    public UnorderedListADT<LinkedUnorderedList<T>> breadthFirstTravesal(LinkedUnorderedList<T> visited, T endVertex) {
 
         //lista de nos
         LinkedUnorderedList<T> nodes = null;
-        UnorderedListADT< UnorderedListADT<T>> paths = new LinkedUnorderedList<>();
+        UnorderedListADT<LinkedUnorderedList<T>> paths = new LinkedUnorderedList<>();
 
         try {
             try {
@@ -347,7 +358,13 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
             }
             if (node.equals(endVertex)) {
                 visited.addToRear(node);
-                paths.addToRear(visited);
+
+                Iterator<T> a = visited.iterator();
+                LinkedUnorderedList<T> tempVisited = new LinkedUnorderedList<>();
+                while (a.hasNext()) {
+                    tempVisited.addToRear(a.next());
+                }
+                paths.addToRear(tempVisited);
 
                 try {
                     visited.removeLast();
@@ -364,13 +381,20 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
                     continue;
                 }
                 visited.addToRear(node);
-                breadthFirstTravesal(visited, startVertex, endVertex);
+
+                //realocar os paths na anterior
+                UnorderedListADT<LinkedUnorderedList<T>> tempPaths;
+                tempPaths = breadthFirstTravesal(visited, endVertex);
+
+                while (!tempPaths.isEmpty()) {
+                    paths.addToRear(tempPaths.removeFirst());
+                }
+
                 visited.removeLast();
             } catch (EmptyCollectionException ex) {
                 Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        System.out.println(paths.toString());
+        return paths;
     }
-
 }

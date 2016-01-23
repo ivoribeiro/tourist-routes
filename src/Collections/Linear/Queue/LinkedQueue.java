@@ -76,4 +76,15 @@ public class LinkedQueue<T> implements QueueADT<T> {
     public int size() {
         return this.size;
     }
+    
+    public String toString(){
+        String temp = "\n";
+        LinearNode<T> frontTemp = front;
+
+        while (frontTemp != null) {
+            temp += frontTemp.getElement().toString() + "\t";
+            frontTemp = frontTemp.getNext();
+        }
+        return temp;
+    }
 }
