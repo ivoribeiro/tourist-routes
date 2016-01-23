@@ -317,11 +317,13 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
      * @param startVertex
      * @param endVertex
      * @param visited
+     * @return 
      */
     protected void breadthFirstTravesal(LinkedUnorderedList<T> visited, T startVertex, T endVertex) {
 
         //lista de nos
         LinkedUnorderedList<T> nodes = null;
+        UnorderedListADT< UnorderedListADT<T>> paths = new LinkedUnorderedList<>();
 
         try {
             try {
@@ -346,7 +348,8 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
             }
             if (node.equals(endVertex)) {
                 visited.addToRear(node);
-                System.out.println(visited.toString());
+                paths.addToRear(visited);
+
                 try {
                     visited.removeLast();
                 } catch (EmptyCollectionException ex) {
@@ -368,6 +371,7 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
                 Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        System.out.println(paths.toString());
     }
 
 }

@@ -215,11 +215,75 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         return result;
     }
 
+    protected void wightedBreadthFirstTravesal(LinkedUnorderedList<T> visited, T startVertex, T endVertex) {
+        super.breadthFirstTravesal(visited, startVertex, endVertex);
+
+        //lista de nos
+        LinkedUnorderedList<T> nodes = null;
+        UnorderedListADT< UnorderedListADT<T>> paths = new LinkedUnorderedList<>();
+
+        try {
+            try {
+                //lista de nos adjacentes á raiz actual
+                nodes = (LinkedUnorderedList<T>) this.adjacentNodes(visited.last());
+            } catch (EmptyCollectionException ex) {
+                Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (ElementNotFoundException ex) {
+            Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // examine adjacent nodes
+        for (T node : nodes) {
+            try {
+                //se o no adjacente ja foi visitado continua
+                if (visited.contains(node)) {
+                    continue;
+                }
+            } catch (EmptyCollectionException ex) {
+                Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                this.getIndex(node);
+                this.getIndex(visited.getRear().getElement());
+            } catch (ElementNotFoundException ex) {
+                Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (node.equals(endVertex)) {
+                visited.addToRear(node);
+
+                paths.addToRear(visited);
+
+                try {
+                    visited.removeLast();
+                } catch (EmptyCollectionException ex) {
+                    Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            }
+        }
+        // in breadth-first, recursion needs to come after visiting adjacent nodes
+        for (T node : nodes) {
+            try {
+                if (visited.contains(node) || node.equals(endVertex)) {
+                    continue;
+                }
+                visited.addToRear(node);
+                breadthFirstTravesal(visited, startVertex, endVertex);
+                visited.removeLast();
+            } catch (EmptyCollectionException ex) {
+                Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        System.out.println(paths.toString());
+
+    }
+
     public UnorderedListADT<UnorderedListADT<Trajeto>> criterialPath(T vertex1, T vertex2, Criterios criterios) {
         UnorderedListADT<UnorderedListADT<Trajeto>> viagens = new LinkedUnorderedList<>();
-        LinkedUnorderedList<T> visited=new LinkedUnorderedList<>();
-        visited.addToRear(vertex1);
-        this.breadthFirstTravesal(visited, vertex1, vertex2);
+
+        this.breadthFirstTravesalTrajetos(vertex1, vertex2);
         return viagens;
     }
 

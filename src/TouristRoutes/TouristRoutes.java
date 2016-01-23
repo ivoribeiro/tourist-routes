@@ -8,7 +8,6 @@ import geocoderapi.Coordinate;
 import googlemapsapis.Gmaps;
 import googlemapsapis.MyMarker;
 import java.io.*;
-import java.util.Iterator;
 
 /**
  * Created by ivo on 18-01-2016.
@@ -16,7 +15,7 @@ import java.util.Iterator;
 public class TouristRoutes {
 
     public static void main(String[] args) throws IOException {
-
+        CsvToJson.CsvToJson();
 //Intancia da network
         DiNetworkAdjMatrixTrajeto<String> touristRoutes = new DiNetworkAdjMatrixTrajeto<>();
 //  Popula a network
@@ -50,6 +49,6 @@ public class TouristRoutes {
         touristRoutes.criterialPath("Amarante", "Bragança", criterios);
         //System.out.println(touristRoutes.shortestPathWeight("Amarante", "Vila nova de Foz Côa", criterios));
 
-        map.startMap(41.366700, -8.194861, 1);
+        //map.startMap(41.366700, -8.194861, 1);
     }
 }
