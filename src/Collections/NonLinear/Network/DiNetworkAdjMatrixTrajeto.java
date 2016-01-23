@@ -224,25 +224,21 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         Integer index1 = null, index2 = null;
         //percorre os paths
         Iterator<LinkedUnorderedList<T>> it = (Iterator<LinkedUnorderedList<T>>) paths.iterator();
+
         while (it.hasNext()) {
             //percorre os vertices da lista
             Iterator<T> itVertex = it.next().iterator();
             try {
                 index1 = (this.getIndex(itVertex.next()));
+
+                while (itVertex.hasNext()) {
+
+                    index2 = (this.getIndex(itVertex.next()));
+                    result.addToRear(this.weightAdjMatrix[index1][index2]);
+                    index1 = index2;
+                }
             } catch (ElementNotFoundException ex) {
                 Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            try {
-                index2 = (this.getIndex(itVertex.next()));
-            } catch (ElementNotFoundException ex) {
-                Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            result.addToRear(this.weightAdjMatrix[index1][index2]);
-            index1 = index2;
-
-            if (it.hasNext()) {
-                it.next();
             }
         }
         return result;
