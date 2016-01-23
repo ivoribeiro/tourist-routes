@@ -56,11 +56,11 @@ public class JsonToNetwork {
 
             if (km instanceof Double) {
                 trajetoIDA = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), (Double) km, precoKmIda);
-                trajetoVinda = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), (Double) km, precoKmVinda);
+                trajetoVinda = new Trajeto(cidadeDestino,cidadeOrigem , transporte, tempo.intValue(), (Double) km, precoKmVinda);
             }
             if (km instanceof Long) {
                 trajetoIDA = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmIda);
-                trajetoVinda = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmVinda);
+                trajetoVinda = new Trajeto(cidadeDestino, cidadeOrigem, transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmVinda);
 
             }
 
