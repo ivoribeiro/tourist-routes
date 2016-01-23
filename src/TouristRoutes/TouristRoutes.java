@@ -43,17 +43,13 @@ public class TouristRoutes {
 
         Criterios criterios = new Criterios();
         criterios.setViagemMaisBarata(true);
-        criterios.setViagemMenorDistancia(true);
-        criterios.setVigemMenorTempoViagem(true);
+        //criterios.setViagemMenorDistancia(true);
+       // criterios.setVigemMenorTempoViagem(true);
 
-        Iterator it = touristRoutes.iteratorBFS("Porto");
+        
+        touristRoutes.criterialPath("Amarante", "Bragança", criterios);
+        //System.out.println(touristRoutes.shortestPathWeight("Amarante", "Vila nova de Foz Côa", criterios));
 
-        while (it.hasNext()) {
-            String temp = (String) it.next();
-            System.out.println(temp);
-        }
-        //System.out.println(touristRoutes.shortestPathWeight("Porto", "Bragança", criterios));
-
-        //map.startMap(41.366700, -8.194861, 1);
+        map.startMap(41.366700, -8.194861, 1);
     }
 }

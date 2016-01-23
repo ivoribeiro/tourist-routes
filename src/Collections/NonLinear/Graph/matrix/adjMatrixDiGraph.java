@@ -312,4 +312,62 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
         return adjacentNodesIndex;
     }
 
+    /**
+     *
+     * @param startVertex
+     * @param endVertex
+     * @param visited
+     */
+    protected void breadthFirstTravesal(LinkedUnorderedList<T> visited, T startVertex, T endVertex) {
+
+        //lista de nos
+        LinkedUnorderedList<T> nodes = null;
+
+        try {
+            try {
+                //lista de nos adjacentes á raiz actual
+                nodes = (LinkedUnorderedList<T>) this.adjacentNodes(visited.last());
+            } catch (EmptyCollectionException ex) {
+                Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (ElementNotFoundException ex) {
+            Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        // examine adjacent nodes
+        for (T node : nodes) {
+            try {
+                //se o no adjacente ja foi visitado continua
+                if (visited.contains(node)) {
+                    continue;
+                }
+            } catch (EmptyCollectionException ex) {
+                Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if (node.equals(endVertex)) {
+                visited.addToRear(node);
+                System.out.println(visited.toString());
+                try {
+                    visited.removeLast();
+                } catch (EmptyCollectionException ex) {
+                    Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            }
+        }
+        // in breadth-first, recursion needs to come after visiting adjacent nodes
+        for (T node : nodes) {
+            try {
+                if (visited.contains(node) || node.equals(endVertex)) {
+                    continue;
+                }
+                visited.addToRear(node);
+                breadthFirstTravesal(visited, startVertex, endVertex);
+                visited.removeLast();
+            } catch (EmptyCollectionException ex) {
+                Logger.getLogger(adjMatrixDiGraph.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
 }

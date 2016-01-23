@@ -11,7 +11,6 @@ import Collections.Linear.Interfaces.UnorderedListADT;
 import Collections.Linear.List.LinkedList;
 import Collections.Node.LinearNode;
 
-
 /**
  * @author Ivo Ribeiro
  * @param <T>
@@ -22,8 +21,11 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
         super();
     }
 
-    //UnorderedListAdt methods
+    public LinkedUnorderedList(T element) {
+        super(element);
+    }
 
+    //UnorderedListAdt methods
     /**
      * Add a new element to the front of the list
      *
@@ -62,7 +64,7 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
      * Add a new element to next of the target
      *
      * @param element anything
-     * @param target  the target element
+     * @param target the target element
      * @throws Collections.Exception.ElementNotFoundException
      */
     @Override
@@ -83,7 +85,9 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
                 newNode.setNext(prev.getNext());
                 //The target next's will be the newNode
                 prev.setNext(newNode);
-            } else throw new ElementNotFoundException("The target doesn't exist");
+            } else {
+                throw new ElementNotFoundException("The target doesn't exist");
+            }
         } catch (EmptyCollectionException e) {
             System.out.println(e.getMessage());
         }
@@ -95,5 +99,3 @@ public class LinkedUnorderedList<T> extends LinkedList<T> implements UnorderedLi
         return super.toString();
     }
 }
-
-

@@ -215,8 +215,11 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         return result;
     }
 
-    private UnorderedListADT<UnorderedListADT<Trajeto>> criterialPath(int startIndex, int targetIndex, Criterios criterios) {
+    public UnorderedListADT<UnorderedListADT<Trajeto>> criterialPath(T vertex1, T vertex2, Criterios criterios) {
         UnorderedListADT<UnorderedListADT<Trajeto>> viagens = new LinkedUnorderedList<>();
+        LinkedUnorderedList<T> visited=new LinkedUnorderedList<>();
+        visited.addToRear(vertex1);
+        this.breadthFirstTravesal(visited, vertex1, vertex2);
         return viagens;
     }
 
