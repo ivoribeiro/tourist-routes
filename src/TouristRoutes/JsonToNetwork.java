@@ -1,6 +1,7 @@
 package TouristRoutes;
 
 import Collections.NonLinear.Network.DiNetworkAdjMatrixTrajeto;
+import java.io.FileInputStream;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -8,6 +9,7 @@ import org.json.simple.parser.ParseException;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.time.LocalTime;
 import java.util.Iterator;
 
@@ -23,7 +25,7 @@ public class JsonToNetwork {
         //parse do ficheiro para objeto json
         Object obj = null;
         try {
-            obj = parser.parse(new FileReader("src/routes.json"));
+            obj = parser.parse(new InputStreamReader(new FileInputStream("src/rotas.json"), "ISO-8859-1"));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -48,22 +50,15 @@ public class JsonToNetwork {
             String horariosVinda1 = (String) rota.get("HoráriosVinda1");
             String horariosVinda2 = (String) rota.get("HoráriosVinda2");
             String horariosVinda3 = (String) rota.get("HoráriosVinda3");
-            Long tempo = (Long) rota.get("Tempo(m)");
-            Object km = rota.get("Km");
+            Double tempo = (Double) rota.get("Tempo(m)");
+            Double km = (Double) rota.get("Km");
 
             //definição dos trajetos de cada linha do json (Porto -> Amarante , Amarante -> Porto)
             Trajeto trajetoIDA = null;
             Trajeto trajetoVinda = null;
 
-            if (km instanceof Double) {
-                trajetoIDA = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), (Double) km, precoKmIda);
-                trajetoVinda = new Trajeto(cidadeDestino, cidadeOrigem, transporte, tempo.intValue(), (Double) km, precoKmVinda);
-            }
-            if (km instanceof Long) {
-                trajetoIDA = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmIda);
-                trajetoVinda = new Trajeto(cidadeDestino, cidadeOrigem, transporte, tempo.intValue(), ((Long) km).doubleValue(), precoKmVinda);
-
-            }
+            trajetoIDA = new Trajeto(cidadeOrigem, cidadeDestino, transporte, tempo.intValue(), km, precoKmIda);
+            trajetoVinda = new Trajeto(cidadeDestino, cidadeOrigem, transporte, tempo.intValue(), km, precoKmVinda);
 
             touristRoutes.addVertex(cidadeOrigem);
             touristRoutes.addVertex(cidadeDestino);

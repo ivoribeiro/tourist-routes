@@ -22,8 +22,8 @@ public class CsvToJson {
     public static void CsvToJson() {
 
         try {
-            //o formato UTF-8 é para ser possivel ler todos os tipos de caracteres
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/data.csv"), "UTF-8"));
+            //o formato ISO-8859-1 é para ser possivel ler todos os tipos de caracteres
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/data.csv"), "ISO-8859-1"));
 
             int numeroLinhas = 0;
             String str = "{\"rotas\": ["; //name the JsonArray
@@ -77,8 +77,8 @@ public class CsvToJson {
             str += "}";
 
             //escrever a string obtida em ficheiro json 
-            //o formato UTF-8 é para ser possivel ler todos os tipos de caracteres
-            OutputStreamWriter fr = new OutputStreamWriter(new FileOutputStream("src/rotas.json"), "UTF-8");
+            //o formato ISO-8859-1 é para ser possivel ler todos os tipos de caracteres
+            OutputStreamWriter fr = new OutputStreamWriter(new FileOutputStream("src/rotas.json"), "ISO-8859-1");
             fr.write(str, 0, str.length());
             fr.close();
 
