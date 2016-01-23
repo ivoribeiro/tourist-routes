@@ -16,7 +16,7 @@ import java.util.Iterator;
 public class TouristRoutes {
 
     public static void main(String[] args) throws IOException {
-
+        CsvToJson.CsvToJson();
 //Intancia da network
         DiNetworkAdjMatrixTrajeto<String> touristRoutes = new DiNetworkAdjMatrixTrajeto<>();
 //  Popula a network
