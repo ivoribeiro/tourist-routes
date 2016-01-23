@@ -69,20 +69,31 @@ public class LinkedList<T> implements ListADT<T> {
      */
     @Override
     public T removeLast() throws EmptyCollectionException {
-        if (this.isEmpty()) {
-            throw new EmptyCollectionException("Empty List");
-        } else {
-            BasicIterator<T> basicIterator = (BasicIterator<T>) this.iterator();
-            LinearNode<T> prev = this.front;
-            while (basicIterator.hasNext()) {
-                prev = basicIterator.getCurrent();
-                basicIterator.next();
-            }
-            prev.setNext(null);
-            this.rear = prev;
-            --this.size;
-            return this.rear.getElement();
+        T result;
+
+        if (isEmpty()) {
+            throw new EmptyCollectionException("List Empty");
         }
+
+        result = rear.getElement();
+        
+        LinearNode<T> temp = front;
+        
+        while(temp.getNext().getNext() != null){
+            temp = temp.getNext();
+        }
+        temp.setNext(null);
+        rear = temp;
+
+        if (rear == null) {
+            front = null;
+        } else {
+            rear.setNext(null);
+        }
+
+        size--;
+
+        return result;
     }
 
     /**

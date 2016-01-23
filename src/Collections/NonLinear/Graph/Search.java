@@ -49,10 +49,10 @@ public class Search {
     }
 
     private void breadthFirst(adjMatrixDiGraph<String> graph, LinkedUnorderedList<String> visited) {
-       
+
         try {
             //lista de nos
-            LinkedUnorderedList<String> nodes = new LinkedUnorderedList<>();
+            LinkedUnorderedList<String> nodes = null;
             try {
                 //lista de nos adjacentes á raiz actual
                 nodes = (LinkedUnorderedList<String>) graph.adjacentNodes(visited.last());
