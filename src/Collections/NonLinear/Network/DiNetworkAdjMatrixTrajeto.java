@@ -168,7 +168,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                 return shortestPathWeight(getIndex(vertex1),
                         getIndex(vertex2), criterios);
             } catch (ElementNotFoundException ex) {
-                Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
+                ex.printStackTrace();
             }
         } catch (EmptyCollectionException ex) {
             throw new NullPointerException("Collection is empty.");

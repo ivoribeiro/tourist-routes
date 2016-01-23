@@ -5,14 +5,12 @@ import Collections.Exception.ElementNotFoundException;
 import Collections.Exception.EmptyCollectionException;
 import Collections.Exception.EmptyQueueException;
 import Collections.Linear.Interfaces.UnorderedListADT;
-import Collections.Linear.List.LinkedList;
 import Collections.Linear.List.UnorderedList.ArrayUnorderedList;
 import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
 import Collections.Linear.Queue.LinkedQueue;
 import Collections.Linear.Stack.LinkedStack;
 import Collections.NonLinear.Graph.Graph;
 import Collections.NonLinear.Interfaces.GraphADT;
-import Collections.NonLinear.Tree.LinkedHeap;
 
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -168,7 +166,7 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
         for (int i = 0; i < this.getNumVertices(); i++) {
             visited[i] = false;
         }
-        traversalQueue.enqueue(new Integer(startIndex));
+        traversalQueue.enqueue(startIndex);
         visited[startIndex] = true;
         while (!traversalQueue.isEmpty()) {
             try {
@@ -176,7 +174,7 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
                 resultList.addToRear(this.getVertices()[x]);
                 for (int i = 0; i < this.getNumVertices(); i++) {
                     if ((adjMatrix[x][i] && !visited[i])) {
-                        traversalQueue.enqueue(new Integer(i));
+                        traversalQueue.enqueue(i);
                         visited[i] = true;
                     }
                 }
@@ -193,8 +191,9 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
      * @param startIndex the index to begin the search traversal from
      * @return an iterator that performs a depth-first traversal
      */
+    @Override
     protected Iterator<T> iteratorDFS(int startIndex) {
-        Integer x;
+        int x;
         boolean found;
         LinkedStack<Integer> traversalStack = new LinkedStack<>();
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
@@ -205,7 +204,7 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
         for (int i = 0; i < this.getNumVertices(); i++) {
             visited[i] = false;
         }
-        traversalStack.push(new Integer(startIndex));
+        traversalStack.push(startIndex);
         resultList.addToRear(this.getVertices()[startIndex]);
         visited[startIndex] = true;
         while (!traversalStack.isEmpty()) {
@@ -217,7 +216,7 @@ public class adjMatrixDiGraph<T> extends Graph<T> implements GraphADT<T> {
              */
             for (int i = 0; (i < this.getNumVertices()) && !found; i++) {
                 if (adjMatrix[x][i] && !visited[i]) {
-                    traversalStack.push(new Integer(i));
+                    traversalStack.push(i);
                     resultList.addToRear(this.getVertices()[i]);
                     visited[i] = true;
                     found = true;

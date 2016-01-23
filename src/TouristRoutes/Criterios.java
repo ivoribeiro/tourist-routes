@@ -24,7 +24,7 @@ public class Criterios {
     public Criterios() {
         this.viagemMaisBarata = false;
         this.viagemMenorDistancia = false;
-        this.viagemMenorDistancia = false;
+        this.vigemMenorTempoViagem = false;
     }
     
     
