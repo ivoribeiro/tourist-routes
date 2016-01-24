@@ -235,54 +235,25 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         //percorre os paths
         Iterator<LinkedUnorderedList<T>> it = (Iterator<LinkedUnorderedList<T>>) paths.iterator();
         while (it.hasNext()) {
-
             LinkedUnorderedList<T> vertexList = it.next();
-
             //verificar numero de arestas 
             int edgeNum = (vertexList.size()) - 1;
             Iterator<T> vertexIt = vertexList.iterator();
 
             while (vertexIt.hasNext()) {
-                System.out.println("Viagem\n");
                 if (vertexIt.hasNext()) {
                     try {
                         index1 = getIndex(vertexIt.next());
                     } catch (ElementNotFoundException ex) {
                         Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
-                    while (vertexIt.hasNext()) {
-                        try {
-                            index2 = getIndex(vertexIt.next());
-                            LinkedUnorderedList<Trajeto> trajetosAresta = weightAdjMatrix[index1][index2];
-                            Iterator<Trajeto> IteradorTrajetosAresta = trajetosAresta.iterator();
-                            System.out.println(index1 + "->" + index2);
-
-                            while (IteradorTrajetosAresta.hasNext()) {
-
-                                Trajeto trajeto = IteradorTrajetosAresta.next();
-                                path.addToRear(trajeto);
-                                result.addToRear(path);
-                            }
-                            index1 = index2;
-
-                        } catch (ElementNotFoundException ex) {
-                            Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-
-                    }
-
                 }
-            } else {
-                Iterator<T> vertexIt = vertexList.iterator();
-
                 while (vertexIt.hasNext()) {
                     try {
                         index2 = getIndex(vertexIt.next());
                         LinkedUnorderedList<Trajeto> trajetosAresta = weightAdjMatrix[index1][index2];
                         Iterator<Trajeto> IteradorTrajetosAresta = trajetosAresta.iterator();
 
-                        System.out.println(index1 + "->" + index2);
                         while (IteradorTrajetosAresta.hasNext()) {
                             Trajeto trajeto = IteradorTrajetosAresta.next();
 
@@ -291,8 +262,6 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                                 path = new LinkedUnorderedList<>();
                                 path.addToRear(trajeto);
                                 result.addToRear(path);
-                                //System.out.println(trajeto);
-
                             } else if (!trajeto.getCidadeDestino().equals(endVertex)) {
                                 path = new LinkedUnorderedList<>();
                                 path.addToRear(trajeto);
@@ -304,10 +273,8 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                                         stack.push(path);
                                     }
                                 } else {
-//                                    for (Trajeto trajetoAresta : trajetosAresta) {
-//                                    }
                                     LinkedStack<LinkedUnorderedList<Trajeto>> tempStack = new LinkedStack<>();
-//                                    //itera o topo da stack , adiciona o novo trajeto e push para a nova stack
+                                    //itera o topo da stack , adiciona o novo trajeto e push para a nova stack
                                     for (int j = 0; j < stack.size(); j++) {
                                         LinkedUnorderedList<Trajeto> tempPath = stack.pop();
                                         try {
@@ -324,27 +291,24 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
 
                                 }
                             } else {
-                                
-                                //Adicionar trajeto ao fim de cada path
 
+                                //Adicionar trajeto ao fim de cada path
                                 //System.out.println(trajeto);
                                 LinkedStack<LinkedUnorderedList<Trajeto>> tempStack = new LinkedStack<>();
                                 for (int j = 0; j < stack.size(); j++) {
                                     LinkedUnorderedList<Trajeto> tempPath = stack.pop();
-
-                                   // for (Trajeto trajetoAresta : trajetosAresta) {
-                                      //  tempStack.push(tempPath);
-                                    //}
-//                                        //se a cidade destino do ultimo trajeto do elemnto da stack nao for igual ao do trajeto actual , adiciona ao path
-//                                        if (!trajeto.getCidadeDestino().equals(tempPath.last().getCidadeDestino())) {
-//                                            tempPath.addToRear(trajeto);
-//                                            tempStack.push(tempPath);
-//
-//                                        } else {
-//                                            tempPath.removeLast();
-//                                            tempPath.addToRear(trajeto);
-//                                            tempStack.push(tempPath);
-//                                        }
+                                    LinkedUnorderedList<Trajeto> trajetosAresta2 = weightAdjMatrix[index1][index2];
+                                    Iterator<Trajeto> IteradorTrajetosAresta2 = trajetosAresta.iterator();
+                                    while (IteradorTrajetosAresta2.hasNext()) {
+                                        Trajeto trajetoAresta = IteradorTrajetosAresta2.next();
+                                        LinkedUnorderedList<Trajeto> newPath = new LinkedUnorderedList<>();
+                                        newPath = tempPath;
+                                        if (trajetoAresta.getCidadeDestino().equals(tempPath.last().getCidadeDestino())) {
+                                            newPath.removeLast();
+                                        }
+                                        newPath.addToRear(trajetoAresta);
+                                        tempStack.push(newPath);
+                                    }
 
                                 }
                                 stack = tempStack;
@@ -353,51 +317,15 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                         }
                         //result.addToRear(path);
 
-                    try {
-                        index1 = getIndex(vertexIt.next());
-                    } catch (ElementNotFoundException ex) {
+                    } catch (EmptyCollectionException | ElementNotFoundException ex) {
                         Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
-                    while (vertexIt.hasNext()) {
-
-                        try {
-                            index2 = getIndex(vertexIt.next());
-                        } catch (ElementNotFoundException ex) {
-                            Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        LinkedUnorderedList<Trajeto> trajetosAresta = weightAdjMatrix[index1][index2];
-                        Iterator<Trajeto> IteradorTrajetosAresta = trajetosAresta.iterator();
-                        System.out.println(index1 + "->" + index2);
-
-                        while (IteradorTrajetosAresta.hasNext()) {
-
-                            Trajeto trajeto = IteradorTrajetosAresta.next();
-                            stack.push(trajeto);
-                        }
-                        
-                        while(stack.isEmpty() && result.isEmpty()){
-                        LinkedUnorderedList<Trajeto> temp = new LinkedUnorderedList<>();
-                        temp.addToRear(stack.pop());
-                        result.addToRear(temp);
-                        }
-                        
-                        while(stack.isEmpty()){
-                            try {
-                                LinkedUnorderedList<Trajeto> temp = result.removeLast();
-                                temp.addToRear(stack.pop());
-                                result.addToRear(temp);
-                            } catch (EmptyCollectionException ex) {
-                                Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                        }
-                        index1 = index2;
-
-                    }
+                    //result.addToRear(option.weightValue(index1, index2, criterios));
+                    index1 = index2;
 
                 }
-            }
 
+            }
         }
         System.out.println(stack.toString());
         return null;
@@ -413,7 +341,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
      * @return
      */
     public UnorderedListADT<LinkedUnorderedList<Trajeto>> criterialPath(T vertex1, T vertex2, Criterios criterios) {
-        UnorderedListADT<LinkedUnorderedList<Trajeto>> tempList = new LinkedUnorderedList<>();
+        UnorderedListADT<LinkedUnorderedList<Trajeto>> tempList = null;
         Criterios tempCriteiros = new Criterios();
         //shortest paths weights , retorna o melhor path possivel
         if (criterios.isViagemMaisBarata() || criterios.isViagemMenorDistancia() || criterios.isViagemMenorTempoViagem()) {
