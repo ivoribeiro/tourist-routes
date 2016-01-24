@@ -6,12 +6,18 @@
 package TouristRoutes;
 
 import Collections.Exception.ElementNotFoundException;
+import Collections.Exception.EmptyCollectionException;
+import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
 import Collections.NonLinear.Network.DiNetworkAdjMatrixTrajeto;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,7 +27,7 @@ import javax.swing.JTextField;
 public class TouristRouteInterface extends javax.swing.JFrame {
 
     private DiNetworkAdjMatrixTrajeto<String> touristRoute;
-    
+    private LinkedUnorderedList<LinkedUnorderedList<Trajeto>> viagens;
 
     /**
      * Creates new form TouristRouteInterface
@@ -54,23 +60,23 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         CidadeDestino = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        DuracaoMaximo = new javax.swing.JCheckBox();
+        jLabel5 = new javax.swing.JLabel();
         DuracaoTotalMaxima = new javax.swing.JTextField();
-        EsperaMaximaParagem = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
         TempoEsperaMaximoParagem = new javax.swing.JTextField();
-        EsperaTotal = new javax.swing.JCheckBox();
+        jLabel7 = new javax.swing.JLabel();
         TempoEsperaTotal = new javax.swing.JTextField();
-        PrecoTotal = new javax.swing.JCheckBox();
+        jLabel8 = new javax.swing.JLabel();
         PrecoTotalMaximo = new javax.swing.JTextField();
-        PrecoMaximoTroco = new javax.swing.JCheckBox();
+        jLabel9 = new javax.swing.JLabel();
         PrecoMaximoTrajeto = new javax.swing.JTextField();
+        jCheckBox3 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -111,17 +117,6 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             }
         });
 
-        jRadioButton1.setText("Caminho com a menor duração");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
-            }
-        });
-
-        jRadioButton2.setText("Caminho com o menor tempo de espera");
-
-        jRadioButton3.setText("Caminho com o menor preço total");
-
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jButton2.setText("Opções Avançadas");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -138,128 +133,113 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         jLabel2.setText("Critérios de pesquisa");
 
-        DuracaoMaximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        DuracaoMaximo.setText("Duração total maxima");
-        DuracaoMaximo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DuracaoMaximoActionPerformed(evt);
-            }
-        });
+        jLabel5.setText("Duração total maxima");
 
         DuracaoTotalMaxima.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         DuracaoTotalMaxima.setMinimumSize(new java.awt.Dimension(438, 23));
         DuracaoTotalMaxima.setPreferredSize(new java.awt.Dimension(438, 23));
 
-        EsperaMaximaParagem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        EsperaMaximaParagem.setText("Tempo de espera máximo em cada paragem ");
-        EsperaMaximaParagem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EsperaMaximaParagemActionPerformed(evt);
-            }
-        });
+        jLabel6.setText("Tempo de espera máximo em cada paragem ");
 
         TempoEsperaMaximoParagem.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        TempoEsperaMaximoParagem.setVisible(false);
 
-        EsperaTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        EsperaTotal.setText("Tempo de espera total");
-        EsperaTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EsperaTotalActionPerformed(evt);
-            }
-        });
+        jLabel7.setText("Tempo de espera total");
 
         TempoEsperaTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        TempoEsperaTotal.setVisible(false);
 
-        PrecoTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        PrecoTotal.setText("Preço total máximo ");
-        PrecoTotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrecoTotalActionPerformed(evt);
-            }
-        });
+        jLabel8.setText("Preço total máximo ");
 
         PrecoTotalMaximo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        PrecoTotalMaximo.setVisible(false);
 
-        PrecoMaximoTroco.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        PrecoMaximoTroco.setText("Preço máximo por troço");
-        PrecoMaximoTroco.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PrecoMaximoTrocoActionPerformed(evt);
-            }
-        });
+        jLabel9.setText("Preço máximo por troço");
 
         PrecoMaximoTrajeto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        PrecoMaximoTrajeto.setVisible(false);
-
-        DuracaoTotalMaxima.setVisible(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TempoEsperaMaximoParagem)
-                    .addComponent(TempoEsperaTotal)
-                    .addComponent(PrecoTotalMaximo)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(PrecoMaximoTroco)
-                            .addComponent(EsperaTotal)
-                            .addComponent(EsperaMaximaParagem)
                             .addComponent(jLabel2)
-                            .addComponent(DuracaoMaximo)
-                            .addComponent(DuracaoTotalMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PrecoTotal)
-                            .addComponent(PrecoMaximoTrajeto, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(0, 0, 0))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(DuracaoTotalMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TempoEsperaMaximoParagem)
+                            .addComponent(TempoEsperaTotal)
+                            .addComponent(PrecoTotalMaximo)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(PrecoMaximoTrajeto, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(16, 16, 16)
-                .addComponent(DuracaoMaximo)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(DuracaoTotalMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(EsperaMaximaParagem)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TempoEsperaMaximoParagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(EsperaTotal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TempoEsperaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PrecoTotal)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PrecoTotalMaximo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PrecoMaximoTroco)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PrecoMaximoTrajeto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
+
+        jCheckBox3.setText("Caminho com o menor preço total");
+
+        jCheckBox2.setText("Caminho com o menor tempo total");
+
+        jCheckBox1.setText("Caminho com a menor distância");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(159, 159, 159)
+                .addComponent(jButton2)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(189, 189, 189))
+                            .addComponent(jCheckBox1)
+                            .addComponent(jCheckBox2)
+                            .addComponent(jCheckBox3))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(299, 299, 299))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,13 +251,8 @@ public class TouristRouteInterface extends javax.swing.JFrame {
                                 .addGap(27, 27, 27)
                                 .addComponent(jButton3)
                                 .addGap(150, 150, 150)
-                                .addComponent(jButton1)
-                                .addGap(34, 34, 34)))
-                        .addContainerGap(23, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addComponent(jButton2)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jButton1)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -290,20 +265,20 @@ public class TouristRouteInterface extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CidadeDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jRadioButton1)
+                .addGap(34, 34, 34)
+                .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2)
+                .addComponent(jCheckBox2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton3)
-                .addGap(36, 36, 36)
+                .addComponent(jCheckBox3)
+                .addGap(34, 34, 34)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -377,12 +352,10 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,7 +373,7 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1394, Short.MAX_VALUE)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,11 +401,29 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         }
     }
 
-    private double[] verificarCriterio(JCheckBox[] checkBox, JTextField[] textField) {
+    private Criterios verificarCheckBox(JCheckBox[] checkBox) {
+        Criterios criterio = new Criterios();
+        int i = 0;
+        boolean[] temp = new boolean[checkBox.length];
+
+        while (i < checkBox.length) {
+            temp[i] = checkBox[i].isSelected();
+            i++;
+        }
+        criterio.setViagemMenorDistancia(temp[0]);
+        criterio.setVigemMenorTempoViagem(temp[1]);
+        criterio.setViagemMaisBarata(temp[2]);
+        return criterio;
+    }
+
+    private Criterios verificarCriterio(JTextField[] textField) {
         int i = 0;
         double[] valorCriterio = new double[textField.length];
-        while (i < checkBox.length) {
-            if (checkBox[i].isSelected()) {
+
+        Criterios crit;
+
+        while (i < textField.length) {
+            if (textField[i].getText().equals("")) {
                 valorCriterio[i] = Double.parseDouble(textField[i].getText());
             } else {
                 valorCriterio[i] = Double.NEGATIVE_INFINITY;
@@ -440,12 +431,50 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             i++;
         }
 
-        return valorCriterio;
-    }
+        crit = new Criterios(valorCriterio[0], valorCriterio[2], valorCriterio[1], valorCriterio[4], valorCriterio[3]);
 
+        return crit;
+    }
+    
+     private void listarViagemTabela(LinkedUnorderedList<LinkedUnorderedList<Trajeto>> viagens) {
+        DefaultTableModel modelo = new DefaultTableModel();
+        String cidadeOrigem, cidadeDestino, cidadeIntermedias = "";
+        double tempoViagemTotal = 0, precoTotal = 0, distanciaTotal = 0, tempoEspera = 0;
+        modelo.addColumn("Cidade Origem");
+        modelo.addColumn("Cidade Intermedias");
+        modelo.addColumn("Cidade Destino");
+        modelo.addColumn("Preço Total");
+        modelo.addColumn("Duração Total");
+        modelo.addColumn("Tempo Espera Total");
+        Iterator<LinkedUnorderedList<Trajeto>> iterador = viagens.iterator();
+        while (iterador.hasNext()) {
+            try {
+                LinkedUnorderedList<Trajeto> temp = iterador.next();
+                distanciaTotal = Viagem.getDistanciaViagem(temp);
+                precoTotal = Viagem.getPrecoViagem(temp);
+                tempoViagemTotal = Viagem.getTempoViagem(temp);
+
+                cidadeOrigem = temp.first().getCidadeOrigem();
+                cidadeDestino = temp.last().getCidadeDestino();
+                Iterator<Trajeto> it = temp.iterator();
+                while (it.hasNext()) {
+                    cidadeIntermedias += it.next().getCidadeDestino();
+                }
+
+                modelo.addRow(new Object[]{cidadeOrigem, cidadeIntermedias, cidadeDestino, precoTotal, tempoViagemTotal, tempoEspera});
+
+            } catch (EmptyCollectionException ex) {
+                Logger.getLogger(TouristRouteInterface.class
+                        .getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        jTable1.setModel(modelo);
+    }
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JCheckBox[] checkBox = {DuracaoMaximo, EsperaMaximaParagem, EsperaTotal, PrecoMaximoTroco, PrecoTotal};
+        JCheckBox[] checkBox = {jCheckBox1, jCheckBox2, jCheckBox3};
         JTextField[] textField = {DuracaoTotalMaxima, TempoEsperaMaximoParagem, TempoEsperaTotal, PrecoMaximoTrajeto, PrecoTotalMaximo};
+        Criterios criterios = new Criterios();
         double[] valoresCriterios = new double[checkBox.length];
         String str = "";
         try {
@@ -459,7 +488,10 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             str += "Cidade Destino Inexistente\n";
         }
         try {
-            valoresCriterios = verificarCriterio(checkBox, textField);
+            criterios = verificarCheckBox(checkBox);
+            if (criterios.isComparacaoViagemMaisBarata() || criterios.isComparacaoViagemMenorDistancia() || criterios.isComparacaoVigemMenorTempoViagem()) {
+                criterios = verificarCriterio(textField);
+            }
         } catch (Exception e) {
             str += "Valor de critérios invalidos\n";
         }
@@ -467,54 +499,10 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(jPanel1, str, "Value Invalid", JOptionPane.ERROR_MESSAGE);
 
         } else {
-            //funçao shortpath
+            viagens = (LinkedUnorderedList<LinkedUnorderedList<Trajeto>>) touristRoute.criterialPath(CidadeOrigem.getText(), CidadeDestino.getText(), criterios);
+            this.listarViagemTabela(viagens);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void DuracaoMaximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DuracaoMaximoActionPerformed
-        if (DuracaoMaximo.isSelected()) {
-            DuracaoTotalMaxima.setVisible(true);
-
-        } else {
-            DuracaoTotalMaxima.setVisible(false);
-        }
-    }//GEN-LAST:event_DuracaoMaximoActionPerformed
-
-    private void EsperaMaximaParagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EsperaMaximaParagemActionPerformed
-        if (EsperaMaximaParagem.isSelected()) {
-            TempoEsperaMaximoParagem.setVisible(true);
-        } else {
-            TempoEsperaMaximoParagem.setVisible(false);
-        }
-    }//GEN-LAST:event_EsperaMaximaParagemActionPerformed
-
-    private void EsperaTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EsperaTotalActionPerformed
-        if (EsperaTotal.isSelected()) {
-            TempoEsperaTotal.setVisible(true);
-        } else {
-            TempoEsperaTotal.setVisible(false);
-        }
-    }//GEN-LAST:event_EsperaTotalActionPerformed
-
-    private void PrecoTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecoTotalActionPerformed
-        if (PrecoTotal.isSelected()) {
-            PrecoTotalMaximo.setVisible(true);
-        } else {
-            PrecoTotalMaximo.setVisible(false);
-        }
-    }//GEN-LAST:event_PrecoTotalActionPerformed
-
-    private void PrecoMaximoTrocoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecoMaximoTrocoActionPerformed
-        if (PrecoMaximoTroco.isSelected()) {
-            PrecoMaximoTrajeto.setVisible(true);
-        } else {
-            PrecoMaximoTrajeto.setVisible(false);
-        }
-    }//GEN-LAST:event_PrecoMaximoTrocoActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (!jPanel2.isVisible()) {
@@ -577,29 +565,29 @@ public class TouristRouteInterface extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CidadeDestino;
     private javax.swing.JTextField CidadeOrigem;
-    private javax.swing.JCheckBox DuracaoMaximo;
     private javax.swing.JTextField DuracaoTotalMaxima;
-    private javax.swing.JCheckBox EsperaMaximaParagem;
-    private javax.swing.JCheckBox EsperaTotal;
     private javax.swing.JTextField PrecoMaximoTrajeto;
-    private javax.swing.JCheckBox PrecoMaximoTroco;
-    private javax.swing.JCheckBox PrecoTotal;
     private javax.swing.JTextField PrecoTotalMaximo;
     private javax.swing.JTextField TempoEsperaMaximoParagem;
     private javax.swing.JTextField TempoEsperaTotal;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSplitPane jSplitPane1;
