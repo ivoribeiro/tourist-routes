@@ -237,12 +237,15 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         //percorre os paths
         Iterator<LinkedUnorderedList<T>> it = (Iterator<LinkedUnorderedList<T>>) paths.iterator();
         while (it.hasNext()) {
+
             LinkedUnorderedList<T> vertexList = it.next();
+
             //verificar numero de arestas 
             int edgeNum = (vertexList.size()) - 1;
             Iterator<T> vertexIt = vertexList.iterator();
 
             while (vertexIt.hasNext()) {
+                System.out.println("Viagem\n");
                 if (vertexIt.hasNext()) {
                     try {
                         index1 = getIndex(vertexIt.next());
@@ -257,6 +260,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                         LinkedUnorderedList<Trajeto> trajetosAresta = weightAdjMatrix[index1][index2];
                         Iterator<Trajeto> IteradorTrajetosAresta = trajetosAresta.iterator();
 
+                        System.out.println(index1 + "->" + index2);
                         while (IteradorTrajetosAresta.hasNext()) {
                             Trajeto trajeto = IteradorTrajetosAresta.next();
 
@@ -265,6 +269,8 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                                 path = new LinkedUnorderedList<>();
                                 path.addToRear(trajeto);
                                 result.addToRear(path);
+                                //System.out.println(trajeto);
+
                             } else if (!trajeto.getCidadeDestino().equals(endVertex)) {
                                 path = new LinkedUnorderedList<>();
                                 path.addToRear(trajeto);
@@ -276,8 +282,10 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                                         stack.push(path);
                                     }
                                 } else {
+//                                    for (Trajeto trajetoAresta : trajetosAresta) {
+//                                    }
                                     LinkedStack<LinkedUnorderedList<Trajeto>> tempStack = new LinkedStack<>();
-                                    //itera o topo da stack , adiciona o novo trajeto e push para a nova stack
+//                                    //itera o topo da stack , adiciona o novo trajeto e push para a nova stack
                                     for (int j = 0; j < stack.size(); j++) {
                                         LinkedUnorderedList<Trajeto> tempPath = stack.pop();
                                         try {
@@ -299,19 +307,27 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                                 //System.out.println(trajeto);
                                 LinkedStack<LinkedUnorderedList<Trajeto>> tempStack = new LinkedStack<>();
                                 for (int j = 0; j < stack.size(); j++) {
-                                    LinkedUnorderedList<Trajeto> tempPath = stack.pop();
-                                    LinkedUnorderedList<Trajeto> trajetosAresta2 = weightAdjMatrix[index1][index2];
-                                    Iterator<Trajeto> IteradorTrajetosAresta2 = trajetosAresta.iterator();
-                                    while (IteradorTrajetosAresta2.hasNext()) {
-                                        Trajeto trajetoAresta = IteradorTrajetosAresta2.next();
-                                        LinkedUnorderedList<Trajeto> newPath = new LinkedUnorderedList<>();
-                                        newPath = tempPath;
-                                        if (trajetoAresta.getCidadeDestino().equals(tempPath.last().getCidadeDestino())) {
-                                            newPath.removeLast();
+                                    LinkedUnorderedList<Trajeto> tempPath = stack.peek();
+
+                                    try {
+                                        //                                        //se a cidade destino do ultimo trajeto do elemnto da stack nao for igual ao do trajeto actual , adiciona ao path
+                                        if (!trajeto.getCidadeDestino().equals(tempPath.last().getCidadeDestino())) {
+                                            tempPath.addToRear(trajeto);
+                                            
+                                        } else {
+                                            try {
+                                                tempPath.removeLast();
+                                            } catch (EmptyCollectionException ex) {
+                                                Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                            tempPath.addToRear(trajeto);
+                                            
                                         }
-                                        newPath.addToRear(trajetoAresta);
-                                        tempStack.push(newPath);
+                                    } catch (EmptyCollectionException ex) {
+                                        Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
                                     }
+
+                                    tempStack.push(tempPath);
 
                                 }
                                 stack = tempStack;
@@ -320,8 +336,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                         }
                         //result.addToRear(path);
 
-                    } catch (EmptyCollectionException | ElementNotFoundException ex) {
-
+                    } catch (ElementNotFoundException ex) {
                         Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     //result.addToRear(option.weightValue(index1, index2, criterios));
@@ -344,7 +359,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
      * @return
      */
     public UnorderedListADT<LinkedUnorderedList<Trajeto>> criterialPath(T vertex1, T vertex2, Criterios criterios) {
-        UnorderedListADT<LinkedUnorderedList<Trajeto>> tempList = null;
+        UnorderedListADT<LinkedUnorderedList<Trajeto>> tempList = new LinkedUnorderedList<>();
         Criterios tempCriteiros = new Criterios();
         //shortest paths weights , retorna o melhor path possivel
         if (criterios.isViagemMaisBarata() || criterios.isViagemMenorDistancia() || criterios.isViagemMenorTempoViagem()) {
