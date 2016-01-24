@@ -47,8 +47,8 @@ public class TouristRoutes {
         criterios.setViagemMaisBarata(true);
         //criterios.setViagemMenorDistancia(true);
         //criterios.setVigemMenorTempoViagem(true);
-
-        System.out.println(touristRoutes.shortestPathWeight("Amarante", "Vila nova de Foz Côa", criterios));
+        touristRoutes.wightedBreadthFirstTravesal("Amarante","Porto");
+        //System.out.println(touristRoutes.shortestPathWeight("Amarante", "Vila nova de Foz Côa", criterios));
         //map.startMap(41.366700, -8.194861, 1);
         {
 

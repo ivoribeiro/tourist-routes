@@ -33,6 +33,11 @@ public class Trajeto<T extends Transporte> {
         this.horarios = new LinkedUnorderedList<>();
     }
 
+    public String getCidadeDestino() {
+        return cidadeDestino;
+    }
+    
+
     public void addHorario(LocalTime horario) {
         horarios.addToFront(horario);
     }
