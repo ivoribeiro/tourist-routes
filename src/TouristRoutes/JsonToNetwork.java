@@ -50,7 +50,7 @@ public class JsonToNetwork {
             String horariosVinda1 = (String) rota.get("HoráriosVinda1");
             String horariosVinda2 = (String) rota.get("HoráriosVinda2");
             String horariosVinda3 = (String) rota.get("HoráriosVinda3");
-            Double tempo = (Double) rota.get("Tempo(m)");
+            Long tempo = (Long) rota.get("Tempo(m)");
             Double km = (Double) rota.get("Km");
 
             //definição dos trajetos de cada linha do json (Porto -> Amarante , Amarante -> Porto)

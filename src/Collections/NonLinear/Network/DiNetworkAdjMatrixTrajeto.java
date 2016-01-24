@@ -325,7 +325,10 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
             }
         }
         System.out.println(stack.toString());
-        return null;
+        while(!stack.isEmpty()){
+            result.addToFront(stack.pop());
+        }
+        return result;
     }
 
     /**

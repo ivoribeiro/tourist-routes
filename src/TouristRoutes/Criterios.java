@@ -21,9 +21,9 @@ public class Criterios {
     private boolean comparacaoVigemMenorTempoViagem;
     private boolean comparacaoViagemMaisBarata;
 
-    private Double duracaoMaxima;
-    private Double tempoEsperaTotalMaximo;
-    private Double tempoEsperaMaximoParagem;
+    private Integer duracaoMaxima;
+    private Integer tempoEsperaTotalMaximo;
+    private Integer tempoEsperaMaximoParagem;
     private Double precoTotalMaximo;
     private Double precoMaximoTroco;
 
@@ -41,7 +41,7 @@ public class Criterios {
         this.precoMaximoTroco = null;
     }
 
-    public Criterios(Double duracaoMaxima, Double tempoEsperaTotalMaximo, Double tempoEsperaMaximoParagem, Double precoTotalMaximo, Double precoMaximoTroco) {
+    public Criterios(Integer duracaoMaxima, Integer tempoEsperaTotalMaximo, Integer tempoEsperaMaximoParagem, Double precoTotalMaximo, Double precoMaximoTroco) {
         this.viagemMaisBarata = false;
         this.viagemMenorDistancia = false;
         this.viagemMenorTempoViagem = false;
@@ -84,15 +84,15 @@ public class Criterios {
         this.viagemMaisBarata = viagemMaisBarata;
     }
 
-    public Double getDuracaoMaxima() {
+    public Integer getDuracaoMaxima() {
         return duracaoMaxima;
     }
 
-    public Double getTempoEsperaTotalMaximo() {
+    public Integer getTempoEsperaTotalMaximo() {
         return tempoEsperaTotalMaximo;
     }
 
-    public Double getTempoEsperaMaximoParagem() {
+    public Integer getTempoEsperaMaximoParagem() {
         return tempoEsperaMaximoParagem;
     }
 

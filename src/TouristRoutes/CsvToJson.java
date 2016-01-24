@@ -44,11 +44,20 @@ public class CsvToJson {
 
                         try {
                             //passar as string(possiveis de converter) para double no formato ficheiro JSON
-                            double a = Double.parseDouble(trajeto[i]);
-                            if (i == trajeto.length - 1) {
-                                str += "\"" + colunas[i] + "\":" + a + "},";
+                            if (trajeto[i].contains(".")) {
+                                double a = Double.parseDouble(trajeto[i]);
+                                if (i == trajeto.length - 1) {
+                                    str += "\"" + colunas[i] + "\":" + a + "},";
+                                } else {
+                                    str += "\"" + colunas[i] + "\":" + a + ",";
+                                }
                             } else {
-                                str += "\"" + colunas[i] + "\":" + a + ",";
+                                int a = Integer.parseInt(trajeto[i]);
+                                if (i == trajeto.length - 1) {
+                                    str += "\"" + colunas[i] + "\":" + a + "},";
+                                } else {
+                                    str += "\"" + colunas[i] + "\":" + a + ",";
+                                }
                             }
 
                         } catch (NumberFormatException es) {

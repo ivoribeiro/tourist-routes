@@ -422,21 +422,31 @@ public class TouristRouteInterface extends javax.swing.JFrame {
     }
 
     private Criterios verificarCriterio(JTextField[] textField) {
-        int i = 0;
-        double[] valorCriterio = new double[textField.length];
-
+        int i = 0, nulos = 0;
+        Double[] valorCriterio = new Double[textField.length];
+        Integer[] valores = new Integer[3];
         Criterios crit;
 
         while (i < textField.length) {
-            if (textField[i].getText().equals("")) {
-                valorCriterio[i] = Double.parseDouble(textField[i].getText());
-            } else {
-                valorCriterio[i] = Double.NEGATIVE_INFINITY;
+            try {
+                if(i < 3)
+                    valorCriterio[i] = Double.parseDouble(textField[i].getText());
+                else{
+                    valores[i] = Integer.parseInt(textField[i].getText());
+                }
+            } catch (NumberFormatException ex) {
+                valorCriterio[i] = null;
+            }
+            if (valorCriterio[i] == null) {
+                nulos++;
             }
             i++;
         }
+        if (nulos == valorCriterio.length) {
+            throw new NumberFormatException();
+        }
 
-        crit = new Criterios(valorCriterio[0], valorCriterio[2], valorCriterio[1], valorCriterio[4], valorCriterio[3]);
+        crit = new Criterios(valores[0], valores[2], valores[1], valorCriterio[4], valorCriterio[3]);
 
         return crit;
     }
@@ -450,7 +460,8 @@ public class TouristRouteInterface extends javax.swing.JFrame {
 
         };
         String cidadeOrigem, cidadeDestino, cidadeIntermedias = "";
-        double tempoViagemTotal = 0, precoTotal = 0, tempoEspera = 0;
+        int tempoViagemTotal = 0;
+        double precoTotal = 0, tempoEspera = 0;
         modelo.addColumn("Cidade Origem");
         modelo.addColumn("Cidade Intermedias");
         modelo.addColumn("Cidade Destino");
@@ -508,7 +519,7 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             if (!criterios.isViagemMaisBarata() && !criterios.isViagemMenorDistancia() && !criterios.isViagemMenorTempoViagem()) {
                 criterios = verificarCriterio(textField);
             }
-        } catch (Exception e) {
+        } catch (NumberFormatException e) {
             str += "Valor de critérios invalidos\n";
         }
         if (str != "") {

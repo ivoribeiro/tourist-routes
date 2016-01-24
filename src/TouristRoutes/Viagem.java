@@ -89,8 +89,8 @@ public class Viagem {
      * @param viagem
      * @return
      */
-    public static double getTempoViagem(LinkedUnorderedList<Trajeto> viagem) {
-        double tempoViagem = 0;
+    public static int getTempoViagem(LinkedUnorderedList<Trajeto> viagem) {
+        int tempoViagem = 0;
         Iterator<Trajeto> it = viagem.iterator();
         while (it.hasNext()) {
             Trajeto temp = it.next();
