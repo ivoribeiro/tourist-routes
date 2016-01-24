@@ -231,6 +231,13 @@ public class Trajeto<T extends Transporte> {
         }
     }
     
-    
+     public String getCidadeOrigem() {
+        return cidadeOrigem;
+    }
+
+    public String getCidadeDestino() {
+        return cidadeDestino;
+    }
+
 
 }
