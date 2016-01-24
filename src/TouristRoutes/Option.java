@@ -5,7 +5,6 @@
  */
 package TouristRoutes;
 
-import Collections.Linear.Interfaces.UnorderedListADT;
 import Collections.Linear.List.UnorderedList.LinkedUnorderedList;
 
 /**
@@ -40,17 +39,16 @@ public class Option {
             return menorDistancia(index1, index2);
         }
         if (criterios.isViagemMaisBarata()) {
-            return maisbarato(index1, index2);
+            return maisBarato(index1, index2);
         }
-        if (criterios.isVigemMenorTempoViagem()) {
+        if (criterios.isViagemMenorTempoViagem()) {
             return menorTempoViagem(index1, index2);
         } else {
             return null;
         }
     }
     
-   
-
+  
     /**
      * Retorna trajeto mais curto
      *
@@ -69,7 +67,7 @@ public class Option {
      * @param index2, index of the target vertex
      * @return the duration of the path
      */
-    private Trajeto maisbarato(int index1, int index2) {
+    private Trajeto maisBarato(int index1, int index2) {
         return Trajeto.trajetoMaisBarato(weightAdjMatrix[index1][index2]);
     }
 

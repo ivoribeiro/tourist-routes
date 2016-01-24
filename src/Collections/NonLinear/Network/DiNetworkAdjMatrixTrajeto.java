@@ -10,6 +10,7 @@ import TouristRoutes.Criterios;
 import TouristRoutes.Option;
 
 import TouristRoutes.Trajeto;
+import TouristRoutes.Viagem;
 
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -217,7 +218,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
     }
 
     /**
-     * Retorna uma lista de todos as viagens possiveis
+     * Retorna uma lista de todos as viagens possiveis entre dois vertices
      *
      * @param startVertex
      * @param endVertex
@@ -250,9 +251,77 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         }
         return result;
     }
-
+/**
+ * Retorna lista de viagens segundo criterios
+ * @param vertex1
+ * @param vertex2
+ * @param criterios
+ * @return 
+ */
     public UnorderedListADT<LinkedUnorderedList<Trajeto>> criterialPath(T vertex1, T vertex2, Criterios criterios) {
-        return this.wightedBreadthFirstTravesal(vertex1, vertex2);
+        UnorderedListADT<LinkedUnorderedList<Trajeto>> tempList = null;
+        Criterios tempCriteiros = new Criterios();
+        //shortest paths weights , retorna o melhor path possivel
+        if (criterios.isViagemMaisBarata() || criterios.isViagemMenorDistancia() || criterios.isViagemMenorTempoViagem()) {
+            if (criterios.isViagemMaisBarata()) {
+                tempCriteiros.setViagemMaisBarata(true);
+                tempList.addToRear((LinkedUnorderedList<Trajeto>) shortestPathWeight(vertex1, vertex2, tempCriteiros));
+            }
+            if (criterios.isViagemMenorDistancia()) {
+                tempCriteiros.setViagemMaisBarata(false);
+                tempCriteiros.setViagemMenorDistancia(true);
+                tempList.addToRear((LinkedUnorderedList<Trajeto>) shortestPathWeight(vertex1, vertex2, tempCriteiros));
+            }
+            if (criterios.isViagemMenorTempoViagem()) {
+                tempCriteiros.setViagemMaisBarata(false);
+                tempCriteiros.setViagemMenorDistancia(false);
+                tempCriteiros.setVigemMenorTempoViagem(true);
+                tempList.addToRear((LinkedUnorderedList<Trajeto>) shortestPathWeight(vertex1, vertex2, tempCriteiros));
+            }
+            return tempList;
+        } //requisitos avançados (formulário pesquisa)
+        else {
+            UnorderedListADT<LinkedUnorderedList<Trajeto>> todasViagens = this.wightedBreadthFirstTravesal(vertex1, vertex2);
+            tempList = todasViagens;
+            if (criterios.getDuracaoMaxima() != null) {
+                tempList = Viagem.getViagensByDistanciaMax(tempList, criterios.getDuracaoMaxima());
+            }
+            if (criterios.getPrecoMaximoTroco() != null) {
+                // tempList = Viagem.getViagensByPrecoTrajetoMax(tempList, criterios.get);
+            }
+            if (criterios.getPrecoMaximoTroco() != null) {
+                tempList = Viagem.getViagensByPrecoTrajetoMax(tempList, criterios.getPrecoMaximoTroco());
+            }
+            if (criterios.getPrecoTotalMaximo() != null) {
+
+                tempList = Viagem.getViagensByPrecoMax(tempList, criterios.getPrecoTotalMaximo());
+            }
+            if (criterios.getTempoEsperaMaximoParagem() != null) {
+                //tempList = Viagem.(tempList, criterios.getTempoEsperaMaximoParagem());
+            }
+            if (criterios.getTempoEsperaTotalMaximo() != null) {
+                //
+            }
+            if (criterios.isComparacaoViagemMaisBarata() || criterios.isComparacaoViagemMenorDistancia() || criterios.isComparacaoVigemMenorTempoViagem()) {
+                UnorderedListADT<LinkedUnorderedList<Trajeto>> newTempList = new LinkedUnorderedList<>();
+                if (criterios.isComparacaoViagemMaisBarata()) {
+
+                    newTempList.addToRear(Viagem.getViagemMaisbarata(tempList));
+
+                }
+                if (criterios.isComparacaoViagemMenorDistancia()) {
+                    newTempList.addToRear(Viagem.getViagemMenosComprida(tempList));
+
+                }
+                if (criterios.isComparacaoVigemMenorTempoViagem()) {
+                    newTempList.addToRear(Viagem.getViagemMaisbarata(tempList));
+
+                }
+                return newTempList;
+            }
+
+        }
+        return tempList;
     }
 
     @Override
@@ -323,11 +392,8 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         return super.getVertices(); //To change body of generated methods, choose Tools | Templates.
     }
 
-
     public int verificarCidade(T vertex) throws ElementNotFoundException {
         return super.getIndex(vertex);
     }
-    
-    
 
 }

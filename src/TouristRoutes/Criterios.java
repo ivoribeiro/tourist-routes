@@ -10,40 +10,49 @@ package TouristRoutes;
  * @author ivo
  */
 public class Criterios {
+//criterios melhor caminho
 
     private boolean viagemMenorDistancia;
-    private boolean vigemMenorTempoViagem;
+    private boolean viagemMenorTempoViagem;
     private boolean viagemMaisBarata;
 
-    private int duracaoMaxima;
-    private int tempoEsperaTotalMaximo;
-    private int tempoEsperaMaximoParagem;
-    private int precoTotalMaximo;
-    private int precoMaximoTroco;
+    //criterios por comparacao
+    private boolean comparacaoViagemMenorDistancia;
+    private boolean comparacaoVigemMenorTempoViagem;
+    private boolean comparacaoViagemMaisBarata;
+
+    private Double duracaoMaxima;
+    private Double tempoEsperaTotalMaximo;
+    private Double tempoEsperaMaximoParagem;
+    private Double precoTotalMaximo;
+    private Double precoMaximoTroco;
 
     public Criterios() {
         this.viagemMaisBarata = false;
         this.viagemMenorDistancia = false;
-        this.vigemMenorTempoViagem = false;
-    }
-    
-    
-
-    public Criterios(boolean viagemMenorDistancia, boolean vigemMenorTempoViagem, boolean viagemMaisBarata, int duracaoMaxima, int tempoEsperaTotalMaximo, int tempoEsperaMaximoParagem, int precoTotalMaximo, int precoMaximoTroco) {
-        this.viagemMenorDistancia = viagemMenorDistancia;
-        this.vigemMenorTempoViagem = vigemMenorTempoViagem;
-        this.viagemMaisBarata = viagemMaisBarata;
-        this.duracaoMaxima = duracaoMaxima;
-        this.tempoEsperaTotalMaximo = tempoEsperaTotalMaximo;
-        this.tempoEsperaMaximoParagem = tempoEsperaMaximoParagem;
-        this.precoTotalMaximo = precoTotalMaximo;
-        this.precoMaximoTroco = precoMaximoTroco;
+        this.viagemMenorTempoViagem = false;
+        this.comparacaoViagemMaisBarata = false;
+        this.comparacaoViagemMenorDistancia = false;
+        this.comparacaoVigemMenorTempoViagem = false;
+        this.duracaoMaxima = null;
+        this.tempoEsperaTotalMaximo = null;
+        this.tempoEsperaMaximoParagem = null;
+        this.precoTotalMaximo = null;
+        this.precoMaximoTroco = null;
     }
 
-    public Criterios(int duracaoMaxima, int tempoEsperaTotalMaximo, int tempoEsperaMaximoParagem, int precoTotalMaximo, int precoMaximoTroco) {
+    public Criterios(Double duracaoMaxima, Double tempoEsperaTotalMaximo, Double tempoEsperaMaximoParagem, Double precoTotalMaximo, Double precoMaximoTroco) {
         this.viagemMaisBarata = false;
         this.viagemMenorDistancia = false;
-        this.viagemMenorDistancia = false;
+        this.viagemMenorTempoViagem = false;
+        this.comparacaoViagemMaisBarata = false;
+        this.comparacaoViagemMenorDistancia = false;
+        this.comparacaoVigemMenorTempoViagem = false;
+        this.duracaoMaxima = null;
+        this.tempoEsperaTotalMaximo = null;
+        this.tempoEsperaMaximoParagem = null;
+        this.precoTotalMaximo = null;
+        this.precoMaximoTroco = null;
         this.duracaoMaxima = duracaoMaxima;
         this.tempoEsperaTotalMaximo = tempoEsperaTotalMaximo;
         this.tempoEsperaMaximoParagem = tempoEsperaMaximoParagem;
@@ -55,8 +64,8 @@ public class Criterios {
         return viagemMenorDistancia;
     }
 
-    public boolean isVigemMenorTempoViagem() {
-        return vigemMenorTempoViagem;
+    public boolean isViagemMenorTempoViagem() {
+        return viagemMenorTempoViagem;
     }
 
     public boolean isViagemMaisBarata() {
@@ -68,38 +77,57 @@ public class Criterios {
     }
 
     public void setVigemMenorTempoViagem(boolean vigemMenorTempoViagem) {
-        this.vigemMenorTempoViagem = vigemMenorTempoViagem;
+        this.viagemMenorTempoViagem = vigemMenorTempoViagem;
     }
 
     public void setViagemMaisBarata(boolean viagemMaisBarata) {
         this.viagemMaisBarata = viagemMaisBarata;
     }
-    
 
-    public int getDuracaoMaxima() {
+    public Double getDuracaoMaxima() {
         return duracaoMaxima;
     }
 
-    public int getTempoEsperaTotalMaximo() {
+    public Double getTempoEsperaTotalMaximo() {
         return tempoEsperaTotalMaximo;
     }
 
-    public int getTempoEsperaMaximoParagem() {
+    public Double getTempoEsperaMaximoParagem() {
         return tempoEsperaMaximoParagem;
     }
 
-    public int getPrecoTotalMaximo() {
+    public Double getPrecoTotalMaximo() {
         return precoTotalMaximo;
     }
 
-    public int getPrecoMaximoTroco() {
+    public Double getPrecoMaximoTroco() {
         return precoMaximoTroco;
     }
+
+    public void setComparacaoViagemMenorDistancia(boolean comparacaoViagemMenorDistancia) {
+        this.comparacaoViagemMenorDistancia = comparacaoViagemMenorDistancia;
+    }
+
+    public void setComparacaoVigemMenorTempoViagem(boolean comparacaoVigemMenorTempoViagem) {
+        this.comparacaoVigemMenorTempoViagem = comparacaoVigemMenorTempoViagem;
+    }
+
+    public void setComparacaoViagemMaisBarata(boolean comparacaoViagemMaisBarata) {
+        this.comparacaoViagemMaisBarata = comparacaoViagemMaisBarata;
+    }
     
-    
-    
-    
-    
-    
+
+    //por comparação
+    public boolean isComparacaoViagemMenorDistancia() {
+        return comparacaoViagemMenorDistancia;
+    }
+
+    public boolean isComparacaoVigemMenorTempoViagem() {
+        return comparacaoVigemMenorTempoViagem;
+    }
+
+    public boolean isComparacaoViagemMaisBarata() {
+        return comparacaoViagemMaisBarata;
+    }
 
 }
