@@ -1,57 +1,57 @@
-CidadeOrigem;preco/KmIda;HoráriosIda1;HoráriosIda2;HoráriosIda3;Km;Tempo(m);preco/KmVinda;HoráriosVinda1;HoráriosVinda2;HoráriosVinda3;CidadeDestino
-Porto;0,12;15:56;17:55;16:04;61,20;47;0,15;02:10;;;Amarante
-Porto;0,05;21:56;19:35;;69,40;50;0,07;16:48;13:00;;Amarante
-Porto;0,12;19:32;14:32;;68,70;50;0,10;17:40;12:53;20:11;Amarante
-Porto;0,12;08:13;16:13;;55,30;44;0,05;00:27;18:21;;Guimarães
-Porto;0,10;21:14;;;67,80;52;0,09;18:20;11:24;06:21;Guimarães
-Porto;0,12;03:14;08:36;22:23;55,00;43;0,06;15:24;06:42;;Braga
-Porto;0,10;23:07;;;73,10;51;0,09;11:49;16:41;16:52;Braga
-Porto;0,07;01:25;00:45;;61,90;45;0,13;04:50;14:48;;Barcelos
-Porto;0,12;06:25;02:17;;68,50;49;0,15;09:43;;;Barcelos
-Amarante;0,11;02:04;;;42,80;40;0,06;16:26;01:10;04:09;Vila Real
-Amarante;0,08;02:06;12:01;09:28;77,90;62;0,15;04:13;18:57;16:19;Lamego
-Amarante;0,05;01:03;16:46;;55,60;71;0,14;14:37;;;Lamego
-Amarante;0,10;22:02;02:29;13:36;59,60;79;0,10;18:16;23:54;17:20;Lamego
-Amarante;0,10;13:28;16:08;09:40;49,50;38;0,08;01:14;12:19;;Guimarães
-Amarante;0,05;21:05;15:44;;52,80;48;0,09;02:21;;;Guimarães
-Amarante;0,13;00:37;;;49,80;53;0,07;13:59;15:27;01:26;Guimarães
-Braga;0,11;15:34;06:37;;24,90;26;0,07;03:14;08:51;22:15;Guimarães
-Braga;0,14;17:56;04:44;11:37;24,20;23;0,13;14:58;00:52;23:35;Barcelos
-Braga;0,07;17:39;16:02;;22,40;36;0,13;11:28;12:38;08:30;Barcelos
-Braga;0,13;14:14;14:09;11:50;33,40;37;0,15;00:30;;;Vieira do Minho
-Braga;0,05;01:17;03:22;;37,80;49;0,09;12:30;00:34;19:08;Vieira do Minho
-Barcelos;0,09;09:45;01:59;05:36;34,70;37;0,06;14:34;21:02;;Viana do Castelo
-Barcelos;0,11;19:29;01:33;16:46;39,10;39;0,14;15:22;;;Viana do Castelo
-Barcelos;0,10;14:35;03:38;;49,40;35;0,10;12:10;02:38;01:35;Ponte de Lima
-Barcelos;0,11;00:28;;;36,60;44;0,06;15:14;;;Ponte de Lima
-Barcelos;0,12;05:20;03:33;08:25;30,50;45;0,14;08:05;15:40;09:56;Ponte de Lima
-Ponte de Lima;0,13;10:58;15:41;20:01;32,70;37;0,05;09:37;;;Viana do Castelo
-Ponte de Lima;0,09;01:27;12:26;;29,20;38;0,11;10:56;01:40;01:03;Viana do Castelo
-Ponte de Lima;0,09;21:36;06:50;;75,00;63;0,14;22:53;01:30;;Vieira do Minho
-Ponte de Lima;0,10;13:20;03:56;;66,30;67;0,07;11:46;09:44;05:21;Vieira do Minho
-Ponte de Lima;0,10;02:09;;;94,80;86;0,06;15:11;;;Vieira do Minho
-Ponte de Lima;0,10;15:46;23:45;08:42;38,90;27;0,10;05:39;;;Valença do Minho
-Ponte de Lima;0,13;02:08;05:36;;52,40;56;0,15;08:06;15:44;05:34;Valença do Minho
-Valença do Minho;0,15;06:34;19:47;00:01;66,10;45;0,09;14:03;19:52;11:49;Viana do Castelo
-Valença do Minho;0,07;12:15;18:56;;53,90;49;0,08;09:42;;;Viana do Castelo
-Valença do Minho;0,11;08:43;;;106,00;80;0,10;16:42;11:35;19:28;Vieira do Minho
-Valença do Minho;0,09;03:53;09:10;03:42;139,00;104;0,15;12:01;16:51;;Vieira do Minho
-Vieira do Minho;0,09;00:00;13:50;17:28;100,00;88;0,06;01:46;;;Chaves
-Vieira do Minho;0,11;22:34;23:39;19:30;96,30;103;0,11;22:58;;;Chaves
-Vieira do Minho;0,13;08:57;07:02;17:56;99,80;116;0,10;15:48;20:49;17:58;Chaves
-Vieira do Minho;0,15;01:45;21:40;;93,30;84;0,09;17:04;06:25;15:14;Vila Real
-Vieira do Minho;0,08;01:46;16:29;10:00;121,00;106;0,08;02:33;19:41;07:54;Vila Real
-Vieira do Minho;0,05;05:51;;;150,00;104;0,13;04:54;;;Vila Real
-Lamego;0,10;15:13;03:11;;39,60;45;0,12;13:05;08:45;11:54;Pinhão
-Vila Real;0,09;17:14;13:21;;40,80;49;0,07;23:36;05:57;15:24;Pinhão
-Vila Real;0,09;19:16;20:26;22:06;56,20;52;0,08;12:34;;;Pinhão
-Vila Real;0,09;14:10;06:04;13:10;66,50;45;0,12;12:28;20:31;12:11;Chaves
-Vila Real;0,10;17:33;04:45;;67,50;57;0,13;13:33;;;Chaves
-Vila Real;0,07;14:39;18:32;;107,00;77;0,13;11:59;23:30;16:31;Vila nova de Foz Côa
-Vila Real;0,11;17:04;;;112,00;115;0,11;19:17;19:45;;Vila nova de Foz Côa
-Vila nova de Foz Côa;0,06;12:39;22:05;18:44;109,00;103;0,15;08:52;;;Chaves
-Vila nova de Foz Côa;0,15;06:12;16:52;;163,00;110;0,09;08:28;23:55;17:18;Chaves
-Vila nova de Foz Côa;0,14;08:58;04:19;;105,00;75;0,15;17:37;19:08;;Bragança
-Bragança;0,08;15:16;;;110,00;85;0,06;12:24;12:04;;Chaves
-Bragança;0,07;10:45;16:26;;96,30;96;0,05;17:09;;;Chaves
-Bragança;0,11;07:06;14:27;09:01;134,00;98;0,08;01:23;10:52;08:41;Chaves
+CidadeOrigem;preco/KmIda;HoráriosIda1;HoráriosIda2;HoráriosIda3;Km;Tempo(m);preco/KmVinda;HoráriosVinda1;HoráriosVinda2;HoráriosVinda3;CidadeDestino;Tipo de Transporte;Transportadora
+Porto;0,12;15:56;17:55;16:04;61,20;47;0,15;02:10;;;Amarante;Autocarro;RodoNorte
+Porto;0,05;21:56;19:35;;69,40;50;0,07;16:48;13:00;;Amarante;Autocarro;RodoNorte
+Porto;0,12;19:32;14:32;;68,70;50;0,10;17:40;12:53;20:11;Amarante;Autocarro;RodoNorte
+Porto;0,12;08:13;16:13;;55,30;44;0,05;00:27;18:21;;Guimarães;Autocarro;Ladim
+Porto;0,10;21:14;;;67,80;52;0,09;18:20;11:24;06:21;Guimarães;Autocarro;RodoNorte
+Porto;0,12;03:14;08:36;22:23;55,00;43;0,06;15:24;06:42;;Braga;Autocarro;RodoNorte
+Porto;0,10;23:07;;;73,10;51;0,09;11:49;16:41;16:52;Braga;Autocarro;RodoNorte
+Porto;0,07;01:25;00:45;;61,90;45;0,13;04:50;14:48;;Barcelos;Autocarro;RodoNorte
+Porto;0,12;06:25;02:17;;68,50;49;0,15;09:43;;;Barcelos;Autocarro;Ladim
+Amarante;0,11;02:04;;;42,80;40;0,06;16:26;01:10;04:09;Vila Real;Autocarro;RodoNorte
+Amarante;0,08;02:06;12:01;09:28;77,90;62;0,15;04:13;18:57;16:19;Lamego;Autocarro;RodoNorte
+Amarante;0,05;01:03;16:46;;55,60;71;0,14;14:37;;;Lamego;Autocarro;RodoNorte
+Amarante;0,10;22:02;02:29;13:36;59,60;79;0,10;18:16;23:54;17:20;Lamego;Autocarro;RodoNorte
+Amarante;0,10;13:28;16:08;09:40;49,50;38;0,08;01:14;12:19;;Guimarães;Autocarro;RodoNorte
+Amarante;0,05;21:05;15:44;;52,80;48;0,09;02:21;;;Guimarães;Autocarro;Ladim
+Amarante;0,13;00:37;;;49,80;53;0,07;13:59;15:27;01:26;Guimarães;Autocarro;RodoNorte
+Braga;0,11;15:34;06:37;;24,90;26;0,07;03:14;08:51;22:15;Guimarães;Autocarro;RodoNorte
+Braga;0,14;17:56;04:44;11:37;24,20;23;0,13;14:58;00:52;23:35;Barcelos;Autocarro;RodoNorte
+Braga;0,07;17:39;16:02;;22,40;36;0,13;11:28;12:38;08:30;Barcelos;Autocarro;RodoNorte
+Braga;0,13;14:14;14:09;11:50;33,40;37;0,15;00:30;;;Vieira do Minho;Autocarro;Ladim
+Braga;0,05;01:17;03:22;;37,80;49;0,09;12:30;00:34;19:08;Vieira do Minho;Autocarro;RodoNorte
+Barcelos;0,09;09:45;01:59;05:36;34,70;37;0,06;14:34;21:02;;Viana do Castelo;Autocarro;RodoNorte
+Barcelos;0,11;19:29;01:33;16:46;39,10;39;0,14;15:22;;;Viana do Castelo;Autocarro;RodoNorte
+Barcelos;0,10;14:35;03:38;;49,40;35;0,10;12:10;02:38;01:35;Ponte de Lima;Autocarro;RodoNorte
+Barcelos;0,11;00:28;;;36,60;44;0,06;15:14;;;Ponte de Lima;Autocarro;Ladim
+Barcelos;0,12;05:20;03:33;08:25;30,50;45;0,14;08:05;15:40;09:56;Ponte de Lima;Autocarro;RodoNorte
+Ponte de Lima;0,13;10:58;15:41;20:01;32,70;37;0,05;09:37;;;Viana do Castelo;Autocarro;RodoNorte
+Ponte de Lima;0,09;01:27;12:26;;29,20;38;0,11;10:56;01:40;01:03;Viana do Castelo;Autocarro;RodoNorte
+Ponte de Lima;0,09;21:36;06:50;;75,00;63;0,14;22:53;01:30;;Vieira do Minho;Autocarro;RodoNorte
+Ponte de Lima;0,10;13:20;03:56;;66,30;67;0,07;11:46;09:44;05:21;Vieira do Minho;Autocarro;Ladim
+Ponte de Lima;0,10;02:09;;;94,80;86;0,06;15:11;;;Vieira do Minho;Autocarro;RodoNorte
+Ponte de Lima;0,10;15:46;23:45;08:42;38,90;27;0,10;05:39;;;Valença do Minho;Autocarro;RodoNorte
+Ponte de Lima;0,13;02:08;05:36;;52,40;56;0,15;08:06;15:44;05:34;Valença do Minho;Autocarro;RodoNorte
+Valença do Minho;0,15;06:34;19:47;00:01;66,10;45;0,09;14:03;19:52;11:49;Viana do Castelo;Autocarro;RodoNorte
+Valença do Minho;0,07;12:15;18:56;;53,90;49;0,08;09:42;;;Viana do Castelo;Autocarro;RodoNorte
+Valença do Minho;0,11;08:43;;;106,00;80;0,10;16:42;11:35;19:28;Vieira do Minho;Autocarro;RodoNorte
+Valença do Minho;0,09;03:53;09:10;03:42;139,00;104;0,15;12:01;16:51;;Vieira do Minho;Autocarro;RodoNorte
+Vieira do Minho;0,09;00:00;13:50;17:28;100,00;88;0,06;01:46;;;Chaves;Autocarro;Ladim
+Vieira do Minho;0,11;22:34;23:39;19:30;96,30;103;0,11;22:58;;;Chaves;Autocarro;RodoNorte
+Vieira do Minho;0,13;08:57;07:02;17:56;99,80;116;0,10;15:48;20:49;17:58;Chaves;Autocarro;RodoNorte
+Vieira do Minho;0,15;01:45;21:40;;93,30;84;0,09;17:04;06:25;15:14;Vila Real;Autocarro;RodoNorte
+Vieira do Minho;0,08;01:46;16:29;10:00;121,00;106;0,08;02:33;19:41;07:54;Vila Real;Autocarro;Ladim
+Vieira do Minho;0,05;05:51;;;150,00;104;0,13;04:54;;;Vila Real;Autocarro;RodoNorte
+Lamego;0,10;15:13;03:11;;39,60;45;0,12;13:05;08:45;11:54;Pinhão;Autocarro;RodoNorte
+Vila Real;0,09;17:14;13:21;;40,80;49;0,07;23:36;05:57;15:24;Pinhão;Autocarro;RodoNorte
+Vila Real;0,09;19:16;20:26;22:06;56,20;52;0,08;12:34;;;Pinhão;Autocarro;RodoNorte
+Vila Real;0,09;14:10;06:04;13:10;66,50;45;0,12;12:28;20:31;12:11;Chaves;Autocarro;RodoNorte
+Vila Real;0,10;17:33;04:45;;67,50;57;0,13;13:33;;;Chaves;Autocarro;RodoNorte
+Vila Real;0,07;14:39;18:32;;107,00;77;0,13;11:59;23:30;16:31;Vila nova de Foz Côa;Autocarro;RodoNorte
+Vila Real;0,11;17:04;;;112,00;115;0,11;19:17;19:45;;Vila nova de Foz Côa;Autocarro;Ladim
+Vila nova de Foz Côa;0,06;12:39;22:05;18:44;109,00;103;0,15;08:52;;;Chaves;Autocarro;RodoNorte
+Vila nova de Foz Côa;0,15;06:12;16:52;;163,00;110;0,09;08:28;23:55;17:18;Chaves;Autocarro;RodoNorte
+Vila nova de Foz Côa;0,14;08:58;04:19;;105,00;75;0,15;17:37;19:08;;Bragança;Autocarro;RodoNorte
+Bragança;0,08;15:16;;;110,00;85;0,06;12:24;12:04;;Chaves;Autocarro;RodoNorte
+Bragança;0,07;10:45;16:26;;96,30;96;0,05;17:09;;;Chaves;Autocarro;Ladim
+Bragança;0,11;07:06;14:27;09:01;134,00;98;0,08;01:23;10:52;08:41;Chaves;Autocarro;RodoNorte

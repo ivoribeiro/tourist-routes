@@ -22,7 +22,16 @@ public class Trajeto<T extends Transporte> {
     private final double distancia;
     private final double precoKm;
     private final UnorderedListADT<LocalTime> horarios;
-
+    
+    /**
+     * cria uma classe trajeto com as informaçoes detalhadas
+     * @param cidadeOrigem
+     * @param cidadeDestino
+     * @param transporteUsado
+     * @param tempoViagem
+     * @param distancia
+     * @param precoKm 
+     */
     public Trajeto(String cidadeOrigem, String cidadeDestino, T transporteUsado, int tempoViagem, double distancia, double precoKm) {
         this.cidadeDestino = cidadeDestino;
         this.cidadeOrigem = cidadeOrigem;
@@ -111,11 +120,11 @@ public class Trajeto<T extends Transporte> {
     
 
     /**
-     * Verifica se o trasnporte do trajeto cumpre com o indicado
+     * Verifica se o transporte do trajeto cumpre com o indicado
      *
-     * @param trajeto
-     * @param transporteTrajeto
-     * @return
+     * @param trajeto trajeto a verificar se cumpre o indicado
+     * @param transporteTrajeto transporte
+     * @return true se cumprir ou falso se nao cumprir
      */
     public static boolean checkTransporteTrajeto(Trajeto trajeto, Transporte transporteTrajeto) {
         return trajeto.getTransporteUsado().equals(transporteTrajeto);
@@ -124,9 +133,9 @@ public class Trajeto<T extends Transporte> {
     /**
      * Verifica se a transportadora do trajeto cumpre com o indicado
      *
-     * @param trajeto
-     * @param transportadora
-     * @return
+     * @param trajeto trajeto a verificar se cumpre o indicado
+     * @param transportadora transportadora
+     * @return true se cumpre ou falso se nao cumpre
      */
     public static boolean checkTransportadoraTrajeto(Trajeto trajeto, String transportadora) {
         if (trajeto.getTransporteUsado() instanceof Autocarro) {
@@ -141,9 +150,9 @@ public class Trajeto<T extends Transporte> {
     /**
      * Verifica se o trajeto cumpre com a distancia maxima
      *
-     * @param trajeto
-     * @param distanciaMaximaTrajeto
-     * @return
+     * @param trajeto trajeto a verificar se cumpre o indicado
+     * @param distanciaMaximaTrajeto distancia maxima
+     * @return true se cumpre ou falso se nao cumpre
      */
     public static boolean checkDistanciaMaximaTrajeto(Trajeto trajeto, double distanciaMaximaTrajeto) {
         return trajeto.getDistancia() < distanciaMaximaTrajeto;
@@ -152,9 +161,9 @@ public class Trajeto<T extends Transporte> {
     /**
      * Verifica se o trajeto cumpre com a distancia maxima
      *
-     * @param trajeto
-     * @param precoMaximoTrajeto
-     * @return
+     * @param trajeto trajeto a verificar se cumpre o indicado
+     * @param precoMaximoTrajeto preco maximo
+     * @return true se cumpre ou falso se nao cumpre
      */
     public static boolean checkPrecoMaximoTrajeto(Trajeto trajeto, double precoMaximoTrajeto) {
         return Trajeto.getPrecoTrajeto(trajeto) < precoMaximoTrajeto;
@@ -163,8 +172,8 @@ public class Trajeto<T extends Transporte> {
     /**
      * Retorna o custo da viagem
      *
-     * @param trajeto
-     * @return
+     * @param trajeto trajeto que se quer saber o custo
+     * @return true se cumpre ou falso se nao cumpre
      */
     public static double getPrecoTrajeto(Trajeto trajeto) {
         return trajeto.getDistancia() * trajeto.getPrecoKm();
@@ -173,8 +182,8 @@ public class Trajeto<T extends Transporte> {
     /**
      * Retorna o trajeto mais curto dentro de uma determinada lista de trajetos
      *
-     * @param trajetos
-     * @return
+     * @param trajetos lista de trajetos que onde se quer selecionar
+     * @return o trajeto mais curto
      */
     public static Trajeto trajetoMenorDistancia(UnorderedListADT<Trajeto> trajetos) {
         if (!trajetos.isEmpty()) {
@@ -195,8 +204,8 @@ public class Trajeto<T extends Transporte> {
     /**
      * Retorna o trajeto com o preco mais barato
      *
-     * @param trajetos
-     * @return
+     * @param trajetos lista de trajetos que onde se quer selecionar
+     * @return  o trajeto com o preco mais baixo
      */
     public static Trajeto trajetoMaisBarato(UnorderedListADT<Trajeto> trajetos) {
         if (!trajetos.isEmpty()) {
@@ -221,8 +230,8 @@ public class Trajeto<T extends Transporte> {
     /**
      * Retorna o trajeto com menor tempo de viagem
      *
-     * @param trajetos
-     * @return
+     * @param trajetos lista de trajetos que onde se quer selecionar
+     * @return o trajeto com menor tempo de viagem
      */
     public static Trajeto trajetoMenosTempoViagem(UnorderedListADT<Trajeto> trajetos) {
         if (!trajetos.isEmpty()) {

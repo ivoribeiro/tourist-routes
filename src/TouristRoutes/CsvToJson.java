@@ -18,12 +18,14 @@ import java.io.OutputStreamWriter;
  * @author luis_
  */
 public class CsvToJson {
-
+    /**
+     * classe static which converts the file to a .csv file .json
+     */
     public static void CsvToJson() {
 
         try {
             //o formato ISO-8859-1 é para ser possivel ler todos os tipos de caracteres
-            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/s.csv"), "ISO-8859-1"));
+            BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/data.csv"), "ISO-8859-1"));
 
             int numeroLinhas = 0;
             String str = "{\"rotas\": ["; //name the JsonArray
@@ -33,8 +35,8 @@ public class CsvToJson {
 
             //ler linha a linha do ficheiro csv. Leitura dinamica - deixando acrescentar mais colunas ao csv
             while ((line = br.readLine()) != null) {
-                line = line.replace(',', '.');
-                String[] trajeto = line.split(splitBy);
+                line = line.replace(',', '.'); 
+                String[] trajeto = line.split(splitBy); // dividir a string pelos ;
 
                 if (numeroLinhas == 0) {
                     colunas = trajeto;

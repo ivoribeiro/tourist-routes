@@ -29,7 +29,7 @@ public class Option {
      * Returns the disered method
      *
      * @param index1, index of the start vertex
-     * @param criterios
+     * @param criterios criteria for the choice of method
      * @param index2, index of the target vertex
      * @return
      */
@@ -50,33 +50,33 @@ public class Option {
     
   
     /**
-     * Retorna trajeto mais curto
+     * return the shortest path
      *
      * @param index1, index of the start vertex
      * @param index2, index of the target vertex
-     * @return the duration of the path
+     * @return the route of the path
      */
     private Trajeto menorDistancia(int index1, int index2) {
         return Trajeto.trajetoMenorDistancia(weightAdjMatrix[index1][index2]);
     }
 
     /**
-     * Retorna trajeto mais barato
+     * return the cheapest path
      *
      * @param index1, index of the start vertex
      * @param index2, index of the target vertex
-     * @return the duration of the path
+     * @return the route of the path
      */
     private Trajeto maisBarato(int index1, int index2) {
         return Trajeto.trajetoMaisBarato(weightAdjMatrix[index1][index2]);
     }
 
     /**
-     * Retorna o trajeto mais curta (tempo viagem)
+     * Return the route with the shortest travel time
      *
      * @param index1, index of the start vertex
      * @param index2, index of the target vertex
-     * @return the duration of the path
+     * @return the route of the path
      */
     private Trajeto menorTempoViagem(int index1, int index2) {
 

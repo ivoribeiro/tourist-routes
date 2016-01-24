@@ -31,7 +31,7 @@ public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements Networ
     }
 
     /**
-     * Creates new arrays to store the contents of the graph with twice the
+     * Creates new arrays to store the contents of the Network with twice the
      * capacity.
      */
     @Override
@@ -45,10 +45,10 @@ public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements Networ
     }
 
     /**
-     * Adds a vertex to the graph, expanding the capacity of the graph if
+     * Adds a vertex to the Network, expanding the capacity of the Network if
      * necessary. It also associates an object with the vertex.
      *
-     * @param vertex the vertex to add to the graph
+     * @param vertex the vertex to add to the Network
      */
     @Override
     public void addVertex(T vertex) {
@@ -93,7 +93,7 @@ public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements Networ
     }
 
     /**
-     * Inserts an edge between two vertices of this graph.
+     * Inserts an edge between two vertices of this Network.
      *
      * @param vertex1 the first vertex
      * @param vertex2 the second vertex
@@ -135,6 +135,13 @@ public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements Networ
         return -1;
     }
 
+    /**
+     * Returns the weight of the shortest path in this network.
+     *
+     * @param startIndex the index of the first vertex
+     * @param targetIndex the index of the second vertex
+     * @return the weight of the shortest path in this network
+     */
     private double shortestPathWeight(int startIndex, int targetIndex) throws EmptyCollectionException {
         double result = 0;
         if (!indexIsValid(startIndex) || !indexIsValid(targetIndex)) {
@@ -160,15 +167,12 @@ public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements Networ
     }
 
     /**
-     * ****************************************************************
      * Returns the index of the the vertex that that is adjacent to the vertex
      * with the given index and also has a pathWeight equal to weight.
      *
-     * **************************************************************** @param
-     * visited
-     * @param visited
-     * @param pathWeight
-     * @param weight
+     * @param visited the boolean array with vertex visited
+     * @param pathWeight the double array with path Weight
+     * @param weight the Weight wanted
      * @return
      */
     protected int getIndexOfAdjVertexWithWeightOf(boolean[] visited,
@@ -187,16 +191,14 @@ public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements Networ
     }
 
     /**
-     * ****************************************************************
+     *
      * Returns an iterator that contains the indices of the vertices that are in
      * the shortest path between the two given vertices.
      *
-     * **************************************************************** @param
-     * startIndex
-     * @param startIndex
-     * @param targetIndex
-     * @return
-     * @throws Collections.Exception.EmptyCollectionException
+     * @param startIndex the index of the start vertex
+     * @param targetIndex the index of the target vertex
+     * @return the iterator with shortest path
+     * @throws EmptyCollectionException
      */
     @Override
     protected Iterator iteratorShortestPath(int startIndex, int targetIndex) throws EmptyCollectionException {
@@ -208,7 +210,6 @@ public class DiNetworkAdjMatrix<T> extends adjMatrixDiGraph<T> implements Networ
                 = new ArrayUnorderedList<>();
         LinkedStack<Integer> stack = new LinkedStack<>();
 
-        int[] pathIndex = new int[this.getNumVertices()];
         double[] pathWeight = new double[this.getNumVertices()];
         for (int i = 0; i < this.getNumVertices(); i++) {
             pathWeight[i] = Double.POSITIVE_INFINITY;

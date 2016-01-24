@@ -13,13 +13,28 @@ public class Autocarro extends Transporte {
     private boolean casaDeBanho;
     private boolean alimentacao;
 
-    public Autocarro(String transportadora) {
-        super("Terrestre");
+    /**
+     * Create classe with shipping company and typem of the transport
+     *
+     * @param transportadora
+     * @param TipoTransporte
+     */
+    public Autocarro(String transportadora,String TipoTransporte) {
+        super(TipoTransporte);
         this.transportadora = transportadora;
     }
-
-    public Autocarro(String transportadora, int lugares, String conforto, boolean casaDeBanho, boolean alimentacao) {
-        super("Terrestre");
+    /**
+     * create classe with shipping company and Bus details
+     *
+     * @param transportadora the shipping company
+     * @param lugares the bus details
+     * @param conforto the bus details
+     * @param casaDeBanho the bus details
+     * @param alimentacao the bus details
+     * @param TipoTransporte the bus details
+     */
+    public Autocarro(String transportadora, int lugares, String conforto, boolean casaDeBanho, boolean alimentacao, String TipoTransporte) {
+        super(TipoTransporte);
         this.transportadora = transportadora;
         this.lugares = lugares;
         this.conforto = conforto;
@@ -70,12 +85,11 @@ public class Autocarro extends Transporte {
     @Override
     public String toString() {
 
-        return /*super.toString()+*/
-                 "Transportadora: " + transportadora + "\t";
-//                + "Lugares: " + lugares + "\t"
-//                + "Conforto: " + conforto + "\t"
-//                + "Casa de Banho: " + casaDeBanho + "\t"
-//                + "Alimentação: " + alimentacao + "\t";
+        return /*super.toString()+*/ "Transportadora: " + transportadora + "\t";
+        //  + "Lugares: " + lugares + "\t"
+        //   + "Conforto: " + conforto + "\t"
+        //  + "Casa de Banho: " + casaDeBanho + "\t"
+        //  + "Alimentação: " + alimentacao + "\t";
     }
 
     @Override
@@ -118,6 +132,5 @@ public class Autocarro extends Transporte {
         }
         return true;
     }
-    
-    
+
 }

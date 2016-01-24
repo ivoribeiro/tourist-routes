@@ -10,8 +10,8 @@ package TouristRoutes;
  * @author ivo
  */
 public class Criterios {
-//criterios melhor caminho
 
+    //criterios melhor caminho
     private boolean viagemMenorDistancia;
     private boolean viagemMenorTempoViagem;
     private boolean viagemMaisBarata;
@@ -26,7 +26,11 @@ public class Criterios {
     private Integer tempoEsperaMaximoParagem;
     private Double precoTotalMaximo;
     private Double precoMaximoTroco;
+    private String transportadora;
 
+    /**
+     * create classe criterios with all null fields
+     */
     public Criterios() {
         this.viagemMaisBarata = false;
         this.viagemMenorDistancia = false;
@@ -39,8 +43,18 @@ public class Criterios {
         this.tempoEsperaMaximoParagem = null;
         this.precoTotalMaximo = null;
         this.precoMaximoTroco = null;
+        this.transportadora = null;
     }
 
+    /**
+     * create classe criterios with the desired criteria
+     *
+     * @param duracaoMaxima
+     * @param tempoEsperaTotalMaximo
+     * @param tempoEsperaMaximoParagem
+     * @param precoTotalMaximo
+     * @param precoMaximoTroco
+     */
     public Criterios(Integer duracaoMaxima, Integer tempoEsperaTotalMaximo, Integer tempoEsperaMaximoParagem, Double precoTotalMaximo, Double precoMaximoTroco) {
         this.viagemMaisBarata = false;
         this.viagemMenorDistancia = false;
@@ -115,7 +129,6 @@ public class Criterios {
     public void setComparacaoViagemMaisBarata(boolean comparacaoViagemMaisBarata) {
         this.comparacaoViagemMaisBarata = comparacaoViagemMaisBarata;
     }
-    
 
     //por comparação
     public boolean isComparacaoViagemMenorDistancia() {
@@ -128,6 +141,14 @@ public class Criterios {
 
     public boolean isComparacaoViagemMaisBarata() {
         return comparacaoViagemMaisBarata;
+    }
+
+    public String getTransportadora() {
+        return transportadora;
+    }
+
+    public void setTransportadora(String transportadora) {
+        this.transportadora = transportadora;
     }
 
 }

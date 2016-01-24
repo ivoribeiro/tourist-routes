@@ -7,7 +7,6 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.LocalTime;
@@ -17,7 +16,10 @@ import java.util.Iterator;
  * Created by aluno on 1/21/16.
  */
 public class JsonToNetwork {
-
+    /**
+     * class static that populates the network class with the file data .json
+     * @param touristRoutes 
+     */
     public static void JsonToNetwork(DiNetworkAdjMatrixTrajeto<String> touristRoutes) {
 
         JSONParser parser = new JSONParser();
@@ -35,10 +37,10 @@ public class JsonToNetwork {
         Iterator<JSONObject> iterator = rotas.iterator();
 
         while (iterator.hasNext()) {
-
+            
             JSONObject rota = iterator.next();
             //Não existem outro tipo de veiculos no problema
-            Autocarro transporte = new Autocarro("RodoNorte");
+            
             //armazena os dados obtidos
             String cidadeOrigem = (String) rota.get("CidadeOrigem");
             String cidadeDestino = (String) rota.get("CidadeDestino");
@@ -50,10 +52,12 @@ public class JsonToNetwork {
             String horariosVinda1 = (String) rota.get("HoráriosVinda1");
             String horariosVinda2 = (String) rota.get("HoráriosVinda2");
             String horariosVinda3 = (String) rota.get("HoráriosVinda3");
+            String Transportadora = (String) rota.get("Transportadora");
+            String TipoTransporte = (String) rota.get("Tipo de Transporte");
             Long tempo = (Long) rota.get("Tempo(m)");
             Double km = (Double) rota.get("Km");
-
-            //definição dos trajetos de cada linha do json (Porto -> Amarante , Amarante -> Porto)
+            Autocarro transporte = new Autocarro(Transportadora,TipoTransporte);
+            //definição dos trajetos de cada linha do json (ex: Porto -> Amarante , Amarante -> Porto)
             Trajeto trajetoIDA = null;
             Trajeto trajetoVinda = null;
 
@@ -62,7 +66,8 @@ public class JsonToNetwork {
 
             touristRoutes.addVertex(cidadeOrigem);
             touristRoutes.addVertex(cidadeDestino);
-
+            
+            //converter os dados de string para LocalTime
             if (!horariosIda1.isEmpty()) {
                 LocalTime horarioida1 = LocalTime.parse(horariosIda1);
                 trajetoIDA.addHorario(horarioida1);
@@ -79,9 +84,10 @@ public class JsonToNetwork {
                 trajetoIDA.addHorario(horarioida3);
 
             }
-
+            //adicionar a aresta no sentido ->
             touristRoutes.addEdge(cidadeOrigem, cidadeDestino, trajetoIDA);
-
+            
+            //converter os dados de String para LocalTime
             if (!horariosVinda1.isEmpty()) {
                 LocalTime horarioVinda1 = LocalTime.parse(horariosVinda1);
                 trajetoVinda.addHorario(horarioVinda1);
@@ -96,7 +102,8 @@ public class JsonToNetwork {
                 LocalTime horarioVinda3 = LocalTime.parse(horariosVinda3);
                 trajetoVinda.addHorario(horarioVinda3);
             }
-
+            
+            //adicionar a aresta no sentido <-
             touristRoutes.addEdge(cidadeDestino, cidadeOrigem, trajetoVinda);
 
         }

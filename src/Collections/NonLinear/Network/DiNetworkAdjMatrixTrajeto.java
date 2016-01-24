@@ -383,6 +383,10 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
             if (criterios.getTempoEsperaTotalMaximo() != null) {
                 //
             }
+            if(criterios.getTransportadora() != null){
+                tempList = Viagem.getViagensByTransportadora(tempList, criterios.getTransportadora());
+            }
+            
             if (criterios.isComparacaoViagemMaisBarata() || criterios.isComparacaoViagemMenorDistancia() || criterios.isComparacaoVigemMenorTempoViagem()) {
                 UnorderedListADT<LinkedUnorderedList<Trajeto>> newTempList = new LinkedUnorderedList<>();
                 if (criterios.isComparacaoViagemMaisBarata()) {

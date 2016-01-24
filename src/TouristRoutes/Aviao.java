@@ -10,7 +10,11 @@ public class Aviao extends Transporte {
     private String conforto;
     private boolean casaDeBanho;
     private boolean alimentacao;
-
+    
+    /**
+     * Create classe with airline name
+     * @param transportadora  
+     */
     public Aviao(String companhiaAerea) {
         super("Aerea");
         this.companhiaAerea = companhiaAerea;

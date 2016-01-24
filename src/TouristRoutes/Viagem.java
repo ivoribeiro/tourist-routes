@@ -19,8 +19,8 @@ public class Viagem {
     /**
      * Retorna o preço da viagem indicada
      *
-     * @param viagem
-     * @return
+     * @param viagem lista de trajetos que compoem uma viagem
+     * @return preço da viagem indicada
      */
     public static double getPrecoViagem(LinkedUnorderedList<Trajeto> viagem) {
         double precoViagem = 0;
@@ -35,8 +35,8 @@ public class Viagem {
     /**
      * Retorna a viagem mais barata
      *
-     * @param viagens
-     * @return
+     * @param viagens lista de viagens 
+     * @return viagem mais barata
      */
     public static LinkedUnorderedList<Trajeto> getViagemMaisbarata(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -60,8 +60,8 @@ public class Viagem {
     /**
      * Retorna a viagem mais cara
      *
-     * @param viagens
-     * @return
+     * @param viagens lista de viagens 
+     * @return viagem mais cara
      */
     public static LinkedUnorderedList<Trajeto> getViagemMaisCara(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -86,8 +86,8 @@ public class Viagem {
     /**
      * Retorna o tempo da viagem indicada
      *
-     * @param viagem
-     * @return
+     * @param viagem lista de trajeto 
+     * @return  tempo da viagem 
      */
     public static int getTempoViagem(LinkedUnorderedList<Trajeto> viagem) {
         int tempoViagem = 0;
@@ -102,8 +102,8 @@ public class Viagem {
     /**
      * Retorna a viagem mais longa (tempo viagem)
      *
-     * @param viagens
-     * @return
+     * @param viagens lista de viagens 
+     * @return a viagem mais longa
      */
     public static LinkedUnorderedList<Trajeto> getViagemMaisLonga(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -126,7 +126,7 @@ public class Viagem {
     /**
      * Retorna a viagem mais curta (tempo viagem)
      *
-     * @param viagens
+     * @param viagens lista de viagens 
      * @return
      */
     public static LinkedUnorderedList<Trajeto> getViagemMaisCurta(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens) {
@@ -151,8 +151,8 @@ public class Viagem {
     /**
      * Retorna os km da viagem indicada
      *
-     * @param viagem
-     * @return
+     * @param viagem lista de trajetos 
+     * @return os km total da viagem
      */
     public static double getDistanciaViagem(LinkedUnorderedList<Trajeto> viagem) {
         double distanciaViagem = 0;
@@ -167,8 +167,8 @@ public class Viagem {
     /**
      * Retorna a viagem mais comprida (Km)
      *
-     * @param viagens
-     * @return
+     * @param viagens lista de viagens
+     * @return a viagem mais comprida
      */
     public static LinkedUnorderedList<Trajeto> getViagemMaisComprida(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -191,8 +191,8 @@ public class Viagem {
     /**
      * Retorna a viagem menos comprida (Km)
      *
-     * @param viagens
-     * @return
+     * @param viagens lista de viagens 
+     * @return a viagem menos comprida
      */
     public static LinkedUnorderedList<Trajeto> getViagemMenosComprida(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -215,9 +215,9 @@ public class Viagem {
     /**
      * Retorna as viagens com determinado transporte
      *
-     * @param viagens
-     * @param transporte
-     * @return
+     * @param viagens lista de viagens 
+     * @param transporte Transporte desejado
+     * @return lista de viagens com esse transporte
      */
     public static UnorderedListADT<LinkedUnorderedList<Trajeto>> getViagensByTransporte(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens, Transporte transporte) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -234,9 +234,9 @@ public class Viagem {
     /**
      * Verifica se todos os trajetos cumprem com o transporte indicado
      *
-     * @param trajetos
-     * @param transporte
-     * @return
+     * @param trajetos lista de viagens 
+     * @param transporte transporte desejado
+     * @return true se cumpre ou false se nao cumprir
      */
     public static boolean checkTransporteTrajetos(LinkedUnorderedList<Trajeto> trajetos, Transporte transporte) {
         if (!trajetos.isEmpty()) {
@@ -255,9 +255,9 @@ public class Viagem {
 
     /**
      *Retorna as viagens com determinada transportadora
-     * @param viagens
-     * @param trasportadora
-     * @return
+     * @param viagens lista de viagens 
+     * @param trasportadora transportadora desejada
+     * @return lista viagens de uma transportadora
      */
     public static UnorderedListADT<LinkedUnorderedList<Trajeto>> getViagensByTransportadora(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens, String trasportadora) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -274,9 +274,9 @@ public class Viagem {
     /**
      * Verifica se todos os trajetos cumprem com a transportadora indicada
      *
-     * @param trajetos
-     * @param transportadora
-     * @return
+     * @param trajetos lista de trajetos
+     * @param transportadora transportadora desejada
+     * @return true se cumpre ou falso se nao cumpre
      */
     public static boolean checkTransportadoraTrajetos(LinkedUnorderedList<Trajeto> trajetos, String transportadora) {
         if (!trajetos.isEmpty()) {
@@ -297,9 +297,9 @@ public class Viagem {
     /**
      * Retorna as viagens que cumprem com o preco maximo de viagem
      *
-     * @param viagens
-     * @param precoMax
-     * @return
+     * @param viagens lista de viagens
+     * @param precoMax preço maximo
+     * @return viagens que cumpre o requisito
      */
     public static UnorderedListADT<LinkedUnorderedList<Trajeto>> getViagensByPrecoMax(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens, double precoMax) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -321,7 +321,7 @@ public class Viagem {
      *
      * @param viagens
      * @param precoTrajetoMax
-     * @return
+     * @return viagens que cumpre o requisito
      */
     public static UnorderedListADT<LinkedUnorderedList<Trajeto>> getViagensByPrecoTrajetoMax(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens, double precoTrajetoMax) {
 
@@ -344,7 +344,7 @@ public class Viagem {
      *
      * @param trajetos
      * @param precoMaximaTrajeto
-     * @return
+     * @return 
      */
     public static boolean checkPrecoMaximoTrajetos(LinkedUnorderedList<Trajeto> trajetos, double precoMaximaTrajeto) {
         if (!trajetos.isEmpty()) {
@@ -367,7 +367,7 @@ public class Viagem {
      *
      * @param viagens
      * @param tempoMax
-     * @return
+     * @return viagens que cumpre o requisito
      */
     public static UnorderedListADT<LinkedUnorderedList<Trajeto>> getViagensByTempoMax(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens, double tempoMax) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -390,7 +390,7 @@ public class Viagem {
      *
      * @param viagens
      * @param tempoTrajetosMax
-     * @return
+     * @return viagens que cumpre o requisito
      */
     public static UnorderedListADT<LinkedUnorderedList<Trajeto>> getViagensByTempoTrajetosMax(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens, double tempoTrajetosMax) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -412,7 +412,7 @@ public class Viagem {
      *
      * @param trajetos
      * @param tempoMaximoTrajeto
-     * @return
+     * @return true se cumpre
      */
     public static boolean checkTempoMaximoTrajetos(LinkedUnorderedList<Trajeto> trajetos, double tempoMaximoTrajeto) {
         if (!trajetos.isEmpty()) {
@@ -436,7 +436,7 @@ public class Viagem {
      *
      * @param viagens
      * @param distanciaMax
-     * @return
+     * @return true se cumpre
      */
     public static UnorderedListADT<LinkedUnorderedList<Trajeto>> getViagensByDistanciaMax(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens, double distanciaMax) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -458,9 +458,9 @@ public class Viagem {
      * Retorna as viagens que cumprem com o criterio da distancia maxima por
      * trajeto
      *
-     * @param viagens
-     * @param distanciaTrajetosMax
-     * @return
+     * @param viagens lista de viagens
+     * @param distanciaTrajetosMax   distrancia maximo do trajeto
+     * @return viagens que cumpre o requisito
      */
     public static UnorderedListADT<LinkedUnorderedList<Trajeto>> getViagensByDistanciaTrajetosMax(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens, double distanciaTrajetosMax) {
         Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
@@ -479,9 +479,9 @@ public class Viagem {
     /**
      * Verifica se todos os trajetos cumprem com distancia Maxima indicada
      *
-     * @param trajetos
-     * @param distanciaMaximaTrajeto
-     * @return
+     * @param trajetos lista de trajetos
+     * @param distanciaMaximaTrajeto distancia maxima
+     * @return true se cumpre ou false se nao
      */
     public static boolean checkDistanciaMaximaTrajetos(LinkedUnorderedList<Trajeto> trajetos, double distanciaMaximaTrajeto) {
         if (!trajetos.isEmpty()) {

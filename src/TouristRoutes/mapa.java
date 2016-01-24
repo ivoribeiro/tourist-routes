@@ -18,7 +18,11 @@ import java.io.IOException;
  * @author luis_
  */
 public class mapa {
-
+    /**
+     * funçao estatica que calcula as coordenadas de um mapa
+     * @param a
+     * @param max 
+     */
     public static void startMapa(Object[] a, int max) {
         Coordinate cordenadas;
         int i = 0;

@@ -47,6 +47,7 @@ public interface BinaryTreeADT<T> {
      *
      * @param targetElement the element being sought in the tree
      * @return a reference to the specified element
+     * @throws ElementNotFoundException
      */
     public T find(T targetElement) throws ElementNotFoundException;
 
@@ -55,6 +56,7 @@ public interface BinaryTreeADT<T> {
      *
      * @return a string representation of the binary tree
      */
+    @Override
     public String toString();
 
     /**
