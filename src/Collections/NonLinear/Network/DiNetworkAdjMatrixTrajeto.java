@@ -307,13 +307,13 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                                 //System.out.println(trajeto);
                                 LinkedStack<LinkedUnorderedList<Trajeto>> tempStack = new LinkedStack<>();
                                 for (int j = 0; j < stack.size(); j++) {
-                                    LinkedUnorderedList<Trajeto> tempPath = stack.peek();
+                                    LinkedUnorderedList<Trajeto> tempPath = stack.pop();
 
                                     try {
                                         //                                        //se a cidade destino do ultimo trajeto do elemnto da stack nao for igual ao do trajeto actual , adiciona ao path
                                         if (!trajeto.getCidadeDestino().equals(tempPath.last().getCidadeDestino())) {
                                             tempPath.addToRear(trajeto);
-                                            
+
                                         } else {
                                             try {
                                                 tempPath.removeLast();
@@ -321,7 +321,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                                                 Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
                                             }
                                             tempPath.addToRear(trajeto);
-                                            
+
                                         }
                                     } catch (EmptyCollectionException ex) {
                                         Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
