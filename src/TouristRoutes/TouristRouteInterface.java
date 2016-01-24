@@ -345,6 +345,11 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             }
         });
         jTable1.setToolTipText("");
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -546,6 +551,20 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             jButton2.setEnabled(true);
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int select = jTable1.getSelectedRow();
+
+        Iterator<LinkedUnorderedList<Trajeto>> test = viagens.iterator();
+        int j = 0;
+        while (test.hasNext() && j < viagens.size()) {
+            LinkedUnorderedList<Trajeto> viagem = test.next();
+            if (j == select) {
+                jTextArea1.setText(viagem.toString());
+            }
+            j++;
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
