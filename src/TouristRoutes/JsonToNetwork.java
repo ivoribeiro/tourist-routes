@@ -25,7 +25,7 @@ public class JsonToNetwork {
         //parse do ficheiro para objeto json
         Object obj = null;
         try {
-            obj = parser.parse(new InputStreamReader(new FileInputStream("src/r.json"), "ISO-8859-1"));
+            obj = parser.parse(new InputStreamReader(new FileInputStream("src/rotas.json"), "ISO-8859-1"));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }

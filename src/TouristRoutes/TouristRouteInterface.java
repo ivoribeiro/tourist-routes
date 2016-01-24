@@ -17,8 +17,6 @@ import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -304,6 +302,7 @@ public class TouristRouteInterface extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(210, 210, 210));
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
@@ -346,11 +345,6 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             }
         });
         jTable1.setToolTipText("");
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
         jScrollPane3.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -442,7 +436,7 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         return crit;
     }
 
-    private void listarViagemTabela(LinkedUnorderedList<LinkedUnorderedList<Trajeto>> viagem) {
+    private void listarViagemTabela(LinkedUnorderedList<LinkedUnorderedList<Trajeto>> viagens) {
         DefaultTableModel modelo = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int col) {
@@ -459,7 +453,7 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         modelo.addColumn("Duração Total");
         modelo.addColumn("Tempo Espera Total");
 
-        Iterator<LinkedUnorderedList<Trajeto>> iterador = viagem.iterator();
+        Iterator<LinkedUnorderedList<Trajeto>> iterador = viagens.iterator();
         while (iterador.hasNext()) {
             try {
                 LinkedUnorderedList<Trajeto> temp = iterador.next();
@@ -553,21 +547,6 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        jTextArea1.
-        int selected = jTable1.getSelectedRow(); //Use getSelectedRows se vc permite seleção múltipla
-        int j = 0;
-        Iterator<LinkedUnorderedList<Trajeto>> it = viagens.iterator();
-        while (it.hasNext() && j < viagens.size()) {
-            if (j == selected) {
-                jTextArea1.setText(null);
-                jTextArea1.setText(it.next().toString());
-            }
-            j++;
-        }
-        
-    }//GEN-LAST:event_jTable1MouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -582,24 +561,16 @@ public class TouristRouteInterface extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TouristRouteInterface.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(TouristRouteInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TouristRouteInterface.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(TouristRouteInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TouristRouteInterface.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
+            java.util.logging.Logger.getLogger(TouristRouteInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TouristRouteInterface.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TouristRouteInterface.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
