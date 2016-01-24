@@ -71,6 +71,19 @@ public class LinkedStack<T> implements StackADT<T> {
 
     }
 
+    @Override
+    public String toString() {
+        String str="";
+        LinearNode temp = this.top;
+        while (temp != null) {
+            str+=temp.toString();
+            temp = temp.getNext();
+        }
+        return str;
+    }
+    
+    
+
     public void printStack() {
         LinearNode temp = this.top;
         while (temp != null) {
