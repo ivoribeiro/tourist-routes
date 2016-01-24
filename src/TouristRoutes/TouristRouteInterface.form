@@ -74,14 +74,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jLabel3" min="-2" pref="149" max="-2" attributes="0"/>
@@ -103,6 +95,14 @@
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jCheckBox2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jCheckBox3" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -119,11 +119,11 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="CidadeDestino" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       <Component id="jButton2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -358,16 +358,25 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Caminho com o menor pre&#xe7;o total"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox3ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Caminho com o menor tempo total"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JCheckBox" name="jCheckBox1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Caminho com a menor dist&#xe2;ncia"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox1ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -421,7 +430,6 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="Cidade Origem: &#xa;Cidades Intermedias:&#xa;Cidade Destino:&#xa;Pre&#xe7;o Total:&#xa;Dura&#xe7;&#xe3;o Total:&#xa;Tempo Espera Total:&#xa;"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -445,6 +453,7 @@
                         <Column editable="false" title="Tempo Espera Total" type="java.lang.Double"/>
                       </Table>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value=""/>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
@@ -483,9 +492,6 @@
                       <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTable1MouseClicked"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>

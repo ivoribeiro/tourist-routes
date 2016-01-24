@@ -214,10 +214,25 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         );
 
         jCheckBox3.setText("Caminho com o menor preço total");
+        jCheckBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox3ActionPerformed(evt);
+            }
+        });
 
         jCheckBox2.setText("Caminho com o menor tempo total");
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setText("Caminho com a menor distância");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -230,12 +245,6 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCheckBox1)
-                            .addComponent(jCheckBox2)
-                            .addComponent(jCheckBox3))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -252,7 +261,13 @@ public class TouristRouteInterface extends javax.swing.JFrame {
                                 .addComponent(jButton3)
                                 .addGap(150, 150, 150)
                                 .addComponent(jButton1)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckBox2)
+                            .addComponent(jCheckBox1)
+                            .addComponent(jCheckBox3))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,11 +281,11 @@ public class TouristRouteInterface extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CidadeDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(jCheckBox1)
+                .addComponent(jCheckBox3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox3)
+                .addComponent(jCheckBox1)
                 .addGap(34, 34, 34)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
@@ -290,7 +305,6 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Cidade Origem: \nCidades Intermedias:\nCidade Destino:\nPreço Total:\nDuração Total:\nTempo Espera Total:\n");
         jScrollPane2.setViewportView(jTextArea1);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -330,11 +344,7 @@ public class TouristRouteInterface extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
+        jTable1.setToolTipText("");
         jScrollPane3.setViewportView(jTable1);
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
@@ -391,16 +401,6 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         jLabel3.setText(formatador.format(data));
     }//GEN-LAST:event_formWindowOpened
 
-    private void verificarCidade(String str) throws ElementNotFoundException {
-        int i = 0;
-        while (i < touristRoute.getNumVertices() && !str.equals(touristRoute.getVertices()[i])) {
-            i++;
-        }
-        if (i == touristRoute.getNumVertices()) {
-            throw new ElementNotFoundException("Elemento nao existe");
-        }
-    }
-
     private Criterios verificarCheckBox(JCheckBox[] checkBox) {
         Criterios criterio = new Criterios();
         int i = 0;
@@ -435,22 +435,29 @@ public class TouristRouteInterface extends javax.swing.JFrame {
 
         return crit;
     }
-    
-     private void listarViagemTabela(LinkedUnorderedList<LinkedUnorderedList<Trajeto>> viagens) {
-        DefaultTableModel modelo = new DefaultTableModel();
+
+    private void listarViagemTabela(LinkedUnorderedList<LinkedUnorderedList<Trajeto>> viagens) {
+        DefaultTableModel modelo = new DefaultTableModel() {
+
+            @Override
+            public boolean isCellEditable(int row, int col) {
+                return false;
+            }
+
+        };
         String cidadeOrigem, cidadeDestino, cidadeIntermedias = "";
-        double tempoViagemTotal = 0, precoTotal = 0, distanciaTotal = 0, tempoEspera = 0;
+        double tempoViagemTotal = 0, precoTotal = 0, tempoEspera = 0;
         modelo.addColumn("Cidade Origem");
         modelo.addColumn("Cidade Intermedias");
         modelo.addColumn("Cidade Destino");
         modelo.addColumn("Preço Total");
         modelo.addColumn("Duração Total");
         modelo.addColumn("Tempo Espera Total");
+
         Iterator<LinkedUnorderedList<Trajeto>> iterador = viagens.iterator();
         while (iterador.hasNext()) {
             try {
                 LinkedUnorderedList<Trajeto> temp = iterador.next();
-                distanciaTotal = Viagem.getDistanciaViagem(temp);
                 precoTotal = Viagem.getPrecoViagem(temp);
                 tempoViagemTotal = Viagem.getTempoViagem(temp);
 
@@ -458,7 +465,10 @@ public class TouristRouteInterface extends javax.swing.JFrame {
                 cidadeDestino = temp.last().getCidadeDestino();
                 Iterator<Trajeto> it = temp.iterator();
                 while (it.hasNext()) {
-                    cidadeIntermedias += it.next().getCidadeDestino();
+                    Trajeto trajetoIntermedio = it.next();
+                    if (trajetoIntermedio.equals(cidadeDestino)) {
+                        cidadeIntermedias += it.next().getCidadeDestino();
+                    }
                 }
 
                 modelo.addRow(new Object[]{cidadeOrigem, cidadeIntermedias, cidadeDestino, precoTotal, tempoViagemTotal, tempoEspera});
@@ -469,8 +479,9 @@ public class TouristRouteInterface extends javax.swing.JFrame {
             }
         }
         jTable1.setModel(modelo);
+
     }
-    
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JCheckBox[] checkBox = {jCheckBox1, jCheckBox2, jCheckBox3};
         JTextField[] textField = {DuracaoTotalMaxima, TempoEsperaMaximoParagem, TempoEsperaTotal, PrecoMaximoTrajeto, PrecoTotalMaximo};
@@ -478,18 +489,19 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         double[] valoresCriterios = new double[checkBox.length];
         String str = "";
         try {
-            verificarCidade(CidadeOrigem.getText());
-        } catch (Exception ex) {
+            touristRoute.verificarCidade(CidadeOrigem.getText());
+        } catch (ElementNotFoundException ex) {
             str += "Cidade Origem Inexistente\n";
         }
         try {
-            verificarCidade(CidadeDestino.getText());
-        } catch (Exception ex) {
+            touristRoute.verificarCidade(CidadeDestino.getText());
+        } catch (ElementNotFoundException ex) {
             str += "Cidade Destino Inexistente\n";
         }
         try {
             criterios = verificarCheckBox(checkBox);
-            if (criterios.isComparacaoViagemMaisBarata() || criterios.isComparacaoViagemMenorDistancia() || criterios.isComparacaoVigemMenorTempoViagem()) {
+
+            if (!criterios.isViagemMaisBarata() && !criterios.isViagemMenorDistancia() && !criterios.isViagemMenorTempoViagem()) {
                 criterios = verificarCriterio(textField);
             }
         } catch (Exception e) {
@@ -512,16 +524,29 @@ public class TouristRouteInterface extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        int i;
-        if ((i = jTable1.getSelectedRow()) != -1) {
-            int j = 0;
-            while (j < jTable1.getColumnCount()) {
-                jTable1.getValueAt(i, j);
-                j++;
-            }
+    private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
+        if (jCheckBox3.isSelected()) {
+            jButton2.setEnabled(false);
+        } else {
+            jButton2.setEnabled(true);
         }
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_jCheckBox3ActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+        if (jCheckBox2.isSelected()) {
+            jButton2.setEnabled(false);
+        } else {
+            jButton2.setEnabled(true);
+        }
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        if (jCheckBox1.isSelected()) {
+            jButton2.setEnabled(false);
+        } else {
+            jButton2.setEnabled(true);
+        }
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -555,8 +580,12 @@ public class TouristRouteInterface extends javax.swing.JFrame {
 
             @Override
             public void run() {
-
-                new TouristRouteInterface().setVisible(true);
+                CsvToJson.CsvToJson();
+                //Intancia da network
+                DiNetworkAdjMatrixTrajeto<String> touristRoutes = new DiNetworkAdjMatrixTrajeto<>();
+                //  Popula a network
+                JsonToNetwork.JsonToNetwork(touristRoutes);
+                new TouristRouteInterface(touristRoutes).setVisible(true);
                 //mapa.startMapa(touristRoutes.getVertices(), touristRoutes.getNumVertices());
             }
         });
