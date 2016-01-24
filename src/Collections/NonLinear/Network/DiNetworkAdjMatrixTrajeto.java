@@ -232,6 +232,8 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         LinkedUnorderedList<Trajeto> path = new LinkedUnorderedList<>();
         LinkedStack<LinkedUnorderedList<Trajeto>> stack = new LinkedStack<>();
         Integer index1 = null, index2 = null;
+        System.out.println(paths);
+        System.out.println("Viagens:");
         //percorre os paths
         Iterator<LinkedUnorderedList<T>> it = (Iterator<LinkedUnorderedList<T>>) paths.iterator();
         while (it.hasNext()) {
@@ -248,6 +250,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                         Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
+
                 while (vertexIt.hasNext()) {
                     try {
                         index2 = getIndex(vertexIt.next());
@@ -318,6 +321,7 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
                         //result.addToRear(path);
 
                     } catch (EmptyCollectionException | ElementNotFoundException ex) {
+
                         Logger.getLogger(DiNetworkAdjMatrixTrajeto.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     //result.addToRear(option.weightValue(index1, index2, criterios));
@@ -329,7 +333,6 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         }
         System.out.println(stack.toString());
         return null;
-
     }
 
     /**

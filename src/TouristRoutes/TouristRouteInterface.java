@@ -438,7 +438,6 @@ public class TouristRouteInterface extends javax.swing.JFrame {
 
     private void listarViagemTabela(LinkedUnorderedList<LinkedUnorderedList<Trajeto>> viagens) {
         DefaultTableModel modelo = new DefaultTableModel() {
-
             @Override
             public boolean isCellEditable(int row, int col) {
                 return false;
