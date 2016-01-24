@@ -240,9 +240,6 @@ public class Trajeto<T extends Transporte> {
         return cidadeOrigem;
     }
 
-    public String getCidadeDestino() {
-        return cidadeDestino;
-    }
-
+    
 
 }
