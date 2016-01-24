@@ -323,4 +323,11 @@ public class DiNetworkAdjMatrixTrajeto<T> extends adjMatrixDiGraph<T> {
         return super.getVertices(); //To change body of generated methods, choose Tools | Templates.
     }
 
+
+    public int verificarCidade(T vertex) throws ElementNotFoundException {
+        return super.getIndex(vertex);
+    }
+    
+    
+
 }

@@ -102,6 +102,66 @@ public class Trajeto<T extends Transporte> {
     }
 
     /**
+     * Verifica se o trasnporte do trajeto cumpre com o indicado
+     *
+     * @param trajeto
+     * @param transporteTrajeto
+     * @return
+     */
+    public static boolean checkTransporteTrajeto(Trajeto trajeto, Transporte transporteTrajeto) {
+        return trajeto.getTransporteUsado().equals(transporteTrajeto);
+    }
+
+    /**
+     * Verifica se a transportadora do trajeto cumpre com o indicado
+     *
+     * @param trajeto
+     * @param transportadora
+     * @return
+     */
+    public static boolean checkTransportadoraTrajeto(Trajeto trajeto, String transportadora) {
+        if (trajeto.getTransporteUsado() instanceof Autocarro) {
+            Autocarro autocarro = (Autocarro) trajeto.getTransporteUsado();
+            if (autocarro.getTransportadora().equals(transportadora)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Verifica se o trajeto cumpre com a distancia maxima
+     *
+     * @param trajeto
+     * @param distanciaMaximaTrajeto
+     * @return
+     */
+    public static boolean checkDistanciaMaximaTrajeto(Trajeto trajeto, double distanciaMaximaTrajeto) {
+        return trajeto.getDistancia() < distanciaMaximaTrajeto;
+    }
+
+    /**
+     * Verifica se o trajeto cumpre com a distancia maxima
+     *
+     * @param trajeto
+     * @param precoMaximoTrajeto
+     * @return
+     */
+    public static boolean checkPrecoMaximoTrajeto(Trajeto trajeto, double precoMaximoTrajeto) {
+        return Trajeto.getPrecoTrajeto(trajeto) < precoMaximoTrajeto;
+    }
+
+    /**
+     * Retorna o custo da viagem
+     *
+     * @param trajeto
+     * @return
+     */
+    public static double getPrecoTrajeto(Trajeto trajeto) {
+        return trajeto.getDistancia() * trajeto.getPrecoKm();
+    }
+
+    /**
      * Retorna o trajeto mais curto dentro de uma determinada lista de trajetos
      *
      * @param trajetos
@@ -121,39 +181,6 @@ public class Trajeto<T extends Transporte> {
         } else {
             return null;
         }
-    }
-
-    /**
-     * Verifica se o trajeto cumpre com a distancia maxima
-     *
-     * @param trajeto
-     * @param distanciaMaximaTrajeto
-     * @return
-     */
-    public static boolean checkDistanciaMaximaTrajeto(Trajeto trajeto, double distanciaMaximaTrajeto) {
-        return trajeto.getDistancia() < distanciaMaximaTrajeto;
-    }
-    
-    /**
-     * Verifica se o trajeto cumpre com a distancia maxima
-     *
-     * @param trajeto
-     * @param precoMaximoTrajeto
-     * @return
-     */
-    public static boolean checkPrecoMaximoTrajeto(Trajeto trajeto, double precoMaximoTrajeto) {
-        return Trajeto.getPrecoTrajeto(trajeto) < precoMaximoTrajeto;
-    }
-
-
-    /**
-     * Retorna o custo da viagem
-     *
-     * @param trajeto
-     * @return
-     */
-    public static double getPrecoTrajeto(Trajeto trajeto) {
-        return trajeto.getDistancia() * trajeto.getPrecoKm();
     }
 
     /**

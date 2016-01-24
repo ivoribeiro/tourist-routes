@@ -189,7 +189,7 @@ public class Viagem {
     }
 
     /**
-     * Retorna a viagem mais comprida (Km)
+     * Retorna a viagem menos comprida (Km)
      *
      * @param viagens
      * @return
@@ -219,23 +219,81 @@ public class Viagem {
      * @param transporte
      * @return
      */
-    //TODO
     public static UnorderedListADT<LinkedUnorderedList<Trajeto>> getViagensByTransporte(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens, Transporte transporte) {
-        return null;
+        Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
+        UnorderedListADT<LinkedUnorderedList<Trajeto>> viagensPositivas = new LinkedUnorderedList<>();
+        while (itViagens.hasNext()) {
+            LinkedUnorderedList<Trajeto> tempViagem = itViagens.next();
+            if (Viagem.checkTransporteTrajetos(tempViagem, transporte)) {
+                viagensPositivas.addToRear(tempViagem);
+            }
+        }
+        return viagensPositivas;
     }
 
     /**
+     * Verifica se todos os trajetos cumprem com o transporte indicado
      *
+     * @param trajetos
+     * @param transporte
+     * @return
+     */
+    public static boolean checkTransporteTrajetos(LinkedUnorderedList<Trajeto> trajetos, Transporte transporte) {
+        if (!trajetos.isEmpty()) {
+            Iterator<Trajeto> it = trajetos.iterator();
+            while (it.hasNext()) {
+                Trajeto temp = it.next();
+                if (!Trajeto.checkTransporteTrajeto(temp, transporte)) {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     *Retorna as viagens com determinada transportadora
      * @param viagens
      * @param trasportadora
      * @return
      */
-    //TODO
     public static UnorderedListADT<LinkedUnorderedList<Trajeto>> getViagensByTransportadora(UnorderedListADT<LinkedUnorderedList<Trajeto>> viagens, String trasportadora) {
-        return null;
+        Iterator<LinkedUnorderedList<Trajeto>> itViagens = viagens.iterator();
+        UnorderedListADT<LinkedUnorderedList<Trajeto>> viagensPositivas = new LinkedUnorderedList<>();
+        while (itViagens.hasNext()) {
+            LinkedUnorderedList<Trajeto> tempViagem = itViagens.next();
+            if (Viagem.checkTransportadoraTrajetos(tempViagem, trasportadora)) {
+                viagensPositivas.addToRear(tempViagem);
+            }
+        }
+        return viagensPositivas;
     }
-    //Filtragem por preco
 
+    /**
+     * Verifica se todos os trajetos cumprem com a transportadora indicada
+     *
+     * @param trajetos
+     * @param transportadora
+     * @return
+     */
+    public static boolean checkTransportadoraTrajetos(LinkedUnorderedList<Trajeto> trajetos, String transportadora) {
+        if (!trajetos.isEmpty()) {
+            Iterator<Trajeto> it = trajetos.iterator();
+            while (it.hasNext()) {
+                Trajeto temp = it.next();
+                if (!Trajeto.checkTransportadoraTrajeto(temp, transportadora)) {
+                    return false;
+                }
+
+            }
+            return true;
+        }
+        return false;
+    }
+
+    //Filtragem por preco
     /**
      * Retorna as viagens que cumprem com o preco maximo de viagem
      *
